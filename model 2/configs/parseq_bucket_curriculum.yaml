@@ -1,0 +1,49 @@
+# Bucket-curriculum specialist: PARSeq trained on a 3-bucket pool
+# (15k easy + 25k medium + 60k hard, all fixed:5) with explicit per-epoch
+# weighting. No length head. No variable length. Targets CryptBB.
+
+data_dir: data/synth_buckets
+ckpt_dir: checkpoints/parseq_bucket_curriculum
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 15
+gradient_clip_val: 5
+precision: "32-true"
+
+length_head_enabled: false
+
+curriculum:
+  kind: buckets
+  schedule:
+    # epoch -> bucket weights
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 0: warmup on easy
+    - { easy: 0.5, medium: 0.5, hard: 0.0 }   # 1: introduce medium
+    - { easy: 0.2, medium: 0.6, hard: 0.2 }   # 2: shift to medium-centered
+    - { easy: 0.1, medium: 0.4, hard: 0.5 }   # 3: introduce hard
+    - { easy: 0.0, medium: 0.2, hard: 0.8 }   # 4: hard-dominant
+    - { easy: 0.0, medium: 0.0, hard: 1.0 }   # 5+: hard only (deployment dist)

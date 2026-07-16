@@ -1,0 +1,36 @@
+# PARSeq trained from scratch on our source-free GAN synth pool, scored on the
+# 651 real CryptBB. Mirrors model 1's parseq_v2 architecture (so the number is
+# comparable) but points at our pool. max_label_length=6 covers the 4-6 spread.
+
+data_dir: E:/pranav/cryptbb_sourcefree/data/synth_pool/cryptbb_composite
+ckpt_dir: E:/pranav/cryptbb_sourcefree/data/ckpts/parseq_pool
+val_frac: 0.03
+seed: 0
+num_workers: 6
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5           # pool is all 5-char (matches proven parseq_v2 recipe)
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1                   # forward-only — proven recipe; perm_num=6 crawled (near-random loss)
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 15
+gradient_clip_val: 5
+precision: "32-true"

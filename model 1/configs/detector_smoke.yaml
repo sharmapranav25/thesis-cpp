@@ -1,0 +1,13 @@
+data_dir: data/synth_mybb_bb
+ckpt_dir: checkpoints/detector_smoke
+val_frac: 0.05
+seed: 0
+
+batch_size: 256
+num_workers: 4
+
+epochs: 2
+warmup_steps: 50
+
+lr: 1.0e-3
+weight_decay: 1.0e-4

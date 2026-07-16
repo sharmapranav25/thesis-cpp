@@ -1,0 +1,58 @@
+# The captcha corpus. Loop the pipeline over `schemes`. See DATASETS.md for why.
+# real_dir = unlabeled pool (source-free GAN input). eval_dir = labeled, SCORING ONLY.
+
+schemes:
+  cryptbb:
+    real_dir: "E:/pranav/CryptBBCaptchas(unsolved)07272023-20260501T023431Z-3-001/CryptBBCaptchas(unsolved)07272023"
+    count: 600
+    canvas: [200, 60]          # W, H
+    len_range: [5, 5]          # CryptBB is 5-char (matches the 651 eval); locked to 5
+    charset: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    distort_profile: "php_wavy"   # PHP-GD render family (sine warp + noise) — matches real
+    eval_dir: "E:/pranav/model 1/data/eval"   # 651 labeled — SCORE ONLY, never train
+    eval_labels: "E:/pranav/model 1/data/eval/labels.csv"
+    scoreboard: true           # the primary benchmark (vs Model 2.5 = 57.60%)
+
+  darkbay:
+    real_dir: "E:/pranav/cryptbb_sourcefree/data/darkbay/pool"   # 799 unlabeled (labels ignored)
+    count: 799
+    canvas: [200, 50]
+    len_range: [6, 6]
+    charset: "0123456789ABCDEFGHJKLMNOPQRSTUVWXYZ"   # uppercase + digits, no 'I'
+    glyph_style: "bw"          # DarkBay glyphs are black/white, not colored
+    bg_style: "dark"           # dark color-block backgrounds
+    distort_profile: "php_mono"   # PHP-GD render family, mono/gray noise variant
+    eval_dir: "E:/pranav/cryptbb_sourcefree/data/darkbay/eval"    # held-out 200, SCORE ONLY
+    scoreboard: true
+
+  city:
+    real_dir: "E:/pranav/City (live)-20260503T045450Z-3-001/City (live)"
+    count: 2000
+    canvas: [324, 81]
+    len_range: [5, 6]          # digits
+    charset: "0123456789"
+    eval_dir: null             # no labeled eval — generality/visual test only
+    scoreboard: false
+
+  courier:
+    real_dir: "E:/pranav/Courier Market (live)-20260503T045531Z-3-001/Courier Market (live)"
+    count: 2510
+    canvas: [200, 60]
+    len_range: [3, 5]          # ~4, digits
+    charset: "0123456789"
+    eval_dir: null
+    scoreboard: false
+
+# DO NOT USE as inputs:
+#   joeyretitling  -> byte-identical to cryptbb eval (the answer key). excluded.
+#   darkbay        -> only a labeled set exists (1000, 200x50, 6-char); no clean
+#                     unlabeled pool -> contamination. blocked until unlabeled sourced.
+blocked:
+  joeyretitling:
+    reason: "identical to cryptbb eval set (651/651 filenames match; filenames are labels)"
+    dirs:
+      - "E:/pranav/JoeyRetitling_extracted/JoeyRetitling"
+      - "E:/pranav/JoeyRetitling-20260502T012958Z-3-001/JoeyRetitling"
+  darkbay:
+    reason: "only DarkBay_Labeled (eval-only) exists; using it as GAN input leaks eval"
+    dir: "E:/pranav/DarkBay_Labeled-20260503T045615Z-3-001/DarkBay_Labeled"

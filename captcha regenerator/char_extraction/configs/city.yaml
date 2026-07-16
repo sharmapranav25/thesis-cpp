@@ -1,0 +1,25 @@
+# City CAPTCHAs: ~320x80, digits 0-9, 4-5 chars per image.
+# Light bg, dark bold serif digits, grey wavy lines lighter than digits.
+#
+# v0: inherit the universal otsu_cc default and tighten geometry filters
+# to City's image scale. Per-type method (city.IntensityThinFilter) is
+# only built if the universal baseline scores below the PASS threshold.
+
+captcha_type: city
+expected_chars: [4, 6]
+
+# City digits are dark on light; lock polarity for stability.
+polarity: dark_on_light
+
+# Slight opening to suppress 1px wavy-line speckle.
+morph_open_ksize: [2, 2]
+
+# Image scale ~320x80, digits roughly 30x60. Tighten filters around that.
+min_area: 80
+max_area: 6000
+min_height: 18
+max_height: 75
+min_width: 6
+max_width: 80
+min_aspect_ratio: 0.15
+max_aspect_ratio: 1.6

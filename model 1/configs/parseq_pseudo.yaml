@@ -1,0 +1,42 @@
+# PARSeq config for the pseudo-labeled retraining experiment.
+# Same architecture as Model 1; the only changes are the addition of an
+# extra data source (Model 1.5 ensemble pseudo-labels on data/raw/) and
+# a separate ckpt dir so we don't clobber the Model 1 weights.
+
+data_dir: data/synth_mybb
+ckpt_dir: checkpoints/parseq_pseudo
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+# Pseudo-label injection — second data source, mixed into train set
+extra_data_dir: data/raw
+extra_labels_csv: data/raw/pseudolabels_filtered.csv
+extra_repeat: 20
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 96
+max_epochs: 8
+gradient_clip_val: 5
+precision: "16-mixed"

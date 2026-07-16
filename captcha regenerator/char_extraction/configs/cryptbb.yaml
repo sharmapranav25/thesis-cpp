@@ -1,0 +1,24 @@
+# CryptBB unsolved: 200x60, mixed alphanum + mixed case, 3-5 chars.
+# Multi-color chars on dense colored-tile mosaic bg.
+#
+# v0: inherit otsu_cc default — but expect this baseline to FAIL because
+# bg saturation rivals char saturation. Result will inform the per-type
+# fallback (SaliencyMobileSAM) once it's built.
+
+captcha_type: cryptbb
+expected_chars: [3, 6]
+
+polarity: auto
+
+morph_open_ksize: [2, 2]
+
+# Wide tolerance — Otsu will likely produce noisy CCs; let them pass
+# initial filters so we can see what the baseline produces.
+min_area: 50
+max_area: 4500
+min_height: 12
+max_height: 56
+min_width: 4
+max_width: 60
+min_aspect_ratio: 0.1
+max_aspect_ratio: 2.5

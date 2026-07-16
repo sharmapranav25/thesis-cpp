@@ -1,0 +1,37 @@
+# PARSeq trained on the parallel synth-gen project's output:
+# real-glyph bank (M1.5 v2 pseudo-labels, min_conf=0.9) composed onto
+# LaMa-inpainted real CryptBB backgrounds. 100k images at 200x60.
+# Evaluated on the same 651 real captcha set as M1/M2.
+
+data_dir: E:/pranav/synth_data/v1/cryptbb
+ckpt_dir: E:/pranav/model 1/checkpoints/parseq_synthgen
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 15
+gradient_clip_val: 5
+precision: "32-true"

@@ -1,0 +1,77 @@
+# M2-finetune: load Model 1's best checkpoint, then apply scheduled sampling
+# + gradual unfreezing for 10 epochs. Two interleaved curricula:
+#   capacity:    head/decoder only -> + last 4 encoder blocks -> all
+#   supervision: full TF (eps=0)   -> ramp to eps=0.10 over epochs 3-6
+
+data_dir: data/synth_fixed5_100k
+ckpt_dir: checkpoints/parseq_m2_finetune
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 1.0e-4                                # 5x lower than M1 (fine-tuning regime)
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 10
+gradient_clip_val: 5
+precision: "32-true"
+
+length_head_enabled: false                # vanilla PARSeq + SS, no aux head
+
+curriculum:
+  kind: off
+
+# Load Model 1 v2's best checkpoint as starting weights (39-40% on real CryptBB).
+finetune_from: "E:/pranav/model 1/checkpoints/parseq_v2/parseq-epoch=11-val_accuracy=57.260.ckpt"
+
+# Capacity curriculum (gradual unfreezing).
+gradual_unfreeze:
+  schedule:
+    - epoch: 0
+      unfreeze:
+        - model.head
+        - model.text_embed
+        - model.pos_queries
+        - model.decoder
+    - epoch: 3
+      unfreeze:
+        - model.head
+        - model.text_embed
+        - model.pos_queries
+        - model.decoder
+        - model.encoder.blocks.8
+        - model.encoder.blocks.9
+        - model.encoder.blocks.10
+        - model.encoder.blocks.11
+        - model.encoder.norm
+    - epoch: 6
+      unfreeze: ["all"]
+
+# Supervision curriculum (scheduled sampling).
+# Full TF for first 3 epochs (matches gradual-unfreeze stage 1 - head/decoder
+# stabilize before SS noise arrives). Then linear ramp to eps_max=0.10 over
+# remaining epochs.
+sched_sample:
+  enabled: true
+  eps_max: 0.10
+  warmup_epochs: 3

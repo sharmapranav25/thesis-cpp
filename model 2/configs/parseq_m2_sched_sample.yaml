@@ -1,0 +1,55 @@
+# Model 2: PARSeq + scheduled sampling (Bengio et al. 2015) on supervision.
+# Same data as Model 1 (100k fixed:5 captchas at d=1.0). The ONLY change vs M1
+# is the scheduled-sampling curriculum on the decoder input.
+#
+# Schedule: eps stays at 0.0 for epoch 0 (full teacher forcing), then ramps
+# linearly from 0.0 to 0.25 over epochs 1-14. By the end, ~25% of decoder
+# input positions are replaced by the model's own greedy predictions, forcing
+# the model to operate without perfect ground-truth context.
+
+data_dir: data/synth_fixed5_100k
+ckpt_dir: checkpoints/parseq_m2_sched_sample_v2
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 25
+gradient_clip_val: 5
+precision: "32-true"
+
+length_head_enabled: false
+
+curriculum:
+  kind: off
+
+# v2: slower ramp. Warmup 5 epochs at eps=0 (full teacher forcing — let
+# the model converge first), then linear ramp 0 -> 0.15 over epochs 5-24
+# (20 epochs of slow ramp; ~0.0075 per epoch). v1 hit eps=0.211 by epoch 12
+# and started oscillating; v2 reaches eps=0.15 only at epoch 24.
+sched_sample:
+  enabled: true
+  eps_max: 0.15
+  warmup_epochs: 5

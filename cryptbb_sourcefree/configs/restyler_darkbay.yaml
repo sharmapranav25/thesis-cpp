@@ -1,0 +1,5 @@
+work_hw: [48, 192]        # H,W ; DarkBay native 200x50 (aspect 4.0), /16
+base: 64
+bg_mode: "procedural"     # dark-block procedural (no clean LaMa pool for DarkBay)
+p_procedural: 1.0
+out_dir: "E:/pranav/cryptbb_sourcefree/data"

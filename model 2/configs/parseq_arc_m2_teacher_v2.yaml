@@ -1,0 +1,76 @@
+# Research-arc Model 2 (teacher-bucket variant) — v2 fix.
+#
+# Same setup as parseq_arc_m2_teacher.yaml but with two changes to fix the
+# severe overfitting (val_word stuck at 1.30%) of the previous run:
+#   1. augment: true   — turn on training-time augmentation (was false → no
+#      regularization → train loss collapsed to 0.012 by epoch 2 while val
+#      loss climbed 2.16 → 3.22)
+#   2. schedule: 1/1/13 — shorten the easy-only and easy+medium phases so
+#      the sampler doesn't show the small (~31k) easy bucket 3-4× before
+#      the model sees the broader distribution
+#
+# Bar: M1 v2's 39.78% real word / Model 1.5 v2 ensemble's 49.16%.
+# Failed prior run: best val_word 1.30% (overfit).
+
+data_dir: data/model2_training_data
+ckpt_dir: checkpoints/parseq_arc_m2_teacher_v2
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 15
+gradient_clip_val: 5
+precision: "32-true"
+
+length_head_enabled: false
+augment: true                # ← fix #1: was false
+
+curriculum:
+  kind: buckets
+  schedule:
+    # 1 ep easy
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 0
+    # 1 ep easy + medium
+    - { easy: 1.0, medium: 1.0, hard: 0.0 }   # 1
+    # 13 ep all-on, size-proportional
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 2
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 3
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 4
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 5
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 6
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 7
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 8
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 9
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 10
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 11
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 12
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 13
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 14
+
+stage_end_checkpoint:
+  enabled: true
+  epochs: [0, 1, 14]
+  names: ["easy", "easy_medium", "all"]

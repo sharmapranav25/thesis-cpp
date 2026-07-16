@@ -1,0 +1,35 @@
+# Recognition-anchored CUT restyler (RESEARCH §7). Scheme-general: canvas/charset
+# come from configs/corpus.yaml; this file is the GAN's knobs.
+
+work_hw: [64, 208]        # H,W GAN working size (÷16 for 4-down U-Net); native 200x60 -> here
+base: 64
+nce_layers: [0, 1, 2, 3]  # encoder depths fed to PatchNCE
+nce_dim: 256
+nce_tau: 0.07
+num_patches: 256
+
+loss_weights:
+  adv: 1.0
+  patchnce: 1.0
+  mask_l1: 5.0
+  rec: 0.0                # M1: OFF. M2 sets >0 (start 0.5).
+
+# background recreation (JOB B)
+bg_mode: "mix"            # procedural | lama | mix
+lama_dir: "E:/pranav/auto_synth/data/cryptbb_unsolved/bg_lama"
+p_procedural: 0.6         # in mix mode, fraction procedural (clean); rest filtered LaMa
+
+use_ada: true
+ada_p: 0.3
+label_smooth: 0.1
+
+batch: 12
+lr: 2.0e-4
+d_lr: 2.0e-4
+steps: 8000
+qa_every: 500
+ckpt_every: 2000
+
+# Reader for L_rec (M2). Cold-started on our own renders (source-free/label-free).
+reader_ckpt: "E:/pranav/cryptbb_sourcefree/data/ckpts/reader_r0.ckpt"
+out_dir: "E:/pranav/cryptbb_sourcefree/data"

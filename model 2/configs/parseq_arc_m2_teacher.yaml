@@ -1,0 +1,77 @@
+# Research-arc Model 2 (teacher-bucket variant): static curriculum.
+#
+# 100k captchas at d=1.0, bucketed by M1.5's per-sample loss into easy/medium
+# /hard (~33k each). Apples-to-apples vs M2 v2 (same schedule shape) but with
+# teacher-defined buckets within deployment distribution rather than human
+# d-knob buckets across distributions.
+#
+# Schedule (3/3/9 = 15 ep, 1:1:3 ratio scaled from v2's 5/5/15):
+#   ep 0-2: easy only
+#   ep 3-5: easy + medium (50/50)
+#   ep 6-14: 15/25/60 proportional all-on
+#
+# Bar: M1 v2's 39.78% real CryptBB.
+# M2 v2 baseline (same schedule on d-knob buckets): 10.45% real word.
+
+data_dir: data/model2_training_data
+ckpt_dir: checkpoints/parseq_arc_m2_teacher
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 15
+gradient_clip_val: 5
+precision: "32-true"
+
+length_head_enabled: false
+augment: false
+
+curriculum:
+  kind: buckets
+  schedule:
+    # 3 ep easy
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 0
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 1
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 2
+    # 3 ep easy + medium
+    - { easy: 1.0, medium: 1.0, hard: 0.0 }   # 3
+    - { easy: 1.0, medium: 1.0, hard: 0.0 }   # 4
+    - { easy: 1.0, medium: 1.0, hard: 0.0 }   # 5
+    # 9 ep all-on, size-proportional
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 6
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 7
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 8
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 9
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 10
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 11
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 12
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 13
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 14
+
+stage_end_checkpoint:
+  enabled: true
+  epochs: [2, 5, 14]
+  names: ["easy", "easy_medium", "all"]

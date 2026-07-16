@@ -1,0 +1,42 @@
+# Diagnostic config: synth_fixed5 only, curriculum off, 3 epochs.
+# Tests whether variable-length training is the cause of Run A's collapse.
+
+data_dir: data/synth_fixed5
+ckpt_dir: checkpoints/parseq_diag
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 7
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.1
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 3
+gradient_clip_val: 5
+precision: "32-true"
+
+lengthmode_weight: 0.1
+
+curriculum:
+  enabled: false
+  warmup_epochs: 8
+  schedule: linear

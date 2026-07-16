@@ -1,0 +1,32 @@
+# Documents the shape of per-type config files. Not loaded; reference only.
+#
+# Top-level keys:
+#
+#   captcha_type:       (str)        descriptive; for logging/metadata
+#   method:             (str)        registered method name; e.g. "otsu_cc",
+#                                    "universal_craft", "universal_sam".
+#                                    Resolved by char_extraction.methods.get_method.
+#                                    Inherited from _default.yaml if omitted.
+#   expected_chars:     ([int, int]) [min, max] inclusive. Used by the
+#                                    char-count-plausibility proxy metric.
+#
+# Method-shared knobs (consumed by classical-CV methods; ignored by SAM/CRAFT):
+#
+#   polarity:           (str)        "auto" | "dark_on_light" | "light_on_dark"
+#   morph_open_ksize:   ([int, int]) erosion-then-dilation kernel; suppresses
+#                                    thin noise. Use [1, 1] to skip.
+#   min_area:           (int)        minimum CC area (px^2)
+#   max_area:           (int)
+#   min_height:         (int)        minimum CC height (px)
+#   max_height:         (int)
+#   min_width:          (int)
+#   max_width:          (int)
+#   min_aspect_ratio:   (float)      width / height
+#   max_aspect_ratio:   (float)
+#
+# Output knobs (consumed by io_utils.write_extraction):
+#
+#   crop_pad_px:        (int)        padding around each char bbox when cropping
+#
+# Method-specific keys may be added freely — methods read from self.cfg.get(...)
+# and unknown keys do not error. Document any new key here when adding it.

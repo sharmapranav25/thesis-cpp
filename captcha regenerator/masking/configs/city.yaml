@@ -1,0 +1,2 @@
+# Per-type override for City. Inherits _default.yaml; only override what differs.
+captcha_type: city

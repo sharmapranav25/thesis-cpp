@@ -1,0 +1,38 @@
+# CycleGAN config v2 — content-preservation focused.
+# Lessons from v1: by epoch ~50 the discriminators dominated (D-loss → 0.03)
+# and the generator gave up on translation, producing black-bar artifacts +
+# faded chars. Fix: stronger cycle/identity, slower D, fewer epochs, early
+# stop when D loss drops below 0.3.
+
+synth_dir: data/synthetic
+real_dir: data/raw
+samples_dir: checkpoints/cyclegan_v2/samples
+ckpt_dir: checkpoints/cyclegan_v2
+
+# model
+ngf: 64
+ndf: 64
+n_blocks: 9
+
+# optim
+lr_g: 2.0e-4
+lr_d: 1.0e-4         # half G's LR to slow discriminator dominance
+batch_size: 8
+num_workers: 4
+n_epochs_const: 35   # epoch 35 = end of constant-LR phase (first checkpoint)
+n_epochs_decay: 20   # total 55 epochs (second checkpoint at the end of decay)
+iters_per_epoch: 1500
+pool_size: 50
+
+# losses (raised to protect character content)
+lambda_cycle: 20.0
+lambda_identity: 10.0
+
+# early stop: halt training if D loss collapses (generator no longer learning).
+early_stop_d_loss: 0.20
+early_stop_patience_epochs: 5
+
+# logging
+sample_every: 2
+ckpt_every: 0        # 0 = use save_epochs list below
+save_epochs: [35, 55]

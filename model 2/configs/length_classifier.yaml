@@ -1,0 +1,17 @@
+# Length classifier: predicts is_fixed_length from a captcha image.
+# Trained on synth_curriculum (50k fixed:5 + 50k range:3-7).
+
+data_dir: data/synth_curriculum
+ckpt_dir: checkpoints/length_classifier
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+img_size: [32, 128]
+model_name: resnet18
+
+lr: 1.0e-3
+weight_decay: 1.0e-4
+batch_size: 256
+max_epochs: 5
+precision: "32-true"

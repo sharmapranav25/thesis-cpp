@@ -1,0 +1,20 @@
+data_dir: data/synth_mybb_bb
+ckpt_dir: checkpoints/charcls
+val_frac: 0.05
+seed: 0
+
+crop_size: 64
+pad_frac: 0.20
+jitter_frac: 0.15
+
+batch_size: 256
+num_workers: 4
+
+epochs: 12
+warmup_steps: 500
+
+lr: 5.0e-4
+weight_decay: 1.0e-4
+
+# multi-task: letter loss + case_loss_weight * case loss
+case_loss_weight: 0.5

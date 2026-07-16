@@ -1,0 +1,114 @@
+# Model 3 — adaptive curriculum (no teacher).
+#
+# Same training pool as Model 2 (`../model 2/data/model2_training_data/`,
+# 100k MyBB-fonts CryptBB synth, all d=1.0). Same vanilla PARSeq architecture
+# (no length head, no scheduled sampling). What changes is *which* samples
+# the model sees each cycle and *when* training stops.
+#
+# Bar to clear: Model 2's 54.22% real word (PARSeq alone) / 57.60% with
+# M1.5 ensemble. Framework's expected band for M3 is ~30-60%.
+
+# --- Data ---
+data_dir: E:/pranav/model 2/data/model2_training_data
+ckpt_dir: checkpoints/parseq_adaptive
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+# --- Architecture (matches M1 v2 / M2 flagship) ---
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+# --- Optim ---
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+gradient_clip_val: 5
+precision: "32-true"
+
+# Run-10 continuation: same finetune_from as run 9, but fixing two bugs.
+#   (a) max_epochs=999 (run 9) made warmup_pct=0.05 stretch over ~50 epochs;
+#       LR was at ~2e-5 for the whole run, model couldn't take productive
+#       steps on already-trained weights. max_epochs=50 keeps warmup at 2.5
+#       epochs (matches M1/M2) and gives a real cosine decay.
+#   (b) val_drop_threshold=1.5pp triggered backtrack #3 in run 9 before the
+#       model could ride out the natural cycle-1 dip. 2.5pp gives room.
+max_epochs: 50
+
+finetune_from: E:/pranav/model3/checkpoints/parseq_adaptive/parseq-epoch=11-val_accuracy=15.020.ckpt
+
+augment: true                  # NON-NEGOTIABLE — M2 showed this carries over
+
+# --- Adaptive curriculum (v0.5 — SPCL hybrid, Jiang 2015 AAAI) ---
+# Run 5 (full-epoch + student-only buckets) peaked at 21.5% but the model
+# overfit to 14,986 cold-start "trivial" samples (homogeneous easy-set)
+# and triggered 3 backtracks when fresh distribution was introduced.
+# Literature diagnosis: classic self-paced-learning failure (cold-start
+# noise + no diversity). Standard fix: combine predefined curriculum
+# (instructor prior) with self-paced (Jiang et al, AAAI 2015 "SPCL").
+#
+# v0.5 schedule:
+#   cycle 0:    teacher buckets, easy=1.0
+#   cycle 1-2:  teacher buckets, easy+medium 50/50
+#   cycle 3:    teacher buckets, easy+medium+hard 33/33/34
+#   cycle 4+:   student buckets (EMA-driven), 15/25/60 mature
+#
+# During cycles 0-3 the student EMA still updates on every batch, so by
+# cycle 4 the per-sample EMA has 4 cycles of meaningful content across
+# the deployment distribution. The handoff is then well-conditioned
+# instead of cold-started on noise.
+curriculum:
+  mode: adaptive
+  cycle_size: 95000            # full training pool — matches M2's 742 batches/epoch
+  ema_alpha: 0.6
+  buckets:
+    trivial_quantile:  0.25    # below 25th percentile loss → trivial
+    too_hard_quantile: 0.75    # above 75th percentile loss → too-hard
+                                # middle 50% = learning band
+  phases:
+    # v0.7 (run 9): no teacher warmup — finetune_from is a trained model, so
+    # cycle 0's training loss already produces meaningful EMA. Cycle 0 falls
+    # back to uniform sampling (bucket_assignments empty); cycle 1+ uses EMA
+    # quantiles. Schedule eases through gentle → moderate → softened-mature.
+    # Run 7 evidence: breakthroughs (cycles 8, 9, 11) all happened in moderate
+    # 20/40/40; mature 15/25/60 regressed every time. So: stay longer at
+    # moderate, end at 15/30/55 (slightly softer than 15/25/60).
+    - { until_cycle: 1, bucket_source: student, trivial: 0.33, learning: 0.34, too_hard: 0.33 }   # cycle 0: balanced (uniform fallback)
+    - { until_cycle: 6, bucket_source: student, trivial: 0.20, learning: 0.50, too_hard: 0.30 }   # cycles 1-5: gentle
+    - { until_cycle: 12, bucket_source: student, trivial: 0.20, learning: 0.40, too_hard: 0.40 }  # cycles 6-11: moderate (proven sweet spot)
+    - { bucket_source: student, trivial: 0.15, learning: 0.30, too_hard: 0.55 }                   # cycles 12+: mature (softened from 15/25/60)
+
+# --- Backtracking on validation regression ---
+# NOTE: PARSeq logs val_accuracy on the 0-100 percentage scale, so thresholds
+# below are in *percentage points*, not fractions.
+backtrack:
+  val_drop_threshold: 2.5            # widened from 1.5 — run 9 had cycle 3 recovering before #3 fired
+  rollback_skip_too_hard: 1          # skip too-hard slice for next N cycles
+  max_consecutive_backtracks: 3      # bail out after this many in a row
+
+# --- Saturation stop (the M3-specific termination criterion) ---
+early_stop:
+  plateau_window: 6                  # cycles in the rolling window
+  min_delta: 0.5                     # 0.5 percentage-point val_acc movement
+  partition_stability_threshold: 0.05 # < 5% of seen samples cross buckets
+  max_cycles: 50                     # mirrors max_epochs; saturation/backtrack-bail still decide
+
+# Cold start (no finetune_from). Phased schedule re-runs the trajectory
+# from scratch.

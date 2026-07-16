@@ -1,0 +1,25 @@
+# Smoke-test config: confirms training loop runs end-to-end and losses behave.
+# 2 epochs * 20 iters = 40 train steps. Should finish in a few minutes.
+
+synth_dir: data/synthetic
+real_dir: data/raw
+samples_dir: checkpoints/cyclegan/smoke_samples
+ckpt_dir: checkpoints/cyclegan/smoke
+
+ngf: 64
+ndf: 64
+n_blocks: 9
+
+lr: 2.0e-4
+batch_size: 4
+num_workers: 2
+n_epochs_const: 1
+n_epochs_decay: 1
+iters_per_epoch: 20
+pool_size: 16
+
+lambda_cycle: 12.0
+lambda_identity: 6.0
+
+sample_every: 1
+ckpt_every: 1

@@ -1,0 +1,22 @@
+# Courier Market: ~200x60, digits 0-9, 4-5 chars per image.
+# Light cream bg, mostly single-color digits, scribble lines, underline.
+#
+# v0: inherit otsu_cc default. Otsu on grayscale will likely struggle
+# because digit color varies — but the digits dominate by intensity, so
+# this gives a measurable baseline. ColorClusterCC fallback if needed.
+
+captcha_type: courier
+expected_chars: [3, 6]
+
+polarity: dark_on_light
+
+morph_open_ksize: [2, 2]
+
+min_area: 60
+max_area: 4500
+min_height: 14
+max_height: 56
+min_width: 4
+max_width: 60
+min_aspect_ratio: 0.1
+max_aspect_ratio: 2.0

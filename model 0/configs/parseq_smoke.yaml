@@ -1,0 +1,39 @@
+# Smoke config: 1 epoch on 1K rows to validate dataloader + forward pass.
+# Inherits architecture from parseq.yaml; just overrides scope.
+
+data_dir: train_corpus
+ckpt_dir: checkpoints/parseq_smoke
+val_frac: 0.05
+seed: 0
+num_workers: 2
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 8
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 32
+max_epochs: 1
+gradient_clip_val: 5
+precision: "32-true"
+
+# Smoke caps — small enough to finish in a couple of minutes
+max_train: 1000
+max_val: 100

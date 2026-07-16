@@ -1,0 +1,73 @@
+stage0:
+  enabled: true
+  model: Qwen/Qwen2.5-VL-7B-Instruct
+  dtype: bfloat16
+  max_new_tokens: 256
+  cache_dir: output/_qwen_cache
+
+stage2:
+  path_a:
+    morph_close_ksize: 3
+    morph_open_ksize: 3
+    achromatic_use_otsu: true   # black/white/gray go through Otsu-on-gray instead of HSV
+    fill_holes: true            # close interior holes (turns outlined rings into solid silhouettes)
+    # HSV table: each colour maps to a list of {h_lo, h_hi, s_lo, v_lo} ranges.
+    # For monochrome (black/white/gray), hue is meaningless — we filter by V/S only.
+    hsv_table:
+      red:
+        - {h_lo: 0,   h_hi: 10,  s_lo: 50,  v_lo: 50}
+        - {h_lo: 170, h_hi: 180, s_lo: 50,  v_lo: 50}
+      orange:
+        - {h_lo: 10,  h_hi: 25,  s_lo: 60,  v_lo: 80}
+      yellow:
+        - {h_lo: 22,  h_hi: 35,  s_lo: 60,  v_lo: 80}
+      green:
+        - {h_lo: 35,  h_hi: 85,  s_lo: 50,  v_lo: 50}
+      blue:
+        - {h_lo: 75,  h_hi: 130, s_lo: 50,  v_lo: 50}
+      purple:
+        - {h_lo: 125, h_hi: 160, s_lo: 50,  v_lo: 50}
+      pink:
+        - {h_lo: 155, h_hi: 175, s_lo: 40,  v_lo: 100}
+      brown:
+        - {h_lo: 0,   h_hi: 25,  s_lo: 40,  v_lo: 30}
+      black:
+        - {h_lo: 0,   h_hi: 180, s_lo: 0,   v_lo: 0,   v_hi: 80}
+      white:
+        - {h_lo: 0,   h_hi: 180, s_lo: 0,   s_hi: 50,  v_lo: 200}
+      gray:
+        - {h_lo: 0,   h_hi: 180, s_lo: 0,   s_hi: 50,  v_lo: 60,  v_hi: 200}
+
+  path_b:
+    dino_model: dino_vits8
+    patch_size: 8
+    head_std_keep_top_half: true
+    canny_lo: 100
+    canny_hi: 200
+    edge_dilate_ksize: 9
+    score_attn_weight: 0.7
+    score_edge_weight: 0.3
+    threshold_method: percentile      # percentile | otsu
+    noise_pctile: 60
+    cc_min_area_px: 60
+    cc_max_area_pct: 0.20
+
+stage2_5:
+  enabled: true
+  blob_attn_threshold: 0.55
+  blob_min_area_px: 50
+  coverage_target: 0.80
+  retries:
+    - {noise_pctile: 50, max_area_pct: 0.30}
+    - {noise_pctile: 40, max_area_pct: 0.40}
+    - {noise_pctile: 30, max_area_pct: 0.50}
+
+stage3:
+  enabled: true
+  cuda: true
+  upscale_long_side: 720
+  text_threshold: 0.7
+  link_threshold: 0.4
+  low_text: 0.4
+  char_min_area_px: 30
+  char_max_area_pct: 0.40

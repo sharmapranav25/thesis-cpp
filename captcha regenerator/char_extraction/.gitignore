@@ -1,0 +1,36 @@
+# venv + caches (kept on E: to avoid polluting C:)
+.venv/
+venv/
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Project artifacts
+checkpoints/*
+!checkpoints/README.md
+output/
+tmp/
+eval/proxy/
+eval/reports/*
+!eval/reports/README.md
+
+# Notebook artifacts
+.ipynb_checkpoints/
+notebooks/*.png
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

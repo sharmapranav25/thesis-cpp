@@ -1,0 +1,32 @@
+# Default config used when no per-type config exists OR a per-type config
+# omits keys. The router shallow-merges per-type configs onto this.
+#
+# `method` here is the universal-baseline fallback. Until torch-backed
+# universal baselines (CRAFT, MobileSAM) are wired up, this is the simple
+# Otsu+CC classical baseline. Switch by editing this file once those are
+# installed and registered.
+
+method: otsu_cc
+
+# Expected character count range — used by proxy metrics.
+expected_chars: [3, 8]
+
+# Polarity hint. "auto" detects from median intensity; override for types
+# that systematically violate the heuristic (e.g. light-on-dark schemes).
+polarity: auto
+
+# Morphological cleanup applied to the segmentation mask.
+morph_open_ksize: [2, 2]
+
+# Component geometry filters. Per-type configs typically tighten these.
+min_area: 30
+max_area: 100000
+min_aspect_ratio: 0.05
+max_aspect_ratio: 10.0
+min_height: 5
+max_height: 10000
+min_width: 1
+max_width: 10000
+
+# Output: padding (px) added around each character bbox when cropping.
+crop_pad_px: 2

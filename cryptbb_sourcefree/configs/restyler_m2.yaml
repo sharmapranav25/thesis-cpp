@@ -1,0 +1,41 @@
+# M2 — recognition-anchored restyler. Fixes M1's smearing (3% readback) with:
+#   residual G (starts at the legible composite, only refines it),
+#   L_rec (frozen R0 must read the correct text out of G(x)),
+#   stronger content weights + a slower D so adversarial can't dominate.
+
+work_hw: [64, 208]
+base: 64
+nce_layers: [0, 1, 2, 3]
+nce_dim: 256
+nce_tau: 0.07
+num_patches: 256
+
+# residual generator: output = composite + residual_scale * bounded_delta
+residual: true
+residual_scale: 0.5
+
+loss_weights:
+  adv: 0.6               # ↓ from 1.0 — keep legibility primary; residual G can't
+                         #   out-race D, so don't let adv dominate the G gradient
+  patchnce: 2.0          # ↑ from 1.0 (M1) — stronger content preservation
+  mask_l1: 8.0           # ↑ from 5.0 — anchor glyph pixels
+  rec: 0.5               # recognition-consistency ON (RESEARCH §7 start)
+
+# background recreation (JOB B)
+bg_mode: "mix"
+lama_dir: "E:/pranav/auto_synth/data/cryptbb_unsolved/bg_lama"
+p_procedural: 0.3         # 70% REAL LaMa backgrounds — teach reading chars on the real canvas
+
+use_ada: true
+ada_p: 0.5               # ↑ regularize D (it was winning too decisively)
+label_smooth: 0.1
+
+batch: 12
+lr: 2.0e-4
+d_lr: 1.0e-4             # ↓ slower D (TTUR) so it doesn't overpower G into smearing
+steps: 8000
+qa_every: 500
+ckpt_every: 2000
+
+reader_ckpt: "E:/pranav/cryptbb_sourcefree/data/ckpts/reader_r0.ckpt"
+out_dir: "E:/pranav/cryptbb_sourcefree/data"

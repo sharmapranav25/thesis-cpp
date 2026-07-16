@@ -1,0 +1,19 @@
+data_dir: data/cryptbb_synth_compbg
+ckpt_dir: checkpoints/charcls_128_compbg
+val_frac: 0.05
+seed: 2
+
+crop_size: 128
+pad_frac: 0.20
+jitter_frac: 0.15
+
+batch_size: 128
+num_workers: 4
+
+epochs: 8
+warmup_steps: 500
+
+lr: 5.0e-4
+weight_decay: 1.0e-4
+
+case_loss_weight: 0.5

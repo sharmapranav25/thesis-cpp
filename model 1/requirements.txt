@@ -1,0 +1,19 @@
+# Core
+pillow
+numpy
+pandas
+tqdm
+pyyaml
+matplotlib
+opencv-python
+albumentations
+
+# Deep learning (install torch separately with CUDA build, e.g.:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# )
+einops
+timm
+
+# PARSeq runtime deps
+lmdb
+nltk

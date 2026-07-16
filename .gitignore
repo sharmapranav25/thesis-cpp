@@ -1,0 +1,131 @@
+# =============================================================================
+# thesis-cpp .gitignore
+# Policy: commit ONLY the author's own source code and documentation.
+# Everything is ignored by default; code/doc file types are re-included;
+# then heavy/external/personal directories are re-ignored so they never leak.
+# =============================================================================
+
+# --- 1. Ignore everything by default -----------------------------------------
+*
+
+# --- 2. But allow git to descend into directories ----------------------------
+!*/
+
+# --- 3. Whitelist source code -------------------------------------------------
+!*.py
+!*.pyi
+!*.ipynb
+!*.sh
+!*.bash
+!*.bat
+!*.ps1
+!*.php
+!*.js
+!*.ts
+!*.jsx
+!*.tsx
+!*.html
+!*.css
+!*.c
+!*.cc
+!*.cpp
+!*.h
+!*.hpp
+!*.java
+
+# --- 4. Whitelist config (part of the code) ----------------------------------
+!*.yaml
+!*.yml
+!*.toml
+!*.cfg
+!*.ini
+!*.conf
+!*.gitignore
+!.gitignore
+!Dockerfile
+!Makefile
+!requirements*.txt
+!*.gitattributes
+
+# --- 5. Whitelist documentation ----------------------------------------------
+!*.md
+!*.rst
+!*.txt
+!LICENSE
+!LICENCE
+!README*
+
+# --- 6. Re-ignore heavy / external / generated directories (these win) --------
+# Virtual environments
+.venv/
+venv/
+env/
+.venv-glyph/
+**/site-packages/
+**/pyvenv.cfg
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+# Node
+node_modules/
+# Vendored / third-party source (not the author's own work)
+third_party/
+vendor/
+# Model weights / checkpoints / caches
+checkpoints/
+hf_cache/
+.cache/
+wandb/
+runs/
+
+# --- 7. Never commit secrets or personal data --------------------------------
+personal/
+.env
+.env.*
+*.env
+secrets*
+*.key
+*.pem
+.claude/settings.local.json
+
+# --- 8. Datasets & binaries (belt-and-suspenders; not whitelisted anyway) -----
+*.zip
+*.tar
+*.gz
+*.7z
+*.rar
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.webp
+*.svg
+*.ico
+*.pdf
+*.csv
+*.parquet
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.bin
+*.h5
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.ttf
+*.otf
+*.woff
+*.woff2
+
+# --- 9. Specific run-output artifacts (not code or docs) ----------------------
+mvp_results/
+cryptbb_sourcefree/data/render_gallery.html

@@ -1,0 +1,39 @@
+# PARSeq config for CryptBB-style captchas (5 chars, alphanumeric).
+# Trained on the CycleGAN-translated synthetic set.
+
+data_dir: data/synth_mybb   # PHP-MyBB-port synth: distribution-identical to CryptBB real captchas (lines/circles/squares bg + colored TTF chars + shadow + border)
+ckpt_dir: checkpoints/parseq
+val_frac: 0.05      # 5% synthetic-validation holdout
+seed: 0
+num_workers: 4
+
+# image / label
+img_size: [32, 128]   # [H, W] resize target
+patch_size: [4, 8]    # [pH, pW]; 32/4=8 vert, 128/8=16 horiz patches
+max_label_length: 5
+
+# architecture (smaller than default since our task is 5 chars / 62 classes)
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+# perms / decode (simplified for short-fixed-length captchas)
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+# optim / training
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 15
+gradient_clip_val: 5
+precision: "32-true"

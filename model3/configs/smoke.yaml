@@ -1,0 +1,61 @@
+# Smoke-test config. Tiny pool, tiny cycles, single-worker.
+# Goal: verify EMA capture, bucketing, and callbacks fire without crashes.
+# Not used for any real training.
+
+data_dir: E:/pranav/model3/data/smoke
+ckpt_dir: checkpoints/smoke
+val_frac: 0.10
+seed: 0
+num_workers: 0
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 32
+gradient_clip_val: 5
+precision: "32-true"
+
+max_epochs: 3
+augment: true
+
+curriculum:
+  mode: adaptive
+  cycle_size: 384
+  ema_alpha: 0.6
+  buckets:
+    trivial_quantile: 0.25
+    too_hard_quantile: 0.75
+  phases:
+    - { until_cycle: 1, bucket_source: teacher, easy: 1.00, medium: 0.00, hard: 0.00 }
+    - { until_cycle: 2, bucket_source: teacher, easy: 0.33, medium: 0.33, hard: 0.34 }
+    - { bucket_source: student, trivial: 0.15, learning: 0.25, too_hard: 0.60 }
+
+backtrack:
+  val_drop_threshold: 0.99           # effectively disabled for smoke
+  rollback_skip_too_hard: 1
+  max_consecutive_backtracks: 99
+
+early_stop:
+  plateau_window: 99                 # disabled — let max_epochs decide
+  min_delta: 0.005
+  partition_stability_threshold: 0.05
+  max_cycles: 3

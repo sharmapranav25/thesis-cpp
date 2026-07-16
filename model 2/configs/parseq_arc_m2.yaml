@@ -1,0 +1,81 @@
+# Research-arc Model 2: static curriculum (additive, asymmetric).
+#
+# Trained from scratch on synth_buckets (15k easy + 25k medium + 60k hard).
+# Schedule: easy -> easy+medium -> easy+medium+hard (additive, never drops).
+# Stages: 5 + 5 + 15 = 25 epochs. Hard stage gets 3x the time of earlier
+# stages so the deployment-target distribution actually converges.
+# No augmentation, no length head, no SS. Paired against parseq_arc_m1.yaml
+# (same data + 25 epochs + no aug + shuffled control).
+
+data_dir: data/synth_buckets
+ckpt_dir: checkpoints/parseq_arc_m2
+val_frac: 0.05
+seed: 0
+num_workers: 4
+
+img_size: [32, 128]
+patch_size: [4, 8]
+max_label_length: 5
+
+embed_dim: 384
+enc_num_heads: 6
+enc_mlp_ratio: 4
+enc_depth: 12
+dec_num_heads: 12
+dec_mlp_ratio: 4
+dec_depth: 1
+
+perm_num: 1
+perm_forward: true
+perm_mirrored: false
+decode_ar: true
+refine_iters: 1
+dropout: 0.1
+
+lr: 5.0e-4
+warmup_pct: 0.05
+weight_decay: 0.0
+batch_size: 128
+max_epochs: 25
+gradient_clip_val: 5
+precision: "32-true"
+
+length_head_enabled: false
+augment: false
+
+curriculum:
+  kind: buckets
+  schedule:
+    # 5 ep easy
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 0
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 1
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 2
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 3
+    - { easy: 1.0, medium: 0.0, hard: 0.0 }   # 4
+    # 5 ep easy + medium
+    - { easy: 1.0, medium: 1.0, hard: 0.0 }   # 5
+    - { easy: 1.0, medium: 1.0, hard: 0.0 }   # 6
+    - { easy: 1.0, medium: 1.0, hard: 0.0 }   # 7
+    - { easy: 1.0, medium: 1.0, hard: 0.0 }   # 8
+    - { easy: 1.0, medium: 1.0, hard: 0.0 }   # 9
+    # 15 ep all on, size-proportional (matches deployment distribution)
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 10
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 11
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 12
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 13
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 14
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 15
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 16
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 17
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 18
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 19
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 20
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 21
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 22
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 23
+    - { easy: 0.15, medium: 0.25, hard: 0.60 }   # 24
+
+stage_end_checkpoint:
+  enabled: true
+  epochs: [4, 9, 24]
+  names: ["easy", "easy_medium", "all"]
