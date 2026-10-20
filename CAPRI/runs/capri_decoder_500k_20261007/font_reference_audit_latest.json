@@ -1,0 +1,32 @@
+{
+  "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\audits\\font_references_1791405405178309500.json",
+  "sha256": "e2bf3df401f37bcd593773d2ea9333f46b5af9c6fc01cce0724263368503bf88",
+  "result": {
+    "created_at": "2026-10-07T20:36:45.188968+00:00",
+    "passed": true,
+    "full_plan_completed": true,
+    "accepted_references": 36492,
+    "planned": 36492,
+    "archives": 73,
+    "archive_bytes": 1121419032,
+    "font_files": 2052,
+    "alias_families": 1332,
+    "attempt_counts": {
+      "0": 36475,
+      "3": 14,
+      "6": 2,
+      "7": 1
+    },
+    "receipt_unique_pixel_hashes": 30073,
+    "duplicate_references": 6419,
+    "pixel_hash_groups_spanning_distinct_alias_families": 670,
+    "decoded_pixel_and_mask_samples": 1170,
+    "protocol_hash": "b374661614c53f7ae720a96acac82ab67300a49441fdee3c41a9f18efd290a08",
+    "source_sha256": "00646da3a458d9ca280cf108f9574264cc347009d2d43cab6c411915f64edaec",
+    "ambiguity_report": {
+      "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\audits\\font_references_1791405405178309500_ambiguities.json",
+      "sha256": "a0297363b34ea56fd0fb56304cc88bc99d80c88c7170c2e3aab096ba5cf1a198"
+    },
+    "limitation": "All archive hashes/CRCs and all reference/font/axis/text/acceptance labels checked; decoded pixels/masks sampled deterministically. Duplicate counts use renderer-provided pixel hashes; references are not a unique training corpus or trained embedding index."
+  }
+}

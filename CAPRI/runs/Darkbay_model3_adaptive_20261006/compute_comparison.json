@@ -1,0 +1,9 @@
+{
+  "model3_training_seconds": 24771.541916300004,
+  "model3_validation_seconds": 679.0149146000019,
+  "model3_rescoring_seconds": 12639.606206199996,
+  "rescore_overhead_relative_to_training_and_validation": 0.4966337785919878,
+  "model2_recorded_total_seconds": 25260.941601753235,
+  "model3_last_session_seconds": 31804.420682430267,
+  "limitation": "Component times span saved epochs; last-session wall time excludes earlier sessions if resumed. Hardware load and checkpoint I/O affect wall-clock comparisons."
+}

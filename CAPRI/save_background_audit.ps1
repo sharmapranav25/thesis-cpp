@@ -1,0 +1,11 @@
+$ErrorActionPreference='Stop'
+$project='E:\pranav\Final sem\sourcefree_synth'
+$source='C:\Users\pranav\Documents\ChatGPT\thesis\background_regression_01'
+$target=Join-Path $project 'runs\style_background_regression_01'
+if (Test-Path -LiteralPath $target) { throw 'Output already exists; preserve it.' }
+Copy-Item -LiteralPath $source -Destination $target -Recurse
+Copy-Item -LiteralPath 'C:\Users\pranav\Documents\ChatGPT\thesis\audit_background_regression.py' -Destination (Join-Path $target 'audit_background_regression.py')
+Copy-Item -LiteralPath (Join-Path $source 'REPORT.md') -Destination (Join-Path $project 'docs\STYLE_BACKGROUND_REGRESSION_01.md')
+Add-Content -LiteralPath (Join-Path $project 'docs\STYLE_DECISIONS.md') -Value "`n## D063 — Background regression localized`n160/160 latest renders replay exactly; older/newer fonts preserve backgroundoperations exactly. Phase2 recipes amplify CryptBBdots2.67x, Citylinewidth4.03x, Courierlines4.08x and shiftcolor. DarkBay/outlined zero recipes: mismatchpredatesPhase2. Matchedrollback retains latestfontconfig but not glyphpixels because sharedRNG advances differently. Visualrollback mixed, not universalpromotion. See STYLE_BACKGROUND_REGRESSION_01.md. Next separate RNGstreams and constrain background selection; preservefonts and histories. No newpaper.`n"
+Add-Content -LiteralPath (Join-Path $project 'docs\STYLE_HANDOFF.md') -Value "`nLATEST — Userrequestedbackgroundregression audit COMPLETE, runs/style_background_regression_01 and docs/STYLE_BACKGROUND_REGRESSION_01.md.160exactreplays, fontchanges doNOTchangebackgroundoperations. Phase2 selectedbackgroundrecipecontrols cause amplification/tints forCryptBB/City/Courier; DarkBay/outlinedbaselinealreadywrong. Rollbackmixed, no globaladoption. SharedRNG means backgroundrollback changes glyphcolor/jitter; next separate text/background RNG to preserve typography. Latestfontconfigretained, no training. Canonical access nowrequires sandboxapproval forwrites.`n"
+Add-Content -LiteralPath (Join-Path $project 'docs\THESIS_PAPERS.md') -Value "`n## Background regression audit`nOriginal local matched-render audit, no newpaper.160exactreplays isolate recipebackgroundcontrols rather than fontadjustment. See STYLE_BACKGROUND_REGRESSION_01.md; mixedrollback outcome retained.`n"

@@ -1,0 +1,189 @@
+Architecture:
+  Decoder:
+    decode_ar: true
+    name: PARSeqDecoder
+    only_attn: false
+    refine_iters: 1
+  Encoder:
+    depths:
+    - 6
+    - 6
+    - 6
+    dims:
+    - 128
+    - 256
+    - 384
+    last_stage: false
+    local_k:
+    - - 5
+      - 5
+    - - 5
+      - 5
+    - - -1
+      - -1
+    mixer:
+    - - Conv
+      - Conv
+      - Conv
+      - Conv
+      - Conv
+      - Conv
+    - - Conv
+      - Conv
+      - FGlobal
+      - Global
+      - Global
+      - Global
+    - - Global
+      - Global
+      - Global
+      - Global
+      - Global
+      - Global
+    name: SVTRv2LNConvTwo33
+    num_heads:
+    - 4
+    - 8
+    - 12
+    sub_k:
+    - - 1
+      - 1
+    - - 2
+      - 1
+    - - -1
+      - -1
+    use_pos_embed: false
+  Transform: null
+  algorithm: PARSeq
+  model_type: rec
+Eval:
+  dataset:
+    name: CAPRISyntheticHoldout
+    data_dir_list:
+    - C:\Users\pranav\Documents\ChatGPT\thesis\runs\Darkbay_ds2_noFont-intel\all_lmdb
+Global:
+  cal_metric_during_train: false
+  character_dict_path: C:\Users\pranav\Documents\ChatGPT\thesis\runs\Darkbay_ds2_noFont-intel\charset.txt
+  checkpoints: null
+  device: gpu
+  distributed: false
+  epoch_num: 20
+  eval_batch_step: 9223372036854775807
+  eval_epoch_step: 1
+  grad_clip_val: 20
+  infer_img: null
+  log_smooth_window: 20
+  max_text_length: 25
+  output_dir: C:\Users\pranav\Documents\ChatGPT\thesis\runs\Darkbay_model3_adaptive_20261006\seed_48
+  pretrained_model: null
+  print_batch_step: 50
+  save_epoch_step:
+  - 0
+  - 1
+  save_res_path: C:\Users\pranav\Documents\ChatGPT\thesis\runs\Darkbay_model3_adaptive_20261006\seed_48\unused.txt
+  use_amp: true
+  use_space_char: false
+  use_tensorboard: false
+  seed: 48
+LRScheduler:
+  cycle_momentum: false
+  name: OneCycleLR
+  warmup_epoch: 2
+Loss:
+  name: PARSeqLoss
+Metric:
+  is_filter: false
+  main_indicator: acc
+  name: RecMetric
+  is_lower: false
+Optimizer:
+  filter_bias_and_bn: true
+  lr: 0.00035
+  name: AdamW
+  weight_decay: 0.05
+PostProcess:
+  character_dict_path: C:\Users\pranav\Documents\ChatGPT\thesis\runs\Darkbay_ds2_noFont-intel\charset.txt
+  name: ARLabelDecode
+  use_space_char: false
+Train:
+  dataset:
+    name: CAPRICurriculum
+    data_dir_list:
+    - C:\Users\pranav\Documents\ChatGPT\thesis\runs\Darkbay_ds2_noFont-intel\all_lmdb
+  loader:
+    batch_size_per_card: 128
+Curriculum:
+  model: Model 3
+  changed_factor: curriculum only
+  data: C:\Users\pranav\Documents\ChatGPT\thesis\runs\Darkbay_ds2_noFont-intel
+  input_sha256:
+    all_lmdb/data.mdb: 2060d68ba1ccb36306eed6a888d3c4fbc6659e4582b2454b65224d1b760aded4
+    curriculum_samples.json: c38e1cc256ed6f848c51c0299615fc20984f4552b9a579d076ecaa87ce639d54
+    samples.json: 57f740d7bfa2511e986cacd6cb621a46e80b5eb2142e5b8a12d6e59eef9aac42
+    charset.txt: b118286e2228265c008bfb74d49d8d065228a4052574abdf69272857fe42c9dd
+    entries.json: 79e1f11cc462c0f3c16ca4425c6a5d993bdb49b8466fbbef7d27aaa3289f3814
+    inputs.json: c1bbfa8048f0e9b7cfa21fecf88a6031679b565a8f29a03614d52fa34a44f4fc
+    length_decision.json: 7c8a271670b5fe6be8ebf98cd75f03419192b92432c82277b1ef5cba57bc329d
+    data_receipt.json: 2ad002beb26f529a81fd45aa4d43854075e64e934a189d00da7e950f1f194452
+    bucket_summary.json: 9eeb8cb3402bccf0f1fc647fd6a7bcbfbf66753d942c61286400a5a9493f6353
+    protocol.json: ff3274f5f590308bd1c6c428b93b162fa5ca82be1727963da1179906607341ad
+    dataset_manifest.json: c91eefc8e7709f48d6063fcf97359d277905df5dba5bedabe4b6ad9b84601041
+    synthetic_validation_shoot_policy/frozen_policy.json: 270059e6c591932d89012d8a6b47d3af4a92f4bfffb539f6066df8a67bad2989
+    seed_48.yml: c51c3bcc3f16948cfc8b31c7212ce5c107148712ac858dc984edd8005112f338
+    seed_123.yml: 7e428b87e0d0faef36a99b6472f6e5c6d4cbede7b34ecd3ff502ba77753fef46
+    seed_456.yml: 662097f8f3ee631d7a453f2a36222396c06b60d3a43e418665695768e9c06256
+    teacher_48.npy: 6c72e1d85e23883f21cb426581e5ef283399b91b163210f57afa258ffff46f5f
+    teacher_48.receipt.json: 870b2c24f55372f532b472f03effa0b63b0f0f893e8754042a1f21fc7f3625f7
+    teacher_123.npy: 6d83b730056d708e142c401ffedee21e7d0f0a8c082bebde8494b4c029a7ac47
+    teacher_123.receipt.json: c3d9754df5f094b864c8b6ba2e2e826d2b91d668731dedba65346638d6f1e6ce
+    teacher_456.npy: 2b3f8ec680832769fba2a83f168358d5caf284944c335d1b208e84858bcf33cf
+    teacher_456.receipt.json: 31bdc9deb8be1e0c5a9e344c5344109a17b6f14ebf94fe3efa55a331fc9affe3
+  seeds:
+  - 48
+  - 123
+  - 456
+  epochs: 20
+  train: 95000
+  validation: 5000
+  initial: Existing DS1 teacher ranking and DS2 easy buckets; epoch1 easy-only
+  score: FP32 unaugmented free autoregressive output; renormalize 62 character probabilities
+    excluding special tokens; sum -log(p_true+1e-9), clamp negative roundoff to zero.
+    Same synthetic-label NLL convention as teacher.
+  normalization: Ordinal percentiles (rank+0.5)/95000 separately over training-only
+    teacher/student NLL; exact ties by ascending image ID
+  smoothing: Initialize from teacher training-only percentiles; D_t=0.5*D_previous+0.5*student_percentile
+  buckets: Sort smoothed difficulty then ID; array_split into 31667/31667/31666 easy/medium/hard
+  mass: risk_i=1-exp(-min(NLL_i,50)); risk_b=mean risk within current bucket. Proposal_b=0.2+0.4*(risk_b+1e-6)/(sum
+    risks+3e-6); cap at0.5 and redistribute excess equally. Interpolate from previous
+    mass toward proposal with max absolute change0.1. For first adaptive update use
+    uniform previous mass; initial easy-only transition exempt.
+  bounds:
+    minimum_mass: 0.2
+    maximum_mass: 0.5
+    max_subsequent_mass_change: 0.1
+    ema_new: 0.5
+  draws: 95000 replacement draws; deterministic rounded bucket counts, residual to
+    largest mass, shuffle; drop last24 for94976 optimized images, batch128; same seed+epoch*100003
+    RNG as DS2
+  rescore: All95000 training images after each of20epochs including diagnostic epoch20.
+    No validation or real images. Separate deterministic pass; restore all RNG and
+    model mode; verify unchanged model and scheduler.
+  unchanged: DS2 architecture, data, exact split, augmentation, AdamW, BF16, OneCycleLR,
+    scratch initialization, seed values,20epochs, preprocessing, decoder and synthetic
+    checkpoint selection
+  selection: Highest synthetic whole-string accuracy; >= comparison means latest tied
+    epoch, matching OpenOCR DS2 implementation
+  resume: Atomic latest checkpoint stores optimizer/scheduler/scaler, adaptive state
+    and global/model/augmentation RNG together; only completed epoch boundaries; epoch
+    archive and hash receipt. Incomplete epoch may be replayed from last committed
+    boundary.
+  policy: Exact DS2 discovery/calibration IDs; original Laplace emitted-character
+    reliability, confidence support, goals90/95/98/99%, minimum100, Wilson95 descriptive
+    bound. Freeze policy and label-free real decisions before scoring.
+  limits:
+  - Repeatedly examined historical900-image real set
+  - Same5000 validation images used for checkpoint selection and shoot calibration
+  - Equal epochs, additional full-pool inference compute
+  - Model1 differs in data, augmentation, split and selection; Model2 is curriculum-only
+    comparator
+filename: seed_48

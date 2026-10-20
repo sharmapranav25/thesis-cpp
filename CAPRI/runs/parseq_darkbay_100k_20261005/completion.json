@@ -1,0 +1,36 @@
+{
+  "seeds": [
+    {
+      "seed": 48,
+      "epoch": 20,
+      "global_step": 15640,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\parseq_darkbay_100k_20261005\\seed_48\\latest.pth",
+      "sha256": "a17c6665b0295f8d8507dbf36bba301ab4d95890ff63fde22d46906e32486176",
+      "seconds": 6843.896595716476,
+      "selection": "Fixed final epoch; no target labels or accuracy selection",
+      "data_sha256": "3b4ccde1e4807259bfbc654903c6e76ec31b8a1c1ac24cbb85715af29b16d25f"
+    },
+    {
+      "seed": 123,
+      "epoch": 20,
+      "global_step": 15640,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\parseq_darkbay_100k_20261005\\seed_123\\latest.pth",
+      "sha256": "d9d30566fb97d8a2fb127cf744e4d834ea02276919e0e479f86fc2afe3add810",
+      "seconds": 6899.740765571594,
+      "selection": "Fixed final epoch; no target labels or accuracy selection",
+      "data_sha256": "3b4ccde1e4807259bfbc654903c6e76ec31b8a1c1ac24cbb85715af29b16d25f"
+    },
+    {
+      "seed": 456,
+      "epoch": 20,
+      "global_step": 15640,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\parseq_darkbay_100k_20261005\\seed_456\\latest.pth",
+      "sha256": "197a9176d5e63101c7a614e5bdb48386c9909bae667d76b43fe4c531d4be9204",
+      "seconds": 6864.265486955643,
+      "selection": "Fixed final epoch; no target labels or accuracy selection",
+      "data_sha256": "3b4ccde1e4807259bfbc654903c6e76ec31b8a1c1ac24cbb85715af29b16d25f"
+    }
+  ],
+  "epochs": 20,
+  "all_complete": true
+}

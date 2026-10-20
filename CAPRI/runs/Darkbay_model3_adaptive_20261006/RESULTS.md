@@ -1,0 +1,45 @@
+# Model 3 adaptive curriculum results
+
+Curriculum is the only changed training factor relative to Model 2. Both use exactly the same95,000 optimization and5,000 validation IDs, augmentation, scratch initialization, optimizer, architecture and20epochs. Validation never updates difficulty or sampling.
+
+| Reader | Selected epoch | Model1 correct/900 | Model2 correct/900 | Model3 correct/900 | Model3 accuracy | Model3 CER | Change vs Model2 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| seed_48 | 20 | 492 | 566 | 569 | 63.2222% | 8.1281% | +3 |
+| seed_123 | 20 | 439 | 520 | 539 | 59.8889% | 8.8687% | +19 |
+| seed_456 | 20 | 474 | 524 | 531 | 59.0000% | 8.6095% | +7 |
+| ensemble | per-seed | 496 | 565 | 569 | 63.2222% | 7.8319% | +4 |
+
+Model1 uses fixed epoch20 and differs in corpus, augmentation and split. Model2 uses synthetic validation selection. Model3 evaluation selection: Final epoch20 designated by user after seed48 real epoch results were examined. The original synthetic-selected checkpoints remain preserved. Real DarkBay is a repeatedly examined historical test set; this selection amendment is not an untouched-test decision.
+
+## Synthetic-calibrated shoot rate
+
+| Model | Actual threshold | Correct / attempted | Accuracy | Shoot rate |
+|---|---:|---:|---:|---:|
+| 1 | 0.24110531386057765 | 496/900 | 55.1111% | 100.0000% |
+| 1 | 0.30028956347211383 | 494/884 | 55.8824% | 98.2222% |
+| 1 | 0.62542448308054699 | 353/543 | 65.0092% | 60.3333% |
+| 1 | 0.91971235062733825 | 232/339 | 68.4366% | 37.6667% |
+| 2 | 0.23020022982830401 | 565/900 | 62.7778% | 100.0000% |
+| 2 | 0.23020022982830401 | 565/900 | 62.7778% | 100.0000% |
+| 2 | 0.586451790854013 | 535/772 | 69.3005% | 85.7778% |
+| 2 | 0.87302943260663579 | 411/530 | 77.5472% | 58.8889% |
+| 3 | 0.21084141988390817 | 569/900 | 63.2222% | 100.0000% |
+| 3 | 0.21084141988390817 | 569/900 | 63.2222% | 100.0000% |
+| 3 | 0.5757220683021641 | 548/805 | 68.0745% | 89.4444% |
+| 3 | 0.91583484209731891 | 404/501 | 80.6387% | 55.6667% |
+
+Policies use the unchanged2,500/2,500 discovery/calibration partitions. Character risks and thresholds were learned on synthetic data, then frozen; real attempt decisions were frozen before real labels were scored. The same validation set also selected checkpoints. Wilson bounds after threshold search are descriptive, and synthetic goals are not promised real accuracy. Historical confidence sweeps are separate and no new real-accuracy threshold search was performed.
+
+## Compute and validation
+
+| Seed | Training seconds | Validation seconds | Full-pool rescoring seconds | Selected validation accuracy |
+|---|---:|---:|---:|---:|
+| 48 | 8152.0 | 223.6 | 4145.6 | 96.4200% |
+| 123 | 8233.3 | 225.7 | 4222.4 | 96.5600% |
+| 456 | 8386.2 | 229.7 | 4271.6 | 96.6000% |
+
+Full-pool rescoring added 3.511 hours, or 49.66% of measured training plus validation time. Model2 recorded total time: 7.017 hours. See compute_comparison.json for timing scope and resume limitations.
+
+## Matched epoch20 comparison
+
+All readers use epoch20 in this additional comparison. Model1 ensemble496/900; Model2 ensemble572/900; Model3 ensemble569/900. Model2 published synthetic-selected ensemble remains565/900 and is preserved separately.

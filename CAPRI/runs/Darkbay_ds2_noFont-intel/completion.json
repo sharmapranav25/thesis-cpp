@@ -1,0 +1,57 @@
+{
+  "seeds": [
+    {
+      "seed": 48,
+      "epoch": 18,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_ds2_noFont-intel\\seed_48\\best.pth",
+      "sha256": "511f57d290ddbce314ac48d0a9f6719c727354248717fe1770b19c8b6b90a233",
+      "final_checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_ds2_noFont-intel\\seed_48\\latest.pth",
+      "final_sha256": "ad5edb9891815b4fd2e2a9404551cf10e67c2259c52b50f284f70b3a78a7a66e",
+      "final_epoch": 20,
+      "selection": "Best synthetic holdout accuracy; never real DarkBay labels",
+      "metrics": {
+        "acc": 0.9663999980672,
+        "norm_edit_dis": 0.9933666666799333,
+        "num_samples": 5000,
+        "best_epoch": 18
+      },
+      "seconds": 8596.329377412796
+    },
+    {
+      "seed": 123,
+      "epoch": 20,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_ds2_noFont-intel\\seed_123\\best.pth",
+      "sha256": "0f66c0733f2a8d8bfa7f943bce5ff17e26ec162dda187d9cf7662915fa5485da",
+      "final_checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_ds2_noFont-intel\\seed_123\\latest.pth",
+      "final_sha256": "ad8a5033c2bb2d9c547468181e8016274636f9e1a0e88bf4b67c915ee86f3153",
+      "final_epoch": 20,
+      "selection": "Best synthetic holdout accuracy; never real DarkBay labels",
+      "metrics": {
+        "acc": 0.9661999980676,
+        "norm_edit_dis": 0.993500000013,
+        "num_samples": 5000,
+        "best_epoch": 20
+      },
+      "seconds": 8351.774876594543
+    },
+    {
+      "seed": 456,
+      "epoch": 18,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_ds2_noFont-intel\\seed_456\\best.pth",
+      "sha256": "78d6e3f392521bface88296942ddc886c0219e8f780f99213a54d96d2a764380",
+      "final_checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_ds2_noFont-intel\\seed_456\\latest.pth",
+      "final_sha256": "679bbabfe0d85362345696882c34eac131328535938b93da1eaa845a9926713c",
+      "final_epoch": 20,
+      "selection": "Best synthetic holdout accuracy; never real DarkBay labels",
+      "metrics": {
+        "acc": 0.9657999980684,
+        "norm_edit_dis": 0.9932000000136,
+        "num_samples": 5000,
+        "best_epoch": 18
+      },
+      "seconds": 8312.837347745895
+    }
+  ],
+  "epochs": 20,
+  "all_complete": true
+}

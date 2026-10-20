@@ -1,0 +1,11 @@
+{
+  "updated_at": "2026-10-08T11:47:16.159456+00:00",
+  "stage": "bounded_timed_pilot",
+  "state": "complete",
+  "progress_path": "runs\\capri_decoder_500k_20261007\\diagnostics\\timed_pilot_20261008\\progress.json",
+  "original_full_training": "stopped_by_user",
+  "hard_deadline_unix": 1791473303.7105958,
+  "automatic_full_training": false,
+  "completion_path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\diagnostics\\timed_pilot_20261008\\completion.json",
+  "verdict": "mixed_or_inconclusive_do_not_scale_automatically"
+}

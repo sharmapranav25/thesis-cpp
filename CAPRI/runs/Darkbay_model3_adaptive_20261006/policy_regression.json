@@ -1,0 +1,8 @@
+{
+  "model2_policy_exactly_reproduced": true,
+  "discovery_and_calibration_ids_exact": true,
+  "thresholds_exact": true,
+  "real_decisions_exact": true,
+  "results_exact": true,
+  "uses_only_existing_baseline_predictions": true
+}

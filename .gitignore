@@ -129,3 +129,6 @@ secrets*
 # --- 9. Specific run-output artifacts (not code or docs) ----------------------
 mvp_results/
 cryptbb_sourcefree/data/render_gallery.html
+
+# --- 10. Separate repositories living inside this tree ----------------------
+Final sem/

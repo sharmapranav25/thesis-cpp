@@ -1,0 +1,43 @@
+{
+  "correct": 496,
+  "total": 900,
+  "exact_match_percent": 55.111111111111114,
+  "character_error_rate_percent": 9.738937233845585,
+  "agreement_counts": {
+    "3": 510,
+    "1": 77,
+    "2": 313
+  },
+  "individual_seed_results": [
+    {
+      "seed": 48,
+      "correct": 492,
+      "total": 900,
+      "exact_match_percent": 54.666666666666664,
+      "character_error_rate_percent": 9.794482503240141,
+      "predicted_lengths": {
+        "6": 900
+      }
+    },
+    {
+      "seed": 123,
+      "correct": 439,
+      "total": 900,
+      "exact_match_percent": 48.77777777777778,
+      "character_error_rate_percent": 11.275689687094982,
+      "predicted_lengths": {
+        "6": 900
+      }
+    },
+    {
+      "seed": 456,
+      "correct": 474,
+      "total": 900,
+      "exact_match_percent": 52.666666666666664,
+      "character_error_rate_percent": 10.33142010738752,
+      "predicted_lengths": {
+        "6": 900
+      }
+    }
+  ]
+}

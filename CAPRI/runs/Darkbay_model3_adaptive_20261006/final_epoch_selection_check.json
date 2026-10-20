@@ -1,0 +1,33 @@
+{
+  "fixture": "Existing completed seed48 only; no all-seed completion claimed",
+  "selected": [
+    {
+      "seed": 48,
+      "epoch": 20,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_model3_adaptive_20261006\\seed_48\\epoch_20.pth",
+      "sha256": "8f9bc9e4b298e1403a0f804945082e8fac14452eeaae21bc1c95c567177320a9",
+      "final_checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_model3_adaptive_20261006\\seed_48\\latest.pth",
+      "final_sha256": "8f9bc9e4b298e1403a0f804945082e8fac14452eeaae21bc1c95c567177320a9",
+      "final_epoch": 20,
+      "metrics": {
+        "epoch": 20,
+        "acc": 0.9641999980716001,
+        "norm_edit_dis": 0.9929333333474667,
+        "num_samples": 5000,
+        "mean_sequence_nll": 0.14588565229205375,
+        "validation_seconds": 11.159932700000354
+      },
+      "selection": "Final epoch20 designated by user after seed48 real epoch results were examined",
+      "seconds_this_session": 12578.484914541245,
+      "training_seconds": 8151.985477199999,
+      "validation_seconds": 223.6211381000013,
+      "rescoring_seconds": 4145.5558535,
+      "original_synthetic_selection": {
+        "epoch": 19,
+        "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_model3_adaptive_20261006\\seed_48\\best.pth",
+        "sha256": "9fee65165bdd3d5ab57dc70b99edc14eba648f451eef53474fed7e4355ad57b5"
+      }
+    }
+  ],
+  "original_best_preserved": true
+}

@@ -1,0 +1,81 @@
+{
+  "dataset": "Darkbay_ds2_noFont-intel",
+  "images": 100000,
+  "font_intelligence": false,
+  "source_dataset": "Darkbay_ds1_noFont-intel",
+  "generation": "Same frozen 300 controller recipes and allocation; fresh render seeds starting at 10000000000",
+  "seed_base": 10000000000,
+  "entries_sha256": "79e1f11cc462c0f3c16ca4425c6a5d993bdb49b8466fbbef7d27aaa3289f3814",
+  "teachers": [
+    {
+      "seed": 48,
+      "epoch": 20,
+      "global_step": 15640,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\parseq_darkbay_100k_20261005\\seed_48\\latest.pth",
+      "sha256": "a17c6665b0295f8d8507dbf36bba301ab4d95890ff63fde22d46906e32486176",
+      "seconds": 6843.896595716476,
+      "selection": "Fixed final epoch; no target labels or accuracy selection",
+      "data_sha256": "3b4ccde1e4807259bfbc654903c6e76ec31b8a1c1ac24cbb85715af29b16d25f"
+    },
+    {
+      "seed": 123,
+      "epoch": 20,
+      "global_step": 15640,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\parseq_darkbay_100k_20261005\\seed_123\\latest.pth",
+      "sha256": "d9d30566fb97d8a2fb127cf744e4d834ea02276919e0e479f86fc2afe3add810",
+      "seconds": 6899.740765571594,
+      "selection": "Fixed final epoch; no target labels or accuracy selection",
+      "data_sha256": "3b4ccde1e4807259bfbc654903c6e76ec31b8a1c1ac24cbb85715af29b16d25f"
+    },
+    {
+      "seed": 456,
+      "epoch": 20,
+      "global_step": 15640,
+      "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\parseq_darkbay_100k_20261005\\seed_456\\latest.pth",
+      "sha256": "197a9176d5e63101c7a614e5bdb48386c9909bae667d76b43fe4c531d4be9204",
+      "seconds": 6864.265486955643,
+      "selection": "Fixed final epoch; no target labels or accuracy selection",
+      "data_sha256": "3b4ccde1e4807259bfbc654903c6e76ec31b8a1c1ac24cbb85715af29b16d25f"
+    }
+  ],
+  "scoring": "Equal arithmetic mean of three per-position character distributions (EOS excluded and character distribution renormalized), then sum negative log probability of known synthetic characters. Free decoded predictions also retained. No teacher forcing.",
+  "buckets": "NLL tertiles using <= 1/3 and <= 2/3 quantiles, matching prior Model 2; ties may cause uneven counts",
+  "validation": "Fixed seed 62026, 5000-image synthetic holdout stratified by bucket and controller; no validation image is sampled for optimization",
+  "training": {
+    "epochs": 20,
+    "seeds": [
+      48,
+      123,
+      456
+    ],
+    "initialization": "from scratch, same architecture as DS1",
+    "batch_size": 128,
+    "schedule": {
+      "1": [
+        1,
+        0,
+        0
+      ],
+      "2": [
+        0.5,
+        0.5,
+        0
+      ],
+      "3-20": [
+        0.15,
+        0.25,
+        0.6
+      ]
+    },
+    "sampling": "with replacement, 95000 draws per epoch; drop final partial batch",
+    "augmentation": "Exact Model 2 v2 operations/parameters; explicitly seeded Albumentations",
+    "selection": "Best synthetic validation whole-string accuracy per seed; retain final epoch20 as well",
+    "optimizer": "DS1 AdamW/OneCycleLR settings retained; this is a curriculum adaptation, not an exact old-architecture reproduction"
+  },
+  "evaluation": "After all training: same historical 900 DarkBay images, frozen predictions before labels; three-seed majority ensemble and shoot-rate sweep",
+  "limits": [
+    "DS2 uses the same target references and recipe bank as DS1; fresh pixels do not mean new independently fitted families",
+    "Real DarkBay has already been inspected; evaluation is not a fresh held-out benchmark",
+    "DS1 used all100k with final-checkpoint selection; DS2 uses95k/5k and validation selection, so results cannot isolate curriculum alone"
+  ]
+}

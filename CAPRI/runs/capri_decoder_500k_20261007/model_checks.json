@@ -1,0 +1,106 @@
+{
+  "created_at": "2026-10-07T19:02:02.948727+00:00",
+  "passed": true,
+  "diagnostic_random_dino": true,
+  "optimization_steps": 0,
+  "parameters": {
+    "total": 42447742,
+    "trainable": 20846590,
+    "dino": 21601152,
+    "cnn": 11132160
+  },
+  "partial_dino_parameters": {
+    "total": 42447742,
+    "trainable": 27948286,
+    "dino": 21601152,
+    "cnn": 11132160
+  },
+  "checks": {
+    "analytic_cpu_attention_and_aspect_pooling": true,
+    "analytic_cuda_attention_and_aspect_pooling": true,
+    "missing_pretrained_weights_refused": true,
+    "batch_composition_and_padding_content_invariant": true,
+    "actual_synthetic_matching_auxiliary_losses_amp_gradients": true,
+    "pixel_only_forward_and_frozen_dino": true,
+    "all_six_font_attribute_heads_actual_label_gradients": true,
+    "maximum_canvas_partial_dino_amp_backward": true
+  },
+  "measured": {
+    "input_shape": [
+      2,
+      3,
+      128,
+      608
+    ],
+    "backward_seconds": 1.2645137999999996,
+    "peak_allocated_GiB": 1.1995387077331543,
+    "losses": {
+      "objectness": 1.907584309577942,
+      "box_l1": 0.1102260947227478,
+      "box_giou": 0.8655349016189575,
+      "mask_bce": 0.6431868076324463,
+      "mask_dice": 0.9640307426452637,
+      "visibility": 0.11222503334283829,
+      "count_ce": 1.899357557296753,
+      "cardinality": 1.9706284999847412,
+      "count_consistency": 2.8825552463531494,
+      "font_contrastive": 2.1565403938293457,
+      "effect_presence": 0.7069457769393921,
+      "effect_intensity": 0.015588229522109032,
+      "composition": 0.7208515405654907,
+      "rows": 0.6826024651527405,
+      "font_category": 1.7568602561950684,
+      "font_stroke": 1.1209684610366821,
+      "font_italic": 0.6560801267623901,
+      "font_weight": 0.011868931353092194,
+      "font_x_height": 0.007629703730344772,
+      "font_intrinsic_width": 0.05663968250155449,
+      "colour_rgb": 0.04580460488796234,
+      "background_under": 0.07274699211120605,
+      "layer0/objectness": 1.5001626014709473,
+      "layer0/box_l1": 0.1102260947227478,
+      "layer0/box_giou": 0.8655349016189575,
+      "layer0/mask_bce": 0.6633954644203186,
+      "layer0/mask_dice": 0.964442789554596,
+      "layer0/count_ce": 2.0617852210998535,
+      "layer0/cardinality": 0.48692142963409424,
+      "layer0/count_consistency": 1.5817444324493408,
+      "layer1/objectness": 2.019360065460205,
+      "layer1/box_l1": 0.1102260947227478,
+      "layer1/box_giou": 0.8655349016189575,
+      "layer1/mask_bce": 0.7194949388504028,
+      "layer1/mask_dice": 0.9636638760566711,
+      "layer1/count_ce": 1.9446845054626465,
+      "layer1/cardinality": 2.1409406661987305,
+      "layer1/count_consistency": 3.0325255393981934,
+      "layer2/objectness": 2.07357120513916,
+      "layer2/box_l1": 0.1102260947227478,
+      "layer2/box_giou": 0.8655349016189575,
+      "layer2/mask_bce": 0.6994335651397705,
+      "layer2/mask_dice": 0.9645743370056152,
+      "layer2/count_ce": 1.9231970310211182,
+      "layer2/cardinality": 2.2757935523986816,
+      "layer2/count_consistency": 3.172020196914673
+    }
+  },
+  "worst_case": {
+    "input_shape": [
+      2,
+      3,
+      128,
+      768
+    ],
+    "last_dino_blocks_trainable": 4,
+    "backward_seconds": 0.4436351000000016,
+    "peak_allocated_GiB": 1.5217962265014648
+  },
+  "source_hashes": {
+    "model.py": "20ddf2f7af2d53ae3a727263691f2b93e39a01f8585019bfd303acf09b2c53b3",
+    "attention.py": "84738915bc36be01d10f94df37c05cf69b9c12276ef4b5a6c996bb534f2c5874",
+    "model_checks.py": "ae959f58fd71b7e703684956a2a9e8c5f33da1809fabbc8874936c45a14c693e",
+    "appearance.py": "c33d64707b3b7d5081b6e60e806eed4a8b78d8f13b1bc3051cb9f4ce9ab71584",
+    "objectives.py": "ae19c09a503a09f17eb28a2e5888a094d8fe275e18dfdf123dd839b734638270",
+    "data.py": "edb7cf9235177f68c9ca40c1b12ac75540167b5e193175454b322e8711260b85"
+  },
+  "remaining": "Approved pretrained weights; remaining palette/geometry and font retrieval contracts; final-model optimizer/EMA resume; measured training objective/budget; baseline, specialists, distillation, calibration and final evaluation."
+}

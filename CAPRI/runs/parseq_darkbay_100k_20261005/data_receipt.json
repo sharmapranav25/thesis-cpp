@@ -1,0 +1,19 @@
+{
+  "images": 100000,
+  "controllers": {
+    "custom": 33334,
+    "dino": 33333,
+    "mixed": 33333
+  },
+  "lengths": {
+    "6": 100000
+  },
+  "strict_readability": 36253,
+  "filtering": "None; all100k retained",
+  "source_manifest_sha256": "1d2d15c81112f90fdadbce21dc3f4ee438d9a743721a4851d7b6d7f4a0ce6487",
+  "lmdb_sha256": "3b4ccde1e4807259bfbc654903c6e76ec31b8a1c1ac24cbb85715af29b16d25f",
+  "provenance_sha256": "48711609d85841b49bb3791a07c57342c91fb48b387c868bd9ad573b3593c913",
+  "observed_synthetic_characters": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  "charset_source": "E:\\pranav\\Final sem\\CaptchaThesis\\inputs\\charsets\\charset_universal.txt",
+  "charset_sha256": "b118286e2228265c008bfb74d49d8d065228a4052574abdf69272857fe42c9dd"
+}

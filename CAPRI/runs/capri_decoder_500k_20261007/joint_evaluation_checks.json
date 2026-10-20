@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-10-07T22:59:48.513843+00:00",
+  "passed": true,
+  "device": "cpu",
+  "checks": {
+    "all_96_loss_terms_preserve_support_units": true,
+    "count_and_localization_exact": true,
+    "conditional_intensity_masks_absence": true,
+    "single_class_balanced_accuracy_undefined": true,
+    "unknown_font_attributes_masked": true,
+    "no_retrieval_accuracy_from_contrastive_loss": true,
+    "unequal_support_weighting_correct": true,
+    "background_padding_and_partial_coverage_correct": true,
+    "pixel_only_full_dev_evaluator_and_rng_modes_restored": true,
+    "incomplete_wrong_split_mutated_protocol_nonfinite_refused": true,
+    "failure_restores_rng_and_modes": true
+  },
+  "source_sha256": "021cdcbff7c47017192d63d7796fd3e16a2807c87f7c97d49eb4f77023db4f1e",
+  "limitation": "Analytic toy predictions only; no actual DEV checkpoint was evaluated or selected. Font gallery retrieval and frozen preservation limits remain separate requirements."
+}

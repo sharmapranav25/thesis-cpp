@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "physical_to_logical_preserved": true,
+  "nested_paths": true,
+  "unconfigured_and_mismatched_targets_refused": true
+}

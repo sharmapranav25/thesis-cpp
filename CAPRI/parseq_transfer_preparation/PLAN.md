@@ -1,0 +1,17 @@
+# PARSeq synthetic-to-real experiment preparation
+
+Status: preparation only; no optimizer step, corpus generation or training started.
+
+Reviewed Model1.5v2 and Model2.5 records: MyBB-font synthesis,651 CryptBB evaluation images, fixed5/ensemble decoding and historically tuned evaluation make their headline scores unsuitable as clean controls. Reviewed Model3 context: unstable self-paced curriculum. Do not inherit target generators, target fonts, checkpoints, teachers, length heads, force5 or adaptive curricula.
+
+Use an independently configured fresh PARSeq. Existing Apache-2.0 third_party/parseq architecture source can be reused after provenance hash recording; earlier experiment training scripts/weights need not be reused. Local GPU forward-only smoke check and exact proposed constructor config are saved. This check does not validate the full data/training loop or establish a training-time estimate.
+
+Initial plan:100,000 synthetic labeled training images from accepted Phase1+Phase2 general renderer.70% balanced family-conditioned styles and30% broadly randomized general styles. No target-family generator/font assets or reference-image crops. Independently draw full alphanumeric62 character strings with lengths2–8; this is a generic training prior, NOT restored real count inference. Use fonts from the audited independent bank with varied spacing/size/noise and mask-based glyph visibility checks. Reject clipped/invisible renders. Mixed uppercase/lowercase/digits and variable lengths are important differences from earlier preview batches. Preserve an unmodified renderer control branch to compare against the diversity branch; equal compute/seeds. Failed Phase3 variants excluded.
+
+Separate synthetic validation with disjoint seeds/texts and rendering variations; propose5,000images, and5,000 stress-test examples. Select models/early stopping from synthetic validation only; retain scheduled early checkpoints. Proposed15epoch cap, min3, patience3 checks, randominit, AdamW lr0.0003, weightdecay0.01, dropout0.1, warmup10%, batch64, native permutation training rather than force5. Training should avoid shortcut overfitting, not deliberately seek high training error. Stopping settings are hypotheses, not guarantees of real transfer.
+
+Before first optimizer step: implement and validate corpus manifests, label coverage, text/seed/pixel disjointness, source asset allowlist, real reference/evaluation hash boundaries, and a forward/backward data smoke test without a retained trained checkpoint. Corpus not yet generated. Freeze recipe/protocol/checkpoint selection and record hashes.
+
+Evaluation: exact string accuracy and edit-distance CER, per family and macro-average. No teacher, pseudo-labels, forced length or real-label model selection. Keep real style-reference images disjoint from final test pixels by hash, and report all prior exposure honestly.651 labeled historical CryptBB set located in Model1/2; it is exposed, not pristine. Other families have mixed filename conventions and no label manifest established in preparation: validate label provenance before reporting recognition accuracy; do not infer labels from arbitrary screenshot filenames or report unlabeled families as measured. If no trustworthy labels, mark evaluation unavailable rather than manufacture ground truth. No new labels read into training.
+
+No training launched. No ongoing automation. Preserve all historical directories. This file is a prepared protocol; dataset/trainer integration remains a pre-training execution step, not completed evidence.

@@ -1,0 +1,93 @@
+<!doctype html><meta charset="utf-8"><title>CAPRI run overview</title>
+<style>body{font:17px system-ui;max-width:1200px;margin:30px auto;padding:20px;background:#f4f6f8;color:#182033}img{width:100%}pre{white-space:pre-wrap;background:white;padding:16px}a{color:#145abd}</style>
+<h1>CAPRI run overview</h1><p>capri_darkbay_workflow</p>
+<h2>Model-derived length</h2>
+<pre>{
+  &quot;counts&quot;: {
+    &quot;2&quot;: 1,
+    &quot;3&quot;: 0,
+    &quot;4&quot;: 1,
+    &quot;5&quot;: 22,
+    &quot;6&quot;: 72,
+    &quot;7&quot;: 3,
+    &quot;8&quot;: 1
+  },
+  &quot;threshold&quot;: 0.6,
+  &quot;default_length&quot;: 6,
+  &quot;votes&quot;: 72,
+  &quot;model_sha256&quot;: &quot;ae73375ead99071d55c6394f7c4eb7c4d27c0a3285f8f15d8d84c9df43bc6b32&quot;,
+  &quot;source&quot;: &quot;Raw hybrid argmax predictions on these100 pixels; not human labels or filename parsing.&quot;,
+  &quot;note&quot;: &quot;72% agreement is not calibrated accuracy.&quot;
+}</pre>
+<h2>Controller pilot</h2>
+<pre>{
+  &quot;entries&quot;: 300,
+  &quot;per_controller&quot;: {
+    &quot;custom&quot;: 100,
+    &quot;dino&quot;: 100,
+    &quot;mixed&quot;: 100
+  },
+  &quot;generic_recovery_entries&quot;: 0,
+  &quot;complete&quot;: 300,
+  &quot;usable&quot;: 300,
+  &quot;lengths&quot;: [
+    6
+  ],
+  &quot;seconds&quot;: 955.0718748569489,
+  &quot;diversity&quot;: {
+    &quot;entries&quot;: 300,
+    &quot;unique_parameter_signatures&quot;: 179,
+    &quot;identical_parameters_per_100_inputs&quot;: {
+      &quot;custom_dino&quot;: 31,
+      &quot;custom_mixed&quot;: 67,
+      &quot;dino_mixed&quot;: 54
+    },
+    &quot;per_controller&quot;: {
+      &quot;custom&quot;: 100,
+      &quot;dino&quot;: 100,
+      &quot;mixed&quot;: 100
+    },
+    &quot;note&quot;: &quot;Signatures exclude sampled text and seeds. These are parameter differences, not a count of perceptually distinct families; inactive or overridden fields can still differ.&quot;
+  }
+}</pre>
+<h2>Parameter diversity</h2>
+<pre>{
+  &quot;entries&quot;: 300,
+  &quot;unique_parameter_signatures&quot;: 179,
+  &quot;identical_parameters_per_100_inputs&quot;: {
+    &quot;custom_dino&quot;: 31,
+    &quot;custom_mixed&quot;: 67,
+    &quot;dino_mixed&quot;: 54
+  },
+  &quot;per_controller&quot;: {
+    &quot;custom&quot;: 100,
+    &quot;dino&quot;: 100,
+    &quot;mixed&quot;: 100
+  },
+  &quot;note&quot;: &quot;Signatures exclude sampled text and seeds. These are parameter differences, not a count of perceptually distinct families; inactive or overridden fields can still differ.&quot;
+}</pre>
+<h2>Corpus audit</h2>
+<pre>{
+  &quot;images&quot;: 100000,
+  &quot;unique_pixel_hashes&quot;: 100000,
+  &quot;unique_seeds&quot;: 100000,
+  &quot;target_pixel_overlap&quot;: 0,
+  &quot;controllers&quot;: {
+    &quot;custom&quot;: 33334,
+    &quot;dino&quot;: 33333,
+    &quot;mixed&quot;: 33333
+  },
+  &quot;lengths&quot;: {
+    &quot;6&quot;: 100000
+  },
+  &quot;strict&quot;: 36253,
+  &quot;rejections&quot;: 76,
+  &quot;entries&quot;: 300,
+  &quot;shards&quot;: 300,
+  &quot;all_pngs_decoded&quot;: true,
+  &quot;all_lengths_model_derived&quot;: true,
+  &quot;limitation&quot;: &quot;Renderer usability is not human legibility or solver accuracy; target fidelity and transfer are not established.&quot;
+}</pre>
+<p>Basic renderer usability is not strict per-character readability or solver accuracy. Parameter differences do not establish distinct perceptual families.</p>
+<h2>Original, custom, DINO and mixed</h2><img src="pilot.png" alt="Original and three controller renders">
+<p><a href="report.html">Full historical comparison report</a></p>

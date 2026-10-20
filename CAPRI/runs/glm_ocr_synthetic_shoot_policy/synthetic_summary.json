@@ -1,0 +1,50 @@
+{
+  "discovery": {
+    "attempts": 2500,
+    "correct": 1639,
+    "accuracy_percent": 65.56
+  },
+  "calibration_baseline": {
+    "attempts": 2500,
+    "correct": 1588,
+    "accuracy_percent": 63.52
+  },
+  "policies": [
+    {
+      "target": 0.9,
+      "available": true,
+      "threshold": 0.5500554611137143,
+      "attempts": 754,
+      "correct": 695,
+      "accuracy_percent": 92.17506631299734,
+      "shoot_rate_percent": 30.16
+    },
+    {
+      "target": 0.95,
+      "available": false,
+      "threshold": null,
+      "attempts": 0,
+      "correct": 0,
+      "accuracy_percent": null,
+      "shoot_rate_percent": 0.0
+    },
+    {
+      "target": 0.98,
+      "available": false,
+      "threshold": null,
+      "attempts": 0,
+      "correct": 0,
+      "accuracy_percent": null,
+      "shoot_rate_percent": 0.0
+    },
+    {
+      "target": 0.99,
+      "available": false,
+      "threshold": null,
+      "attempts": 0,
+      "correct": 0,
+      "accuracy_percent": null,
+      "shoot_rate_percent": 0.0
+    }
+  ]
+}

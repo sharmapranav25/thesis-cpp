@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-10-08T02:36:17.821528+00:00",
+  "passed": true,
+  "protocol_hash": "514ec1b355e6c84ddfa45ba1cf5ef2679eb881877ad34debb7181339d77dd36f",
+  "source_sha256": "a236b66d675f48a8b2206f8bdb7a3b2416a1c3f0c8df8cf4f0c4d78d58d4e7a9",
+  "fonts": 188,
+  "families": 121,
+  "planned": 3060,
+  "pilot_accepted": 32,
+  "strict_dev_split": true,
+  "instance_box_checks": true,
+  "png_roundtrip": true,
+  "deterministic_replay": true,
+  "archive": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\dev_font_gallery_pilot\\references_1791426977648763500.zip",
+  "archive_sha256": "0d70532b27bc611693591313f0debe54807285cafb9e113b6e8855b8f61eb26c",
+  "limitation": "CPU rendering pilot only; no trained embeddings, DEV retrieval accuracy, optimization or corpus regeneration."
+}

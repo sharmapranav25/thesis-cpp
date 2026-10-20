@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-10-07T09:15:16.134394+00:00",
+  "passed": true,
+  "accepted_unique": 40,
+  "recovered_after_receipt_interruption": true,
+  "completed_shards_unchanged_on_resume": true,
+  "exported_masks_and_png_checked": true,
+  "measured_bytes_per_image": 36149.975,
+  "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\storage_smoke_1791364504253976100",
+  "source_hashes": {
+    "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\src\\capri_controller\\decoder\\renderer.py": "0b7c7100e6d7783f785f7b69beff2120cc4f881058266e92a806e2d4dabe7569",
+    "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\src\\capri_controller\\decoder\\sampling.py": "594240864dfe2a86faa9ad96a4b792681d56a30a28ea9645f9c2ecb38b4196af",
+    "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\src\\capri_controller\\decoder\\pilot.py": "9e75b81f9321c1ade40c73f38b14cde6bfa7b3970859d3d0448ec830853a9838",
+    "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\src\\capri_controller\\decoder\\common.py": "75ca9373a60df2701609e2f7eb0a4a286214276a4e3ff2f7ff7b1de74f213e6b",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\calibrate.py": "ee6207d6ec5d4948e8a5bc8f188857435b7b97fa7e20dac09dfa56e49d2f7ef2",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\canvas.py": "36309940d799706e0a69e0b9c2314d3609a5360b7df3e1e8f31efeb50315e31b",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\captcha.py": "711a20d93ae964b38fc3ea9b2248fcd4864fbe22241120a3a7e8a7ace6259a7d",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\effects.py": "989f94bc1fa1033627f514c6b98c6f25a55f602a8b809193e4ab49db012cb50b",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\extras.py": "5537e98dfd161685a2ec41f3da30cad3754799ec7fb40c8243bf68e2f0218e9e",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\glyph.py": "beb5233b66d25b8165a1cc8a49d6f20c88f53d0e909c4449455b8aeb87c742e5",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\labels.py": "8888fe2d2c5735fc078e6d7a630e3a76097f771083e729d50efdedcbe181282a",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\measure.py": "94cdb435226b21d169c839436fcfca97bb2bb3a2d422c928b24c9b3056a5a0cf",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\render.py": "b414e98ca94cb7cd75d54b329a8c2a2989bfef1d0cff0b4538146571b25335d9",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\styles.py": "c11eb82b2740256c614d905c7b9375d3023e028ce74da8d891ce4f4702555741",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\text.py": "c87b1571088f47a4fd6c9bc016e8ddd80fe1ee82037c47b1ca892575d6395f5e",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\warp.py": "93707217082b834342d3bdb8b773a3ef931b4e758e4552e4e339f70b1ce74898",
+    "E:\\pranav\\Final sem\\captcha-effects\\captcha_effects\\__init__.py": "c4b75080df2d27a7eb2aaa16a755858ae66df6df296729bddbed8ccb311e07e6"
+  }
+}

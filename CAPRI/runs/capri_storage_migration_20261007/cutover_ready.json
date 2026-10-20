@@ -1,0 +1,13 @@
+{
+  "verified": true,
+  "source": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007",
+  "destination": "E:\\pranav\\CAPRI\\runs\\capri_decoder_500k_20261007",
+  "manifest_sha256": "e67ed9445f567bbf52e3cc345bd1b3d36534db17396599f7d8a6d90bcd09e9a1",
+  "files": 19028,
+  "bytes": 26150870743,
+  "checkpoint": {
+    "epoch": 15000,
+    "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\training_recovery\\baseline_localization\\epoch_15000\\checkpoint.pt",
+    "sha256": "063bc6079ec124257180f64ee1807fd0199885e5b4f08b15106ac550a743a850"
+  }
+}

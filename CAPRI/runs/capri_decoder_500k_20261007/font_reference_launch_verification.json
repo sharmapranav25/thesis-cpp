@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checked": [
+    {
+      "archive": "runs\\capri_decoder_500k_20261007\\font_references_train_v1\\shard_00000.zip",
+      "images": 500,
+      "sha256": "afc0e2710845fcffdd1a50c2630b8cf38ed73dacf0c2d6cc9ef96bd4893cc20d"
+    },
+    {
+      "archive": "runs\\capri_decoder_500k_20261007\\font_references_train_v1\\shard_00001.zip",
+      "images": 500,
+      "sha256": "8cdcebe190cf5d61fc5d6770eb7d008cbeccb9c81680d17ce16f211140a17fc9"
+    }
+  ],
+  "source": "Independent archive hash/CRC and all first-1000 instance font/axis/count labels checked; ongoing reference job not modified"
+}

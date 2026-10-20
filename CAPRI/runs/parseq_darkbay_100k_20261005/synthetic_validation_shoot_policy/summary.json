@@ -1,0 +1,106 @@
+{
+  "synthetic_discovery": {
+    "attempts": 2500,
+    "correct": 2387,
+    "accuracy_percent": 95.48,
+    "wilson95_lower_percent": 94.59352633009742
+  },
+  "synthetic_calibration_baseline": {
+    "attempts": 2500,
+    "correct": 2375,
+    "accuracy_percent": 95.0,
+    "wilson95_lower_percent": 94.07449971442749
+  },
+  "synthetic_policies": [
+    {
+      "target_accuracy": 0.9,
+      "threshold": 0.24110531386057765,
+      "available": true,
+      "attempts": 2500,
+      "correct": 2375,
+      "accuracy_percent": 95.0,
+      "wilson95_lower_percent": 94.07449971442749,
+      "shoot_rate_percent": 100.0
+    },
+    {
+      "target_accuracy": 0.95,
+      "threshold": 0.30028956347211383,
+      "available": true,
+      "attempts": 2472,
+      "correct": 2370,
+      "accuracy_percent": 95.87378640776699,
+      "wilson95_lower_percent": 95.01593099659405,
+      "shoot_rate_percent": 98.88
+    },
+    {
+      "target_accuracy": 0.98,
+      "threshold": 0.625424483080547,
+      "available": true,
+      "attempts": 2319,
+      "correct": 2286,
+      "accuracy_percent": 98.57697283311772,
+      "wilson95_lower_percent": 98.00833253869055,
+      "shoot_rate_percent": 92.76
+    },
+    {
+      "target_accuracy": 0.99,
+      "threshold": 0.9197123506273382,
+      "available": true,
+      "attempts": 1619,
+      "correct": 1611,
+      "accuracy_percent": 99.50586781964175,
+      "wilson95_lower_percent": 99.02795779692481,
+      "shoot_rate_percent": 64.76
+    }
+  ],
+  "real_baseline": {
+    "attempts": 900,
+    "correct": 496,
+    "accuracy_percent": 55.111111111111114,
+    "wilson95_lower_percent": 51.84673333334754
+  },
+  "real_policies": [
+    {
+      "target_accuracy": 0.9,
+      "threshold": 0.24110531386057765,
+      "available": true,
+      "attempts": 900,
+      "correct": 496,
+      "accuracy_percent": 55.111111111111114,
+      "wilson95_lower_percent": 51.84673333334754,
+      "shoot_rate_percent": 100.0
+    },
+    {
+      "target_accuracy": 0.95,
+      "threshold": 0.30028956347211383,
+      "available": true,
+      "attempts": 884,
+      "correct": 494,
+      "accuracy_percent": 55.88235294117647,
+      "wilson95_lower_percent": 52.59074436100474,
+      "shoot_rate_percent": 98.22222222222223
+    },
+    {
+      "target_accuracy": 0.98,
+      "threshold": 0.625424483080547,
+      "available": true,
+      "attempts": 543,
+      "correct": 353,
+      "accuracy_percent": 65.00920810313076,
+      "wilson95_lower_percent": 60.90494331695694,
+      "shoot_rate_percent": 60.333333333333336
+    },
+    {
+      "target_accuracy": 0.99,
+      "threshold": 0.9197123506273382,
+      "available": true,
+      "attempts": 339,
+      "correct": 232,
+      "accuracy_percent": 68.43657817109144,
+      "wilson95_lower_percent": 63.30597690008399,
+      "shoot_rate_percent": 37.666666666666664
+    }
+  ],
+  "policy_sha256": "2e8ec9ba7dde8b2b1d0411d399d7621346a40981a819d879a4bcb401df20593a",
+  "interpretation": "Rules learned only on synthetic holdout; real labels used only after attempt decisions frozen. Synthetic precision need not transfer to real images."
+}

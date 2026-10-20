@@ -1,0 +1,42 @@
+{
+  "stopped_at": "2026-10-08T02:44:52.877981+00:00",
+  "state": "stopped_by_user",
+  "reason": "User: Stop training",
+  "automation_status": "PAUSED",
+  "stopped_processes": [
+    12920,
+    25308,
+    38180,
+    41140,
+    39064,
+    35252
+  ],
+  "last_observed_progress": {
+    "updated_at": "2026-10-08T02:43:22.967562+00:00",
+    "pid": 12920,
+    "state": "training",
+    "phase": "baseline_localization",
+    "epoch": 1,
+    "epochs": 1,
+    "batches": 22251,
+    "total_batches": 57333,
+    "images": 174607,
+    "total_images": 450000,
+    "optimizer_updates": 22251,
+    "loss": 2.3085105419158936,
+    "mean_loss": 3.6167437729336873,
+    "online_train_count_accuracy": 0.7333039339774465,
+    "lr": 7.120776842670101e-05,
+    "gradient_norm": 57.75997543334961,
+    "amp_scale": 128.0,
+    "images_per_second": 9.694165129747756,
+    "elapsed_seconds": 18011.5561952,
+    "weights": "raw",
+    "estimated_remaining_epoch_seconds": 28408.11934953761
+  },
+  "resumable_update": 20000,
+  "checkpoint": "runs\\capri_decoder_500k_20261007\\training_recovery\\baseline_localization\\epoch_20000\\checkpoint.pt",
+  "checkpoint_sha256": "6bee2dbcee7a965f24998855f343f545f2dfd075b2d3d0233409fa5cfb49d7e5",
+  "limitation": "Immediate termination. Updates after recovery 20000 were not saved; last reported update 22251 is not resumable.",
+  "restart_policy": "Do not restart training or heartbeat without a new user instruction."
+}

@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-10-07T20:01:44.658897+00:00",
+  "passed": true,
+  "diagnostic_only": true,
+  "requested": 96,
+  "accepted": 96,
+  "failures": [],
+  "duplicate_pixels": 1,
+  "deterministic_payload_replay": true,
+  "attempt_counts": {
+    "0": 96
+  },
+  "archive_sha256": "f384cee52423da9c9cf60e94fde0383f9c8bdaf210d1a43251ac05a0a3ccbdb3",
+  "archive_bytes": 2989538,
+  "seconds": 6.2810000000026776,
+  "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\font_reference_pilot_1791403298323323200",
+  "trained_embedding_index": false,
+  "limitation": "Bounded clean TRAIN library pilot; no model inference, font retrieval accuracy or full-reference coverage. Every rejected font/axis/string remains explicit; no substitution or quality-gate relaxation."
+}

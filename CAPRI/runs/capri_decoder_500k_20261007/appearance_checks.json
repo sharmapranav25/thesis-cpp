@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-10-07T19:02:22.966235+00:00",
+  "passed": true,
+  "checks": {
+    "unknown_metadata_nondefault_axes_lowercase_evidence_masks": true,
+    "matched_only_gradients_query_permutation_cpu_amp": true,
+    "unknown_nan_targets_zero_gradient_and_zero_support": true,
+    "background_partial_coverage_and_padding_invariance": true
+  },
+  "analytic": {
+    "cpu": {
+      "losses": {
+        "font_category": 1.6094379425048828,
+        "font_stroke": 1.0986123085021973,
+        "font_italic": 0.6931471824645996,
+        "font_weight": 0.004999999422580004,
+        "font_x_height": 2.348047200939618e-05,
+        "font_intrinsic_width": 0.005708763375878334,
+        "colour_rgb": 0.08000000566244125,
+        "background_under": 0.0
+      },
+      "support": {
+        "font_category": 1,
+        "font_stroke": 1,
+        "font_italic": 1,
+        "font_weight": 1,
+        "font_x_height": 1,
+        "font_intrinsic_width": 1,
+        "colour_rgb": 1,
+        "background_under": 1
+      }
+    },
+    "cuda": {
+      "losses": {
+        "font_category": 1.6094379425048828,
+        "font_stroke": 1.0986123085021973,
+        "font_italic": 0.6931471824645996,
+        "font_weight": 0.004999999422580004,
+        "font_x_height": 2.348047200939618e-05,
+        "font_intrinsic_width": 0.005708763375878334,
+        "colour_rgb": 0.08000000566244125,
+        "background_under": 0.0
+      },
+      "support": {
+        "font_category": 1,
+        "font_stroke": 1,
+        "font_italic": 1,
+        "font_weight": 1,
+        "font_x_height": 1,
+        "font_intrinsic_width": 1,
+        "colour_rgb": 1,
+        "background_under": 1
+      }
+    }
+  },
+  "train_sample": {
+    "images": 53,
+    "glyphs": 262,
+    "valid_attribute_counts": {
+      "category": 246,
+      "stroke": 162,
+      "italic": 262,
+      "weight": 262,
+      "x_height": 69,
+      "intrinsic_width": 203
+    }
+  },
+  "source_hashes": {
+    "appearance.py": "c33d64707b3b7d5081b6e60e806eed4a8b78d8f13b1bc3051cb9f4ce9ab71584",
+    "appearance_checks.py": "9c151372ff4b3828ba05f8dcbafbfc507955f113445a9ad1eb9ebac9fa2c86ad",
+    "data.py": "edb7cf9235177f68c9ca40c1b12ac75540167b5e193175454b322e8711260b85",
+    "model.py": "20ddf2f7af2d53ae3a727263691f2b93e39a01f8585019bfd303acf09b2c53b3",
+    "objectives.py": "ae19c09a503a09f17eb28a2e5888a094d8fe275e18dfdf123dd839b734638270"
+  },
+  "limitation": "No training or held-out scoring. Metadata may be heuristic; missing/nondefault measurements are masked. Weight is nominal library weight, not observed stroke thickness; background is the saved pre-photometric under-layer, not a final background segmentation. No calibrated retrieval/palette/geometry contract yet."
+}

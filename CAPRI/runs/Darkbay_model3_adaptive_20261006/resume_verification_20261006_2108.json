@@ -1,0 +1,8 @@
+{
+  "epoch": 10,
+  "next_epoch": 11,
+  "global_step": 7420,
+  "checkpoint_sha256": "c5e1f44240c49df2d2e25fa2d10ee7db09fdc528c191e139e647f09a91e314ba",
+  "optimizer_scheduler_rng_adaptive_present": true,
+  "frozen_sources_verified": true
+}

@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-10-07T19:02:30.704099+00:00",
+  "passed": true,
+  "checks": {
+    "known_geometry_assignment_and_near_perfect_loss": true,
+    "query_permutation_invariance_and_teacher_alignment": true,
+    "ground_truth_order_invariance": true,
+    "padding_excluded_from_assignment_and_masks": true,
+    "all_present_task_gradients_finite": true,
+    "absent_intensity_has_zero_gradient": true,
+    "font_positive_negative_semantics_and_empty_anchor_handling": true,
+    "nonfinite_and_insufficient_capacity_refused": true,
+    "duplicate_miss_and_count_head_disagreement_reported": true,
+    "confident_wrong_count_not_hidden_by_nll_clipping": true,
+    "cuda_amp_losses_match_cpu_and_gradients_finite": true
+  },
+  "sources": {
+    "objectives.py": "ae19c09a503a09f17eb28a2e5888a094d8fe275e18dfdf123dd839b734638270",
+    "metrics.py": "e545a728000109a2f00f2ff396d9f791bf3ec3bdab5a9c7b400be69a8b6b73c0",
+    "objective_checks.py": "5aa15a7ff96d764281279ec02fee244aae781b6c9cb1cce37b6c61df61d21a14"
+  },
+  "limitation": "Analytic predictions only: no decoder trained, no data/architecture changes, no final loss coefficients, threshold selection or specialist grouping fixed. Model-output integration and measured task affinity remain required."
+}

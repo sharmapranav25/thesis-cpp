@@ -1,0 +1,58 @@
+{
+  "updated_at": "2026-10-08T00:31:12.206238+00:00",
+  "stage": "observe-training",
+  "state": "completed",
+  "pid": 42296,
+  "result": {
+    "created_at": "2026-10-08T00:31:12.201150+00:00",
+    "source": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007",
+    "trainer_pid": 16572,
+    "elapsed_seconds": 30.01600000000326,
+    "stop_reason": "duration_complete",
+    "process_usage": [
+      {
+        "pid": 16572,
+        "role": "trainer",
+        "mean_cpu_cores": 1.0437141857674772,
+        "read_MiB_per_second": 0.042273641140979985,
+        "write_MiB_per_second": 0.0001971147207817075,
+        "rss_MiB": 2675.609375
+      },
+      {
+        "pid": 33196,
+        "role": "loader",
+        "mean_cpu_cores": 0.14992004264390696,
+        "read_MiB_per_second": 0.7656980742777011,
+        "write_MiB_per_second": 0.010546082372603257,
+        "rss_MiB": 696.69140625
+      },
+      {
+        "pid": 37036,
+        "role": "loader",
+        "mean_cpu_cores": 0.15148170975478098,
+        "read_MiB_per_second": 0.7376266059590009,
+        "write_MiB_per_second": 0.010343153339458067,
+        "rss_MiB": 694.2109375
+      },
+      {
+        "pid": 39384,
+        "role": "loader",
+        "mean_cpu_cores": 0.1306594816097939,
+        "read_MiB_per_second": 0.6978199489588681,
+        "write_MiB_per_second": 0.010160526741287007,
+        "rss_MiB": 701.28125
+      },
+      {
+        "pid": 36272,
+        "role": "loader",
+        "mean_cpu_cores": 0.15148170975478098,
+        "read_MiB_per_second": 0.7482677825223358,
+        "write_MiB_per_second": 0.011223878687631653,
+        "rss_MiB": 696.15625
+      }
+    ],
+    "gpu_mean_percent": 37.22222222222222,
+    "gpu_median_percent": 22.0,
+    "limitation": "Coarse driver/process telemetry, not an operator profiler or causal bottleneck diagnosis. Periodic GPU samples can alias the training cycle; process CPU/read counters include runtime and filesystem caching. No training state changed."
+  }
+}

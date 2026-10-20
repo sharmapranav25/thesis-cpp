@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-10-08T00:01:16.487701+00:00",
+  "passed": true,
+  "device": "cpu",
+  "checks": {
+    "exact_cpu_raw_ema_optimizer_scheduler_scaler_rng_resume": true,
+    "consumed_cursor_no_repetition": true,
+    "each_image_once_per_epoch": true,
+    "every_epoch_full_checkpoint": true,
+    "final_batch_and_later_epoch_recovery_exact": true,
+    "failed_validation_retried_without_retraining_or_overwrite": true,
+    "completed_phase_idempotent": true,
+    "validation_failure_restores_raw_modes_and_rng": true,
+    "phase_objective_budget_optimizer_mutation_refused": true,
+    "amp_retry_exact_full_epoch_raw_ema_optimizer_scheduler_scaler_rng": true,
+    "persistent_amp_failure_bounded_no_optimizer_cursor_or_epoch_advance": true,
+    "corrupt_checkpoint_refused": true
+  },
+  "root": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\phase_engine_smoke_1791417672021186300",
+  "engine_sha256": "43799b3986fd861a55b5522d0d774c795baad748f8f72191abb0b53f555f2ff8",
+  "limitation": "Toy CPU full-pass engine checks only. No new actual CAPRI phase, GPU readiness, specialist sampling, teacher selection or font training claimed."
+}

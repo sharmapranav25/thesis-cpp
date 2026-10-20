@@ -1,0 +1,39 @@
+{
+  "sampler_transitions_verified": true,
+  "deterministic_sampling": true,
+  "fresh_seed_renders": [
+    {
+      "controller": "custom",
+      "seed": 10000000000,
+      "sha256": "fdb750d69b48d153794d301183f29f2bc750e71ae870d5aba6881eca1920c2bd"
+    },
+    {
+      "controller": "dino",
+      "seed": 11000000000,
+      "sha256": "3da5ccad0d937d84e162d9c89606cbd7a57e8d3a1eeda10116d4654a260cca63"
+    },
+    {
+      "controller": "mixed",
+      "seed": 12000000000,
+      "sha256": "937a23a85898b67c117cfd273fadaf3a089c13a15996c847482baba581cc2f9f"
+    }
+  ],
+  "training_preflight": {
+    "seed": 48,
+    "epoch": 1,
+    "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_ds2_noFont-intel\\preflight\\best.pth",
+    "sha256": "7c24e79db5a512a993d4b22376ecac52a1bd05843cfe256a2aa6e808d0616d35",
+    "final_checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_ds2_noFont-intel\\preflight\\latest.pth",
+    "final_sha256": "2ce0c38d2489bf85ba4e052c7e3085f3757919be7fbabafa457a84993371b53f",
+    "final_epoch": 1,
+    "selection": "Best synthetic holdout accuracy; never real DarkBay labels",
+    "metrics": {
+      "acc": 0.0,
+      "norm_edit_dis": 0.015324596158534987,
+      "num_samples": 128,
+      "best_epoch": 1
+    },
+    "seconds": 5.941076040267944
+  },
+  "note": "Preflight trained only a disposable3-step fixture; no production training or target labels used."
+}

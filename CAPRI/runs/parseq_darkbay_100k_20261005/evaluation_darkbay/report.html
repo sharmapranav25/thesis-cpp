@@ -1,0 +1,41 @@
+<!doctype html><meta charset="utf-8"><title>PARSeq DarkBay test</title><style>body{font:18px system-ui;max-width:1200px;margin:30px auto}pre{white-space:pre-wrap}img{width:100%}</style><h1>PARSeq DarkBay test</h1><pre>{
+  &quot;results&quot;: [
+    {
+      &quot;seed&quot;: 48,
+      &quot;correct&quot;: 492,
+      &quot;total&quot;: 900,
+      &quot;exact_match_percent&quot;: 54.666666666666664,
+      &quot;character_error_rate_percent&quot;: 9.794482503240141,
+      &quot;predicted_lengths&quot;: {
+        &quot;6&quot;: 900
+      }
+    },
+    {
+      &quot;seed&quot;: 123,
+      &quot;correct&quot;: 439,
+      &quot;total&quot;: 900,
+      &quot;exact_match_percent&quot;: 48.77777777777778,
+      &quot;character_error_rate_percent&quot;: 11.275689687094982,
+      &quot;predicted_lengths&quot;: {
+        &quot;6&quot;: 900
+      }
+    },
+    {
+      &quot;seed&quot;: 456,
+      &quot;correct&quot;: 474,
+      &quot;total&quot;: 900,
+      &quot;exact_match_percent&quot;: 52.666666666666664,
+      &quot;character_error_rate_percent&quot;: 10.33142010738752,
+      &quot;predicted_lengths&quot;: {
+        &quot;6&quot;: 900
+      }
+    }
+  ],
+  &quot;mean_exact_match_percent&quot;: 52.03703703703704,
+  &quot;sample_std_percentage_points&quot;: 2.9945080045477255,
+  &quot;evaluation_images&quot;: 900,
+  &quot;excluded_controller_images&quot;: 100,
+  &quot;synthetic_pixel_overlap&quot;: 0,
+  &quot;training_initialization&quot;: &quot;from_scratch&quot;,
+  &quot;limitation&quot;: &quot;Historical dataset evaluation; no hyperparameters or checkpoints were selected using these scores.&quot;
+}</pre><p>Examples: first12 images in frozen pixel-hash order, not selected by outcome. Green is correct; red is incorrect.</p><img src="examples.png"><p>Source-label audit:899 answers have6 characters; one answer has7 characters. All source labels were retained unchanged.</p>

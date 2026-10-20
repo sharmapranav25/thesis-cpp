@@ -1,0 +1,19 @@
+{
+  "epoch_checkpoints": 60,
+  "full_rescores": 60,
+  "training_images_per_rescore": 95000,
+  "selected_and_final_hashes_verified": true,
+  "real_prediction_freeze": {
+    "seed_48": "47212db618d078342ed20b0218e7730b6e1988f14fb60e71e408a6e6e93845fc",
+    "seed_123": "a3a50d5281aa073310b9bd92d9b95912bc3892463d354e015a6443ddd1f8c083",
+    "seed_456": "5f2e3f2c2bdfb521cab7b10016c46fcd273b66376234f79b40d222cdb56842e9",
+    "ensemble": "e7c07abd1344cb5f8d725a2aebd923a39d749064d88d41561cc681b87b392288"
+  },
+  "policy_freeze": {
+    "sha256": "3dddecfe02413eda3c92521a1ced4f23aaf453eaff0d952d45b74a7f0a904b06"
+  },
+  "real_decision_freeze": {
+    "sha256": "ff6d8fe5e13d6e6e0ef36dd127367bb8637acdedde0194e20616dca36420aa3b",
+    "policy_sha256": "3dddecfe02413eda3c92521a1ced4f23aaf453eaff0d952d45b74a7f0a904b06"
+  }
+}

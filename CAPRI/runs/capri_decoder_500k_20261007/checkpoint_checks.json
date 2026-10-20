@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "exact_cpu_resume": true,
+  "epoch_overwrite_refused": true,
+  "raw_and_ema_preserved": true,
+  "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\checkpoint_smoke_1791397980807153300\\epoch_0001\\checkpoint.pt",
+  "limitation": "CPU infrastructure test; CUDA/scaler and actual decoder sampler must also be tested"
+}

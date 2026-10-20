@@ -1,0 +1,38 @@
+Objective: a learned target-conditioned controller that changes labelled renderer
+recipes, starting from frozen simple-hybrid feature predictions. This is inspired
+by Meta-Sim distribution adaptation, not a reproduction of Meta-Sim2's grammar RL.
+
+No target answers, target fonts, copied target pixels, manual family presets, old
+manually adjusted recipes, or target-derived synthetic training labels are used.
+The new renderer grammar is generic: the same parameter bounds and layers are
+available to every family. Real images are used only for fitting/selection and
+later held-out evaluation. All generated text comes from a fresh random stream.
+
+Synthetic training: 4096 parameterized schemes, 2 independently sampled strings
+and image seeds per scheme. Base/perturbed sibling pairs stay in the same split.
+Learn a scheme encoder using parameter, text-mask, and contrastive supervision.
+Learn recipe corrections from target/current scheme embeddings and current recipe.
+Use learned proposals and mixed categorical/continuous search through the real
+renderer. No backpropagation is claimed through the black-box renderer.
+
+Controller controls: 38 continuous controls and 9 categorical controls, covering
+font, count, character set, size, width, weight, spacing, rotation, jitter, slant,
+background/text/effect HSV palettes, palette variation and assignment, opacity,
+blocks, bands, grids, lines, curves, dots, noise, rasterization and border.
+Original hybrid weights are frozen. The original hybrid render and the new
+grammar initialized from hybrid predictions are both baselines: renderer changes
+alone must not be credited as learned-controller improvements.
+
+Component RNG streams are independent so changing background operations does not
+advance text/layout RNG draws. Labels are generated from actual glyph masks.
+
+Use prior fitting/selection subsets. Reserve fresh final images by pixel hash:
+City 256 from its 591 previously unused images, CryptBB 128 from images unused by
+the feature ablation, DarkBay 256 from images unused by that ablation. Do not use
+these final images for debugging or policy selection. A final test is scored only
+after saved policies and fitting-time diagnostic choices are frozen.
+
+Decent means clear visual family improvement across consecutive, unselected
+examples, preserved generated labels, and improvement supported by more than one
+appearance measure. A single lower training objective is insufficient. Report
+failures and families that do not meet this standard. No OCR improvement claim.

@@ -1,0 +1,34 @@
+{
+  "epochs": 20,
+  "seeds": [
+    48,
+    123,
+    456
+  ],
+  "final_checkpoint": "latest.pth",
+  "images": 100000,
+  "architecture": "SVTRv2LNConvTwo33 encoder + PARSeq decoder (thesis configuration)",
+  "batch_size": 128,
+  "optimizer": "AdamW",
+  "lr": 0.00035,
+  "weight_decay": 0.05,
+  "scheduler": "OneCycleLR",
+  "warmup_epochs": 2,
+  "mixed_precision": true,
+  "target_labels": false,
+  "target_evaluation_during_training": false,
+  "checkpoint_selection": "Fixed final epoch; no accuracy-based selection",
+  "initialization": "Random initialization, explicitly selected by the launcher; disclosed when proceeding after the user requested a start with the pretrained checkpoint unavailable.",
+  "adaptation": "Apply the newer20-epoch/3-seed/final-checkpoint protocol to PARSeq; primary benchmark model was NRTR.",
+  "portability_changes": [
+    "Windows data-loader workers0",
+    "All charset paths agree; spaces disabled",
+    "No eval dataset constructed"
+  ],
+  "sources": {
+    "E:\\pranav\\Final sem\\CaptchaThesis\\inputs\\configs\\parseq.yml": "895f208377b5668fc20d1db80193c1b15eb47c13946fdcb608201e03eb004fc7",
+    "E:\\pranav\\Final sem\\CaptchaThesis\\experiments\\six_system_benchmark\\protocol.py": "7ee4436f140b68e14bdbcbdf587ad6240a01ad5e16fd89555e2337d2373d325d",
+    "E:\\pranav\\Final sem\\CaptchaThesis\\experiments\\six_system_benchmark\\train_str.py": "05b633b6cfee95111770109b386b75429b6dcd4b69a52e1979f998c93617dc3f"
+  },
+  "independent_decoder_rng": "Seeded from model seed; no entropy-seeded permutation generator"
+}

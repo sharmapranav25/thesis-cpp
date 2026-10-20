@@ -1,0 +1,7 @@
+{
+  "override_sha256": "abc1f1b2b752443dd23b9e29eba58930812381594b74adc554c4b24886b1b037",
+  "original_source_freeze_sha256": "20bfec68c236ef5aaf9c90e4c5f09a8fb3bfcf1731b93e505ae660ae24ee4e76",
+  "amended_source_freeze_sha256": "6f0044778de9017491cba592a4fa28ce26011540198081ed248e0fc5c2b41af5",
+  "scope": "Evaluation dispatch and model registry only; trainer and adaptive curriculum source unchanged",
+  "selection_helper_sha256": "995a66b0d460be8787572123a45ecb7afe5fbcf6341f80d08c5477863d732ee4"
+}

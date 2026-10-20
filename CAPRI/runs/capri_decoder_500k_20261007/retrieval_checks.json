@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-10-07T19:33:57.263259+00:00",
+  "passed": true,
+  "checks": {
+    "known_neighbours_styles_alias_family_mixture_quality_and_absence": true,
+    "order_invariance_exact_ties_empty_and_zero_evidence": true,
+    "identity_zero_nonfinite_duplicates_and_cross_split_refused": true,
+    "atomic_round_trip_hash_tamper_overwrite_and_diagnostic_guard": true,
+    "train_only_specimens_full_coverage_actual_axes_family_independent_content": true
+  },
+  "index_receipt": {
+    "created_at": "2026-10-07T19:33:57.214449+00:00",
+    "count": 4,
+    "families": 2,
+    "files": {
+      "embeddings.npy": "2a9409eab604494361c01abd7135b8c8dd72f87df6b32bb76582b083e09b2bd5",
+      "metadata.json": "f1dfb0dfa3fb5acc49f31bbfb547f9f4206c8766727a5306f27e342ef855aa99"
+    }
+  },
+  "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\retrieval_smoke_1791401637210880200",
+  "source_hashes": {
+    "retrieval.py": "b9d4df68fd13e00687ae72f0a01498b4d71c7efb8aacfe211eb5e7d0e32ec64a",
+    "retrieval_checks.py": "b55bdc767f0a31b06f91e46e19f2f06f5466929e6994400251b78594d67786f2",
+    "specimens.py": "0069bce9badde987c971ed236f5ed7f70ece2ecc47caa60d700b713d12b6d082"
+  },
+  "limitation": "Analytic embedding vectors, not model/font accuracy. No model weights or corpus images used. Production reference rendering/extraction, calibrated quality/rejection and retrieval evaluation remain required."
+}

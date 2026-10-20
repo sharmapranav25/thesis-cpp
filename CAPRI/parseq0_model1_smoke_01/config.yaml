@@ -1,0 +1,32 @@
+batch_size: 128
+ckpt_dir: C:\Users\pranav\Documents\ChatGPT\thesis\parseq0_model1_smoke_01\checkpoints
+data_dir: E:\pranav\Final sem\sourcefree_synth\runs\iter2_baseline_15_20261003_04
+dec_depth: 1
+dec_mlp_ratio: 4
+dec_num_heads: 12
+decode_ar: true
+dropout: 0.1
+embed_dim: 384
+enc_depth: 12
+enc_mlp_ratio: 4
+enc_num_heads: 6
+gradient_clip_val: 5
+img_size:
+- 32
+- 128
+lr: 0.0005
+max_epochs: 15
+max_label_length: 8
+num_workers: 4
+patch_size:
+- 4
+- 8
+perm_forward: true
+perm_mirrored: false
+perm_num: 1
+precision: 32-true
+refine_iters: 1
+seed: 0
+val_frac: 0.05
+warmup_pct: 0.05
+weight_decay: 0.0

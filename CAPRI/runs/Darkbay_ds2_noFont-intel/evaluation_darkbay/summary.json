@@ -1,0 +1,32 @@
+{
+  "dataset": "Darkbay_ds2_noFont-intel",
+  "results": {
+    "seed_48": {
+      "correct": 566,
+      "total": 900,
+      "accuracy": 62.888888888888886,
+      "CER": 7.924458433623403
+    },
+    "seed_123": {
+      "correct": 520,
+      "total": 900,
+      "accuracy": 57.77777777777778,
+      "CER": 9.794482503240141
+    },
+    "seed_456": {
+      "correct": 524,
+      "total": 900,
+      "accuracy": 58.22222222222222,
+      "CER": 9.350120348083689
+    },
+    "ensemble": {
+      "correct": 565,
+      "total": 900,
+      "accuracy": 62.77777777777778,
+      "CER": 8.091094241807072
+    }
+  },
+  "ds1_epoch20_ensemble_correct": 496,
+  "difference_in_correct": 69,
+  "limitation": "Different synthetic validation, augmentation and checkpoint selection from DS1; cannot attribute difference solely to curriculum"
+}

@@ -1,0 +1,119 @@
+{
+  "created_at": "2026-10-07T21:30:54.904610+00:00",
+  "passed": true,
+  "device": "cpu",
+  "checks": {
+    "known_groups_recovered": true,
+    "task_and_candidate_order_invariant": true,
+    "group_size_bounds_repaired": true,
+    "missing_pair_bad_step_heldout_and_infeasible_grouping_refused": true,
+    "strict_task_improvement_required": true,
+    "baseline_wins_equal_or_worse": true,
+    "preservation_regression_rejects_teacher": true,
+    "unassigned_routes_stay_baseline": true,
+    "deterministic_specialist_ties": true,
+    "heldout_mismatched_evidence_nonfinite_and_tampered_teachers_refused": true
+  },
+  "analytic_groups": {
+    "groups": {
+      "g1": [
+        "task_00",
+        "task_01",
+        "task_02",
+        "task_03",
+        "task_04",
+        "task_05"
+      ],
+      "g2": [
+        "task_06",
+        "task_07",
+        "task_08",
+        "task_09",
+        "task_10",
+        "task_11"
+      ]
+    },
+    "score": 0.05000000000000001,
+    "candidates": [
+      {
+        "k": 2,
+        "feasible": true,
+        "score": 0.05000000000000001,
+        "sizes": [
+          6,
+          6
+        ],
+        "groups": [
+          [
+            "task_00",
+            "task_01",
+            "task_02",
+            "task_03",
+            "task_04",
+            "task_05"
+          ],
+          [
+            "task_06",
+            "task_07",
+            "task_08",
+            "task_09",
+            "task_10",
+            "task_11"
+          ]
+        ]
+      },
+      {
+        "k": 3,
+        "feasible": true,
+        "score": 0.030907054871220613,
+        "sizes": [
+          3,
+          4,
+          5
+        ],
+        "groups": [
+          [
+            "task_00",
+            "task_05",
+            "task_08"
+          ],
+          [
+            "task_01",
+            "task_02",
+            "task_03",
+            "task_04"
+          ],
+          [
+            "task_06",
+            "task_07",
+            "task_09",
+            "task_10",
+            "task_11"
+          ]
+        ]
+      }
+    ],
+    "seed": 731,
+    "epsilon": 0.003,
+    "minimum_observations": 3,
+    "positive_self_fraction": 1.0,
+    "task_order": [
+      "task_00",
+      "task_01",
+      "task_02",
+      "task_03",
+      "task_04",
+      "task_05",
+      "task_06",
+      "task_07",
+      "task_08",
+      "task_09",
+      "task_10",
+      "task_11"
+    ],
+    "source": "symmetrized directed TRAIN TAG",
+    "missing_evidence": "refuse grouping; never zero-fill unobserved pairs"
+  },
+  "source_sha256": "8843c6c005649d024f3b29bd2b7ff0ef7e49ea4fbbe2e89d4e1c7d7fecc30943",
+  "limitation": "Fabricated affinity/metric fixtures only; no actual CAPRI task groups or teachers selected. Real grouping awaits a trained joint baseline and adequate TRAIN pair evidence. Real teacher routing requires frozen DEV metrics/guards."
+}

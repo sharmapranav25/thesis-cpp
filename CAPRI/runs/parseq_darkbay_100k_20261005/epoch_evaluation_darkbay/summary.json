@@ -1,0 +1,801 @@
+{
+  "epochs": [
+    {
+      "epoch": 2,
+      "48": 295,
+      "123": 252,
+      "456": 223,
+      "ensemble": 297,
+      "mean_accuracy": 28.51851851851852
+    },
+    {
+      "epoch": 3,
+      "48": 213,
+      "123": 358,
+      "456": 338,
+      "ensemble": 347,
+      "mean_accuracy": 33.666666666666664
+    },
+    {
+      "epoch": 4,
+      "48": 299,
+      "123": 282,
+      "456": 247,
+      "ensemble": 317,
+      "mean_accuracy": 30.666666666666668
+    },
+    {
+      "epoch": 5,
+      "48": 367,
+      "123": 311,
+      "456": 284,
+      "ensemble": 372,
+      "mean_accuracy": 35.629629629629626
+    },
+    {
+      "epoch": 6,
+      "48": 350,
+      "123": 291,
+      "456": 332,
+      "ensemble": 381,
+      "mean_accuracy": 36.03703703703704
+    },
+    {
+      "epoch": 7,
+      "48": 297,
+      "123": 354,
+      "456": 324,
+      "ensemble": 366,
+      "mean_accuracy": 36.111111111111114
+    },
+    {
+      "epoch": 8,
+      "48": 371,
+      "123": 375,
+      "456": 358,
+      "ensemble": 431,
+      "mean_accuracy": 40.888888888888886
+    },
+    {
+      "epoch": 9,
+      "48": 473,
+      "123": 377,
+      "456": 365,
+      "ensemble": 464,
+      "mean_accuracy": 45.0
+    },
+    {
+      "epoch": 10,
+      "48": 426,
+      "123": 413,
+      "456": 380,
+      "ensemble": 458,
+      "mean_accuracy": 45.148148148148145
+    },
+    {
+      "epoch": 11,
+      "48": 401,
+      "123": 404,
+      "456": 403,
+      "ensemble": 445,
+      "mean_accuracy": 44.74074074074074
+    },
+    {
+      "epoch": 12,
+      "48": 406,
+      "123": 406,
+      "456": 447,
+      "ensemble": 459,
+      "mean_accuracy": 46.629629629629626
+    },
+    {
+      "epoch": 13,
+      "48": 478,
+      "123": 409,
+      "456": 364,
+      "ensemble": 463,
+      "mean_accuracy": 46.333333333333336
+    },
+    {
+      "epoch": 14,
+      "48": 506,
+      "123": 455,
+      "456": 372,
+      "ensemble": 474,
+      "mean_accuracy": 49.370370370370374
+    },
+    {
+      "epoch": 15,
+      "48": 453,
+      "123": 411,
+      "456": 467,
+      "ensemble": 469,
+      "mean_accuracy": 49.2962962962963
+    },
+    {
+      "epoch": 16,
+      "48": 488,
+      "123": 430,
+      "456": 458,
+      "ensemble": 492,
+      "mean_accuracy": 50.96296296296296
+    },
+    {
+      "epoch": 17,
+      "48": 494,
+      "123": 426,
+      "456": 461,
+      "ensemble": 490,
+      "mean_accuracy": 51.148148148148145
+    },
+    {
+      "epoch": 18,
+      "48": 479,
+      "123": 433,
+      "456": 475,
+      "ensemble": 499,
+      "mean_accuracy": 51.370370370370374
+    },
+    {
+      "epoch": 19,
+      "48": 493,
+      "123": 437,
+      "456": 477,
+      "ensemble": 502,
+      "mean_accuracy": 52.111111111111114
+    },
+    {
+      "epoch": 20,
+      "48": 492,
+      "123": 439,
+      "456": 474,
+      "ensemble": 496,
+      "mean_accuracy": 52.03703703703704
+    }
+  ],
+  "best_observed": {
+    "48": {
+      "epoch": 14,
+      "seed": 48,
+      "correct": 506,
+      "total": 900,
+      "accuracy": 56.22222222222222,
+      "CER": 9.38715052768006
+    },
+    "123": {
+      "epoch": 14,
+      "seed": 123,
+      "correct": 455,
+      "total": 900,
+      "accuracy": 50.55555555555556,
+      "CER": 11.072023699314942
+    },
+    "456": {
+      "epoch": 19,
+      "seed": 456,
+      "correct": 477,
+      "total": 900,
+      "accuracy": 53.0,
+      "CER": 10.29438992779115
+    },
+    "ensemble": {
+      "epoch": 19,
+      "seed": "ensemble",
+      "correct": 502,
+      "total": 900,
+      "accuracy": 55.77777777777778,
+      "CER": 9.572301425661914
+    }
+  },
+  "results": [
+    {
+      "epoch": 2,
+      "seed": 48,
+      "correct": 295,
+      "total": 900,
+      "accuracy": 32.77777777777778,
+      "CER": 17.718940936863543
+    },
+    {
+      "epoch": 2,
+      "seed": 123,
+      "correct": 252,
+      "total": 900,
+      "accuracy": 28.0,
+      "CER": 19.866691353453064
+    },
+    {
+      "epoch": 2,
+      "seed": 456,
+      "correct": 223,
+      "total": 900,
+      "accuracy": 24.77777777777778,
+      "CER": 20.866506202555083
+    },
+    {
+      "epoch": 2,
+      "seed": "ensemble",
+      "correct": 297,
+      "total": 900,
+      "accuracy": 33.0,
+      "CER": 17.848546565450842
+    },
+    {
+      "epoch": 3,
+      "seed": 48,
+      "correct": 213,
+      "total": 900,
+      "accuracy": 23.666666666666668,
+      "CER": 21.236807998518792
+    },
+    {
+      "epoch": 3,
+      "seed": 123,
+      "correct": 358,
+      "total": 900,
+      "accuracy": 39.77777777777778,
+      "CER": 14.71949638955749
+    },
+    {
+      "epoch": 3,
+      "seed": 456,
+      "correct": 338,
+      "total": 900,
+      "accuracy": 37.55555555555556,
+      "CER": 14.904647287539344
+    },
+    {
+      "epoch": 3,
+      "seed": "ensemble",
+      "correct": 347,
+      "total": 900,
+      "accuracy": 38.55555555555556,
+      "CER": 15.237918903906683
+    },
+    {
+      "epoch": 4,
+      "seed": 48,
+      "correct": 299,
+      "total": 900,
+      "accuracy": 33.22222222222222,
+      "CER": 16.682095908165156
+    },
+    {
+      "epoch": 4,
+      "seed": 123,
+      "correct": 282,
+      "total": 900,
+      "accuracy": 31.333333333333332,
+      "CER": 17.867061655249028
+    },
+    {
+      "epoch": 4,
+      "seed": 456,
+      "correct": 247,
+      "total": 900,
+      "accuracy": 27.444444444444443,
+      "CER": 19.996296982040363
+    },
+    {
+      "epoch": 4,
+      "seed": "ensemble",
+      "correct": 317,
+      "total": 900,
+      "accuracy": 35.22222222222222,
+      "CER": 16.996852434734308
+    },
+    {
+      "epoch": 5,
+      "seed": 48,
+      "correct": 367,
+      "total": 900,
+      "accuracy": 40.77777777777778,
+      "CER": 14.441770042584707
+    },
+    {
+      "epoch": 5,
+      "seed": 123,
+      "correct": 311,
+      "total": 900,
+      "accuracy": 34.55555555555556,
+      "CER": 16.311794112201444
+    },
+    {
+      "epoch": 5,
+      "seed": 456,
+      "correct": 284,
+      "total": 900,
+      "accuracy": 31.555555555555557,
+      "CER": 17.33012405110165
+    },
+    {
+      "epoch": 5,
+      "seed": "ensemble",
+      "correct": 372,
+      "total": 900,
+      "accuracy": 41.333333333333336,
+      "CER": 14.626920940566562
+    },
+    {
+      "epoch": 6,
+      "seed": 48,
+      "correct": 350,
+      "total": 900,
+      "accuracy": 38.888888888888886,
+      "CER": 15.0897981855212
+    },
+    {
+      "epoch": 6,
+      "seed": 123,
+      "correct": 291,
+      "total": 900,
+      "accuracy": 32.333333333333336,
+      "CER": 18.496574708387335
+    },
+    {
+      "epoch": 6,
+      "seed": 456,
+      "correct": 332,
+      "total": 900,
+      "accuracy": 36.888888888888886,
+      "CER": 15.99703758563229
+    },
+    {
+      "epoch": 6,
+      "seed": "ensemble",
+      "correct": 381,
+      "total": 900,
+      "accuracy": 42.333333333333336,
+      "CER": 14.441770042584707
+    },
+    {
+      "epoch": 7,
+      "seed": 48,
+      "correct": 297,
+      "total": 900,
+      "accuracy": 33.0,
+      "CER": 17.441214589890762
+    },
+    {
+      "epoch": 7,
+      "seed": 123,
+      "correct": 354,
+      "total": 900,
+      "accuracy": 39.333333333333336,
+      "CER": 15.108313275319386
+    },
+    {
+      "epoch": 7,
+      "seed": 456,
+      "correct": 324,
+      "total": 900,
+      "accuracy": 36.0,
+      "CER": 15.46009998148491
+    },
+    {
+      "epoch": 7,
+      "seed": "ensemble",
+      "correct": 366,
+      "total": 900,
+      "accuracy": 40.666666666666664,
+      "CER": 14.275134234401037
+    },
+    {
+      "epoch": 8,
+      "seed": 48,
+      "correct": 371,
+      "total": 900,
+      "accuracy": 41.22222222222222,
+      "CER": 14.275134234401037
+    },
+    {
+      "epoch": 8,
+      "seed": 123,
+      "correct": 375,
+      "total": 900,
+      "accuracy": 41.666666666666664,
+      "CER": 13.830772079244584
+    },
+    {
+      "epoch": 8,
+      "seed": 456,
+      "correct": 358,
+      "total": 900,
+      "accuracy": 39.77777777777778,
+      "CER": 14.793556748750232
+    },
+    {
+      "epoch": 8,
+      "seed": "ensemble",
+      "correct": 431,
+      "total": 900,
+      "accuracy": 47.888888888888886,
+      "CER": 12.219959266802444
+    },
+    {
+      "epoch": 9,
+      "seed": 48,
+      "correct": 473,
+      "total": 900,
+      "accuracy": 52.55555555555556,
+      "CER": 10.738752082947602
+    },
+    {
+      "epoch": 9,
+      "seed": 123,
+      "correct": 377,
+      "total": 900,
+      "accuracy": 41.888888888888886,
+      "CER": 13.941862618033698
+    },
+    {
+      "epoch": 9,
+      "seed": 456,
+      "correct": 365,
+      "total": 900,
+      "accuracy": 40.55555555555556,
+      "CER": 14.052953156822811
+    },
+    {
+      "epoch": 9,
+      "seed": "ensemble",
+      "correct": 464,
+      "total": 900,
+      "accuracy": 51.55555555555556,
+      "CER": 10.9979633401222
+    },
+    {
+      "epoch": 10,
+      "seed": 48,
+      "correct": 426,
+      "total": 900,
+      "accuracy": 47.333333333333336,
+      "CER": 12.23847435660063
+    },
+    {
+      "epoch": 10,
+      "seed": 123,
+      "correct": 413,
+      "total": 900,
+      "accuracy": 45.888888888888886,
+      "CER": 12.923532679133494
+    },
+    {
+      "epoch": 10,
+      "seed": 456,
+      "correct": 380,
+      "total": 900,
+      "accuracy": 42.22222222222222,
+      "CER": 14.34919459359378
+    },
+    {
+      "epoch": 10,
+      "seed": "ensemble",
+      "correct": 458,
+      "total": 900,
+      "accuracy": 50.888888888888886,
+      "CER": 11.571931123865951
+    },
+    {
+      "epoch": 11,
+      "seed": 48,
+      "correct": 401,
+      "total": 900,
+      "accuracy": 44.55555555555556,
+      "CER": 12.923532679133494
+    },
+    {
+      "epoch": 11,
+      "seed": 123,
+      "correct": 404,
+      "total": 900,
+      "accuracy": 44.888888888888886,
+      "CER": 12.627291242362526
+    },
+    {
+      "epoch": 11,
+      "seed": 456,
+      "correct": 403,
+      "total": 900,
+      "accuracy": 44.77777777777778,
+      "CER": 13.053138307720792
+    },
+    {
+      "epoch": 11,
+      "seed": "ensemble",
+      "correct": 445,
+      "total": 900,
+      "accuracy": 49.44444444444444,
+      "CER": 11.664506572856878
+    },
+    {
+      "epoch": 12,
+      "seed": 48,
+      "correct": 406,
+      "total": 900,
+      "accuracy": 45.111111111111114,
+      "CER": 12.886502499537123
+    },
+    {
+      "epoch": 12,
+      "seed": 123,
+      "correct": 406,
+      "total": 900,
+      "accuracy": 45.111111111111114,
+      "CER": 12.57174597296797
+    },
+    {
+      "epoch": 12,
+      "seed": 456,
+      "correct": 447,
+      "total": 900,
+      "accuracy": 49.666666666666664,
+      "CER": 11.349750046287724
+    },
+    {
+      "epoch": 12,
+      "seed": "ensemble",
+      "correct": 459,
+      "total": 900,
+      "accuracy": 51.0,
+      "CER": 10.960933160525828
+    },
+    {
+      "epoch": 13,
+      "seed": 48,
+      "correct": 478,
+      "total": 900,
+      "accuracy": 53.111111111111114,
+      "CER": 10.627661544158489
+    },
+    {
+      "epoch": 13,
+      "seed": 123,
+      "correct": 409,
+      "total": 900,
+      "accuracy": 45.44444444444444,
+      "CER": 12.682836511757081
+    },
+    {
+      "epoch": 13,
+      "seed": 456,
+      "correct": 364,
+      "total": 900,
+      "accuracy": 40.44444444444444,
+      "CER": 14.682466209961119
+    },
+    {
+      "epoch": 13,
+      "seed": "ensemble",
+      "correct": 463,
+      "total": 900,
+      "accuracy": 51.44444444444444,
+      "CER": 11.127568968709499
+    },
+    {
+      "epoch": 14,
+      "seed": 48,
+      "correct": 506,
+      "total": 900,
+      "accuracy": 56.22222222222222,
+      "CER": 9.38715052768006
+    },
+    {
+      "epoch": 14,
+      "seed": 123,
+      "correct": 455,
+      "total": 900,
+      "accuracy": 50.55555555555556,
+      "CER": 11.072023699314942
+    },
+    {
+      "epoch": 14,
+      "seed": 456,
+      "correct": 372,
+      "total": 900,
+      "accuracy": 41.333333333333336,
+      "CER": 13.664136271060915
+    },
+    {
+      "epoch": 14,
+      "seed": "ensemble",
+      "correct": 474,
+      "total": 900,
+      "accuracy": 52.666666666666664,
+      "CER": 10.479540825773006
+    },
+    {
+      "epoch": 15,
+      "seed": 48,
+      "correct": 453,
+      "total": 900,
+      "accuracy": 50.333333333333336,
+      "CER": 11.053508609516756
+    },
+    {
+      "epoch": 15,
+      "seed": 123,
+      "correct": 411,
+      "total": 900,
+      "accuracy": 45.666666666666664,
+      "CER": 12.349564895389742
+    },
+    {
+      "epoch": 15,
+      "seed": 456,
+      "correct": 467,
+      "total": 900,
+      "accuracy": 51.888888888888886,
+      "CER": 10.738752082947602
+    },
+    {
+      "epoch": 15,
+      "seed": "ensemble",
+      "correct": 469,
+      "total": 900,
+      "accuracy": 52.111111111111114,
+      "CER": 10.590631364562118
+    },
+    {
+      "epoch": 16,
+      "seed": 48,
+      "correct": 488,
+      "total": 900,
+      "accuracy": 54.22222222222222,
+      "CER": 10.053693760414738
+    },
+    {
+      "epoch": 16,
+      "seed": 123,
+      "correct": 430,
+      "total": 900,
+      "accuracy": 47.77777777777778,
+      "CER": 11.812627291242363
+    },
+    {
+      "epoch": 16,
+      "seed": 456,
+      "correct": 458,
+      "total": 900,
+      "accuracy": 50.888888888888886,
+      "CER": 10.757267172745788
+    },
+    {
+      "epoch": 16,
+      "seed": "ensemble",
+      "correct": 492,
+      "total": 900,
+      "accuracy": 54.666666666666664,
+      "CER": 9.775967413441956
+    },
+    {
+      "epoch": 17,
+      "seed": 48,
+      "correct": 494,
+      "total": 900,
+      "accuracy": 54.888888888888886,
+      "CER": 9.701907054249213
+    },
+    {
+      "epoch": 17,
+      "seed": 123,
+      "correct": 426,
+      "total": 900,
+      "accuracy": 47.333333333333336,
+      "CER": 11.886687650435105
+    },
+    {
+      "epoch": 17,
+      "seed": 456,
+      "correct": 461,
+      "total": 900,
+      "accuracy": 51.22222222222222,
+      "CER": 10.979448250324014
+    },
+    {
+      "epoch": 17,
+      "seed": "ensemble",
+      "correct": 490,
+      "total": 900,
+      "accuracy": 54.44444444444444,
+      "CER": 9.998148491020181
+    },
+    {
+      "epoch": 18,
+      "seed": 48,
+      "correct": 479,
+      "total": 900,
+      "accuracy": 53.22222222222222,
+      "CER": 10.349935197185706
+    },
+    {
+      "epoch": 18,
+      "seed": 123,
+      "correct": 433,
+      "total": 900,
+      "accuracy": 48.111111111111114,
+      "CER": 11.497870764673209
+    },
+    {
+      "epoch": 18,
+      "seed": 456,
+      "correct": 475,
+      "total": 900,
+      "accuracy": 52.77777777777778,
+      "CER": 10.46102573597482
+    },
+    {
+      "epoch": 18,
+      "seed": "ensemble",
+      "correct": 499,
+      "total": 900,
+      "accuracy": 55.44444444444444,
+      "CER": 9.812997593038327
+    },
+    {
+      "epoch": 19,
+      "seed": 48,
+      "correct": 493,
+      "total": 900,
+      "accuracy": 54.77777777777778,
+      "CER": 9.75745232364377
+    },
+    {
+      "epoch": 19,
+      "seed": 123,
+      "correct": 437,
+      "total": 900,
+      "accuracy": 48.55555555555556,
+      "CER": 11.36826513608591
+    },
+    {
+      "epoch": 19,
+      "seed": 456,
+      "correct": 477,
+      "total": 900,
+      "accuracy": 53.0,
+      "CER": 10.29438992779115
+    },
+    {
+      "epoch": 19,
+      "seed": "ensemble",
+      "correct": 502,
+      "total": 900,
+      "accuracy": 55.77777777777778,
+      "CER": 9.572301425661914
+    },
+    {
+      "epoch": 20,
+      "seed": 48,
+      "correct": 492,
+      "total": 900,
+      "accuracy": 54.666666666666664,
+      "CER": 9.794482503240141
+    },
+    {
+      "epoch": 20,
+      "seed": 123,
+      "correct": 439,
+      "total": 900,
+      "accuracy": 48.77777777777778,
+      "CER": 11.275689687094982
+    },
+    {
+      "epoch": 20,
+      "seed": 456,
+      "correct": 474,
+      "total": 900,
+      "accuracy": 52.666666666666664,
+      "CER": 10.33142010738752
+    },
+    {
+      "epoch": 20,
+      "seed": "ensemble",
+      "correct": 496,
+      "total": 900,
+      "accuracy": 55.111111111111114,
+      "CER": 9.738937233845585
+    }
+  ],
+  "limitation": "Historical real-test diagnostic; no independent epoch selection and no held-out synthetic learning curve"
+}

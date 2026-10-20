@@ -1,0 +1,5 @@
+{
+  "command": "capri.py decoder generate-font-references --workers 4",
+  "pid": 18376,
+  "launched_at": "2026-10-07T20:07:48.6344396Z"
+}

@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-10-07T11:04:04.613259+00:00",
+  "passed": true,
+  "checks": {
+    "directed_positive_negative_orthogonal_transfer": true,
+    "companion_gradient_cosine": true,
+    "missing_evidence_remains_nan": true,
+    "observation_counts_preserved": true,
+    "invalid_step_backtracking_gate": true,
+    "unrepresented_task_refusal": true,
+    "parameters_buffers_existing_gradients_rng_modes_tf32_unchanged": true,
+    "restoration_after_exception": true,
+    "synthetic_train_only": true,
+    "unassigned_and_unlabelled_gradients_excluded": true,
+    "cuda_agrees_with_cpu": true
+  },
+  "source_sha256": "c22fbf5c534057d9d749516683df72c6489bc81a51f8f8b8fd5bd521349d6775",
+  "limitation": "Analytic two-parameter probe only. No CAPRI baseline measured, no optimizer/EMA updated, no real grouping or specialist training performed. Declare actual shared CNN parameters/task losses and measure the trained baseline before clustering."
+}

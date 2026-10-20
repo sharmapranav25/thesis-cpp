@@ -1,0 +1,4041 @@
+{
+  "characters": {
+    "j": {
+      "correct": 64,
+      "total": 76,
+      "reliability": 0.8333333333333334
+    },
+    "c": {
+      "correct": 58,
+      "total": 72,
+      "reliability": 0.7972972972972973
+    },
+    "E": {
+      "correct": 415,
+      "total": 442,
+      "reliability": 0.9369369369369369
+    },
+    "T": {
+      "correct": 419,
+      "total": 430,
+      "reliability": 0.9722222222222222
+    },
+    "L": {
+      "correct": 374,
+      "total": 396,
+      "reliability": 0.9422110552763819
+    },
+    "B": {
+      "correct": 402,
+      "total": 414,
+      "reliability": 0.96875
+    },
+    "0": {
+      "correct": 143,
+      "total": 251,
+      "reliability": 0.5691699604743083
+    },
+    "W": {
+      "correct": 401,
+      "total": 429,
+      "reliability": 0.9327146171693735
+    },
+    "3": {
+      "correct": 162,
+      "total": 204,
+      "reliability": 0.7912621359223301
+    },
+    "h": {
+      "correct": 60,
+      "total": 121,
+      "reliability": 0.4959349593495935
+    },
+    "v": {
+      "correct": 35,
+      "total": 67,
+      "reliability": 0.5217391304347826
+    },
+    "s": {
+      "correct": 44,
+      "total": 74,
+      "reliability": 0.5921052631578947
+    },
+    "V": {
+      "correct": 387,
+      "total": 405,
+      "reliability": 0.9533169533169533
+    },
+    "U": {
+      "correct": 415,
+      "total": 441,
+      "reliability": 0.9390519187358917
+    },
+    "5": {
+      "correct": 165,
+      "total": 187,
+      "reliability": 0.8783068783068783
+    },
+    "4": {
+      "correct": 155,
+      "total": 180,
+      "reliability": 0.8571428571428571
+    },
+    "R": {
+      "correct": 447,
+      "total": 463,
+      "reliability": 0.9634408602150538
+    },
+    "f": {
+      "correct": 54,
+      "total": 83,
+      "reliability": 0.6470588235294118
+    },
+    "m": {
+      "correct": 59,
+      "total": 182,
+      "reliability": 0.32608695652173914
+    },
+    "p": {
+      "correct": 26,
+      "total": 47,
+      "reliability": 0.5510204081632653
+    },
+    "y": {
+      "correct": 43,
+      "total": 55,
+      "reliability": 0.7719298245614035
+    },
+    "t": {
+      "correct": 42,
+      "total": 116,
+      "reliability": 0.3644067796610169
+    },
+    "b": {
+      "correct": 63,
+      "total": 93,
+      "reliability": 0.6736842105263158
+    },
+    "w": {
+      "correct": 57,
+      "total": 118,
+      "reliability": 0.48333333333333334
+    },
+    "P": {
+      "correct": 399,
+      "total": 438,
+      "reliability": 0.9090909090909091
+    },
+    "9": {
+      "correct": 163,
+      "total": 197,
+      "reliability": 0.8241206030150754
+    },
+    "M": {
+      "correct": 422,
+      "total": 441,
+      "reliability": 0.9548532731376975
+    },
+    "N": {
+      "correct": 418,
+      "total": 439,
+      "reliability": 0.9501133786848073
+    },
+    "6": {
+      "correct": 150,
+      "total": 177,
+      "reliability": 0.8435754189944135
+    },
+    "A": {
+      "correct": 405,
+      "total": 421,
+      "reliability": 0.9598108747044918
+    },
+    "e": {
+      "correct": 62,
+      "total": 77,
+      "reliability": 0.7974683544303798
+    },
+    "a": {
+      "correct": 63,
+      "total": 146,
+      "reliability": 0.43243243243243246
+    },
+    "u": {
+      "correct": 56,
+      "total": 85,
+      "reliability": 0.6551724137931034
+    },
+    "z": {
+      "correct": 51,
+      "total": 66,
+      "reliability": 0.7647058823529411
+    },
+    "1": {
+      "correct": 138,
+      "total": 328,
+      "reliability": 0.4212121212121212
+    },
+    "7": {
+      "correct": 144,
+      "total": 162,
+      "reliability": 0.8841463414634146
+    },
+    "8": {
+      "correct": 150,
+      "total": 176,
+      "reliability": 0.848314606741573
+    },
+    "F": {
+      "correct": 425,
+      "total": 441,
+      "reliability": 0.9616252821670429
+    },
+    "X": {
+      "correct": 403,
+      "total": 424,
+      "reliability": 0.9483568075117371
+    },
+    "2": {
+      "correct": 150,
+      "total": 174,
+      "reliability": 0.8579545454545454
+    },
+    "J": {
+      "correct": 424,
+      "total": 454,
+      "reliability": 0.9320175438596491
+    },
+    "O": {
+      "correct": 331,
+      "total": 371,
+      "reliability": 0.8900804289544236
+    },
+    "\u1021": {
+      "correct": 0,
+      "total": 3,
+      "reliability": 0.2
+    },
+    "\u1001": {
+      "correct": 0,
+      "total": 3,
+      "reliability": 0.2
+    },
+    "\u102b": {
+      "correct": 0,
+      "total": 2,
+      "reliability": 0.25
+    },
+    "\u1019": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u103e": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u102c": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "G": {
+      "correct": 393,
+      "total": 411,
+      "reliability": 0.9539951573849879
+    },
+    "I": {
+      "correct": 335,
+      "total": 348,
+      "reliability": 0.96
+    },
+    "Y": {
+      "correct": 411,
+      "total": 438,
+      "reliability": 0.9363636363636364
+    },
+    "k": {
+      "correct": 48,
+      "total": 88,
+      "reliability": 0.5444444444444444
+    },
+    "S": {
+      "correct": 408,
+      "total": 422,
+      "reliability": 0.964622641509434
+    },
+    "C": {
+      "correct": 407,
+      "total": 430,
+      "reliability": 0.9444444444444444
+    },
+    "H": {
+      "correct": 401,
+      "total": 429,
+      "reliability": 0.9327146171693735
+    },
+    "Z": {
+      "correct": 429,
+      "total": 442,
+      "reliability": 0.9684684684684685
+    },
+    "D": {
+      "correct": 436,
+      "total": 450,
+      "reliability": 0.9668141592920354
+    },
+    "K": {
+      "correct": 406,
+      "total": 422,
+      "reliability": 0.9599056603773585
+    },
+    "Q": {
+      "correct": 420,
+      "total": 440,
+      "reliability": 0.9524886877828054
+    },
+    "l": {
+      "correct": 9,
+      "total": 33,
+      "reliability": 0.2857142857142857
+    },
+    "r": {
+      "correct": 52,
+      "total": 117,
+      "reliability": 0.44537815126050423
+    },
+    "i": {
+      "correct": 50,
+      "total": 72,
+      "reliability": 0.6891891891891891
+    },
+    "n": {
+      "correct": 43,
+      "total": 95,
+      "reliability": 0.4536082474226804
+    },
+    " ": {
+      "correct": 0,
+      "total": 745,
+      "reliability": 0.0013386880856760374
+    },
+    "`": {
+      "correct": 0,
+      "total": 126,
+      "reliability": 0.0078125
+    },
+    "d": {
+      "correct": 55,
+      "total": 82,
+      "reliability": 0.6666666666666666
+    },
+    "o": {
+      "correct": 40,
+      "total": 70,
+      "reliability": 0.5694444444444444
+    },
+    "\n": {
+      "correct": 0,
+      "total": 79,
+      "reliability": 0.012345679012345678
+    },
+    "g": {
+      "correct": 42,
+      "total": 55,
+      "reliability": 0.7543859649122807
+    },
+    "x": {
+      "correct": 59,
+      "total": 78,
+      "reliability": 0.75
+    },
+    "$": {
+      "correct": 0,
+      "total": 72,
+      "reliability": 0.013513513513513514
+    },
+    "_": {
+      "correct": 0,
+      "total": 17,
+      "reliability": 0.05263157894736842
+    },
+    "{": {
+      "correct": 0,
+      "total": 104,
+      "reliability": 0.009433962264150943
+    },
+    "}": {
+      "correct": 0,
+      "total": 104,
+      "reliability": 0.009433962264150943
+    },
+    "^": {
+      "correct": 0,
+      "total": 40,
+      "reliability": 0.023809523809523808
+    },
+    "<": {
+      "correct": 0,
+      "total": 6,
+      "reliability": 0.125
+    },
+    "q": {
+      "correct": 49,
+      "total": 57,
+      "reliability": 0.847457627118644
+    },
+    "\u00d7": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "&": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "%": {
+      "correct": 0,
+      "total": 2,
+      "reliability": 0.25
+    },
+    "\u2075": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    ">": {
+      "correct": 0,
+      "total": 7,
+      "reliability": 0.1111111111111111
+    },
+    "/": {
+      "correct": 0,
+      "total": 4,
+      "reliability": 0.16666666666666666
+    },
+    "\\": {
+      "correct": 0,
+      "total": 51,
+      "reliability": 0.018867924528301886
+    },
+    "+": {
+      "correct": 0,
+      "total": 4,
+      "reliability": 0.16666666666666666
+    },
+    "\u05d0": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u05d5": {
+      "correct": 0,
+      "total": 5,
+      "reliability": 0.14285714285714285
+    },
+    "=": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "*": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "'": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u2082": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "?": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u1f00": {
+      "correct": 0,
+      "total": 21,
+      "reliability": 0.043478260869565216
+    },
+    "\ufffd": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u103b": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u102d": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u1014": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u103a": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u0259": {
+      "correct": 0,
+      "total": 2,
+      "reliability": 0.25
+    },
+    "[": {
+      "correct": 0,
+      "total": 32,
+      "reliability": 0.029411764705882353
+    },
+    "]": {
+      "correct": 0,
+      "total": 32,
+      "reliability": 0.029411764705882353
+    },
+    "\u30ed": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "\u30ec": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    },
+    "-": {
+      "correct": 0,
+      "total": 1,
+      "reliability": 0.3333333333333333
+    }
+  },
+  "confusions": [
+    {
+      "truth": "<insertion>",
+      "predicted": " ",
+      "count": 638
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "m",
+      "count": 110
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "}",
+      "count": 102
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "{",
+      "count": 100
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "1",
+      "count": 78
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "a",
+      "count": 73
+    },
+    {
+      "truth": "O",
+      "predicted": "0",
+      "count": 70
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "$",
+      "count": 67
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "`",
+      "count": 61
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "r",
+      "count": 56
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "t",
+      "count": 54
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "\\",
+      "count": 51
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "h",
+      "count": 51
+    },
+    {
+      "truth": "I",
+      "predicted": "1",
+      "count": 50
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "^",
+      "count": 39
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "w",
+      "count": 35
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "\n",
+      "count": 34
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "[",
+      "count": 31
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "]",
+      "count": 30
+    },
+    {
+      "truth": "l",
+      "predicted": "1",
+      "count": 29
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "k",
+      "count": 27
+    },
+    {
+      "truth": "p",
+      "predicted": "P",
+      "count": 26
+    },
+    {
+      "truth": "V",
+      "predicted": "v",
+      "count": 23
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "o",
+      "count": 22
+    },
+    {
+      "truth": "W",
+      "predicted": "w",
+      "count": 21
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "d",
+      "count": 21
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "b",
+      "count": 21
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "\u1f00",
+      "count": 19
+    },
+    {
+      "truth": "S",
+      "predicted": "s",
+      "count": 18
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "f",
+      "count": 17
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "_",
+      "count": 17
+    },
+    {
+      "truth": "P",
+      "predicted": "p",
+      "count": 16
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "3",
+      "count": 16
+    },
+    {
+      "truth": "X",
+      "predicted": "x",
+      "count": 16
+    },
+    {
+      "truth": "N",
+      "predicted": "n",
+      "count": 15
+    },
+    {
+      "truth": "U",
+      "predicted": "u",
+      "count": 14
+    },
+    {
+      "truth": "I",
+      "predicted": "i",
+      "count": 14
+    },
+    {
+      "truth": "y",
+      "predicted": "Y",
+      "count": 14
+    },
+    {
+      "truth": "T",
+      "predicted": "t",
+      "count": 13
+    },
+    {
+      "truth": "L",
+      "predicted": "l",
+      "count": 13
+    },
+    {
+      "truth": "j",
+      "predicted": "J",
+      "count": 13
+    },
+    {
+      "truth": "q",
+      "predicted": "9",
+      "count": 12
+    },
+    {
+      "truth": "V",
+      "predicted": "U",
+      "count": 11
+    },
+    {
+      "truth": "F",
+      "predicted": "f",
+      "count": 11
+    },
+    {
+      "truth": "0",
+      "predicted": "O",
+      "count": 11
+    },
+    {
+      "truth": "Z",
+      "predicted": "z",
+      "count": 11
+    },
+    {
+      "truth": "O",
+      "predicted": "Q",
+      "count": 10
+    },
+    {
+      "truth": "M",
+      "predicted": "m",
+      "count": 10
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "2",
+      "count": 10
+    },
+    {
+      "truth": "K",
+      "predicted": "k",
+      "count": 10
+    },
+    {
+      "truth": "G",
+      "predicted": "6",
+      "count": 9
+    },
+    {
+      "truth": "Z",
+      "predicted": "2",
+      "count": 9
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "u",
+      "count": 9
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "5",
+      "count": 9
+    },
+    {
+      "truth": "E",
+      "predicted": "e",
+      "count": 9
+    },
+    {
+      "truth": "C",
+      "predicted": "c",
+      "count": 9
+    },
+    {
+      "truth": "o",
+      "predicted": "0",
+      "count": 8
+    },
+    {
+      "truth": "l",
+      "predicted": "L",
+      "count": 8
+    },
+    {
+      "truth": "J",
+      "predicted": "j",
+      "count": 8
+    },
+    {
+      "truth": "Z",
+      "predicted": "3",
+      "count": 8
+    },
+    {
+      "truth": "k",
+      "predicted": "K",
+      "count": 8
+    },
+    {
+      "truth": "o",
+      "predicted": "O",
+      "count": 7
+    },
+    {
+      "truth": "B",
+      "predicted": "b",
+      "count": 7
+    },
+    {
+      "truth": "Y",
+      "predicted": "y",
+      "count": 7
+    },
+    {
+      "truth": "H",
+      "predicted": "h",
+      "count": 7
+    },
+    {
+      "truth": "g",
+      "predicted": "9",
+      "count": 7
+    },
+    {
+      "truth": "G",
+      "predicted": "g",
+      "count": 7
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "s",
+      "count": 7
+    },
+    {
+      "truth": "R",
+      "predicted": "r",
+      "count": 7
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "4",
+      "count": 7
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "O",
+      "count": 7
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "8",
+      "count": 7
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "M",
+      "count": 7
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "l",
+      "count": 6
+    },
+    {
+      "truth": "E",
+      "predicted": "`",
+      "count": 6
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "H",
+      "count": 6
+    },
+    {
+      "truth": "A",
+      "predicted": "a",
+      "count": 6
+    },
+    {
+      "truth": "Q",
+      "predicted": "0",
+      "count": 6
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "X",
+      "count": 6
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "n",
+      "count": 6
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "Y",
+      "count": 6
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "0",
+      "count": 6
+    },
+    {
+      "truth": "W",
+      "predicted": " ",
+      "count": 6
+    },
+    {
+      "truth": "c",
+      "predicted": "C",
+      "count": 6
+    },
+    {
+      "truth": "O",
+      "predicted": "o",
+      "count": 6
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "C",
+      "count": 6
+    },
+    {
+      "truth": "x",
+      "predicted": "X",
+      "count": 6
+    },
+    {
+      "truth": "P",
+      "predicted": " ",
+      "count": 6
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "D",
+      "count": 6
+    },
+    {
+      "truth": "w",
+      "predicted": "W",
+      "count": 5
+    },
+    {
+      "truth": "F",
+      "predicted": "E",
+      "count": 5
+    },
+    {
+      "truth": "Q",
+      "predicted": " ",
+      "count": 5
+    },
+    {
+      "truth": "S",
+      "predicted": "5",
+      "count": 5
+    },
+    {
+      "truth": "D",
+      "predicted": "0",
+      "count": 5
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "V",
+      "count": 5
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "A",
+      "count": 5
+    },
+    {
+      "truth": "O",
+      "predicted": " ",
+      "count": 5
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "E",
+      "count": 5
+    },
+    {
+      "truth": "T",
+      "predicted": "1",
+      "count": 5
+    },
+    {
+      "truth": "T",
+      "predicted": " ",
+      "count": 5
+    },
+    {
+      "truth": "h",
+      "predicted": "n",
+      "count": 5
+    },
+    {
+      "truth": "a",
+      "predicted": "A",
+      "count": 5
+    },
+    {
+      "truth": "u",
+      "predicted": "U",
+      "count": 5
+    },
+    {
+      "truth": "m",
+      "predicted": "M",
+      "count": 5
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "6",
+      "count": 5
+    },
+    {
+      "truth": "I",
+      "predicted": "T",
+      "count": 4
+    },
+    {
+      "truth": "A",
+      "predicted": "4",
+      "count": 4
+    },
+    {
+      "truth": "M",
+      "predicted": "W",
+      "count": 4
+    },
+    {
+      "truth": "A",
+      "predicted": "H",
+      "count": 4
+    },
+    {
+      "truth": "I",
+      "predicted": "`",
+      "count": 4
+    },
+    {
+      "truth": "H",
+      "predicted": "W",
+      "count": 4
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "W",
+      "count": 4
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "p",
+      "count": 4
+    },
+    {
+      "truth": "I",
+      "predicted": "L",
+      "count": 4
+    },
+    {
+      "truth": "O",
+      "predicted": "D",
+      "count": 4
+    },
+    {
+      "truth": "E",
+      "predicted": " ",
+      "count": 4
+    },
+    {
+      "truth": "F",
+      "predicted": " ",
+      "count": 4
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "<",
+      "count": 4
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": ">",
+      "count": 4
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "S",
+      "count": 4
+    },
+    {
+      "truth": "v",
+      "predicted": "V",
+      "count": 4
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "P",
+      "count": 4
+    },
+    {
+      "truth": "D",
+      "predicted": "d",
+      "count": 4
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "F",
+      "count": 4
+    },
+    {
+      "truth": "D",
+      "predicted": " ",
+      "count": 4
+    },
+    {
+      "truth": "U",
+      "predicted": "W",
+      "count": 4
+    },
+    {
+      "truth": "I",
+      "predicted": " ",
+      "count": 4
+    },
+    {
+      "truth": "O",
+      "predicted": "`",
+      "count": 4
+    },
+    {
+      "truth": "Y",
+      "predicted": "\n",
+      "count": 4
+    },
+    {
+      "truth": "M",
+      "predicted": "N",
+      "count": 4
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "y",
+      "count": 4
+    },
+    {
+      "truth": "b",
+      "predicted": "B",
+      "count": 4
+    },
+    {
+      "truth": "7",
+      "predicted": "1",
+      "count": 4
+    },
+    {
+      "truth": "S",
+      "predicted": "8",
+      "count": 4
+    },
+    {
+      "truth": "q",
+      "predicted": "4",
+      "count": 4
+    },
+    {
+      "truth": "Q",
+      "predicted": "O",
+      "count": 4
+    },
+    {
+      "truth": "F",
+      "predicted": "8",
+      "count": 4
+    },
+    {
+      "truth": "J",
+      "predicted": "3",
+      "count": 4
+    },
+    {
+      "truth": "z",
+      "predicted": "Z",
+      "count": 4
+    },
+    {
+      "truth": "N",
+      "predicted": "H",
+      "count": 4
+    },
+    {
+      "truth": "B",
+      "predicted": "E",
+      "count": 4
+    },
+    {
+      "truth": "W",
+      "predicted": "H",
+      "count": 4
+    },
+    {
+      "truth": "r",
+      "predicted": "I",
+      "count": 4
+    },
+    {
+      "truth": "J",
+      "predicted": " ",
+      "count": 4
+    },
+    {
+      "truth": "r",
+      "predicted": "P",
+      "count": 3
+    },
+    {
+      "truth": "6",
+      "predicted": "G",
+      "count": 3
+    },
+    {
+      "truth": "A",
+      "predicted": "R",
+      "count": 3
+    },
+    {
+      "truth": "E",
+      "predicted": "B",
+      "count": 3
+    },
+    {
+      "truth": "A",
+      "predicted": "\n",
+      "count": 3
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "7",
+      "count": 3
+    },
+    {
+      "truth": "x",
+      "predicted": " ",
+      "count": 3
+    },
+    {
+      "truth": "V",
+      "predicted": " ",
+      "count": 3
+    },
+    {
+      "truth": "V",
+      "predicted": "u",
+      "count": 3
+    },
+    {
+      "truth": "I",
+      "predicted": "J",
+      "count": 3
+    },
+    {
+      "truth": "g",
+      "predicted": "J",
+      "count": 3
+    },
+    {
+      "truth": "E",
+      "predicted": "\n",
+      "count": 3
+    },
+    {
+      "truth": "E",
+      "predicted": "n",
+      "count": 3
+    },
+    {
+      "truth": "C",
+      "predicted": "`",
+      "count": 3
+    },
+    {
+      "truth": "P",
+      "predicted": "`",
+      "count": 3
+    },
+    {
+      "truth": "J",
+      "predicted": "\n",
+      "count": 3
+    },
+    {
+      "truth": "C",
+      "predicted": " ",
+      "count": 3
+    },
+    {
+      "truth": "E",
+      "predicted": "L",
+      "count": 3
+    },
+    {
+      "truth": "A",
+      "predicted": "M",
+      "count": 3
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "/",
+      "count": 3
+    },
+    {
+      "truth": "Z",
+      "predicted": "L",
+      "count": 3
+    },
+    {
+      "truth": "Q",
+      "predicted": "q",
+      "count": 3
+    },
+    {
+      "truth": "Y",
+      "predicted": "W",
+      "count": 3
+    },
+    {
+      "truth": "B",
+      "predicted": "8",
+      "count": 3
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "9",
+      "count": 3
+    },
+    {
+      "truth": "n",
+      "predicted": "N",
+      "count": 3
+    },
+    {
+      "truth": "q",
+      "predicted": "Q",
+      "count": 3
+    },
+    {
+      "truth": "h",
+      "predicted": "H",
+      "count": 3
+    },
+    {
+      "truth": "C",
+      "predicted": "G",
+      "count": 3
+    },
+    {
+      "truth": "0",
+      "predicted": " ",
+      "count": 3
+    },
+    {
+      "truth": "S",
+      "predicted": "6",
+      "count": 3
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "G",
+      "count": 3
+    },
+    {
+      "truth": "S",
+      "predicted": "3",
+      "count": 3
+    },
+    {
+      "truth": "P",
+      "predicted": "F",
+      "count": 3
+    },
+    {
+      "truth": "I",
+      "predicted": "\n",
+      "count": 3
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "Z",
+      "count": 3
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "i",
+      "count": 3
+    },
+    {
+      "truth": "g",
+      "predicted": "G",
+      "count": 3
+    },
+    {
+      "truth": "U",
+      "predicted": " ",
+      "count": 3
+    },
+    {
+      "truth": "A",
+      "predicted": " ",
+      "count": 3
+    },
+    {
+      "truth": "H",
+      "predicted": " ",
+      "count": 3
+    },
+    {
+      "truth": "X",
+      "predicted": " ",
+      "count": 3
+    },
+    {
+      "truth": "7",
+      "predicted": ">",
+      "count": 3
+    },
+    {
+      "truth": "T",
+      "predicted": "`",
+      "count": 3
+    },
+    {
+      "truth": "f",
+      "predicted": "F",
+      "count": 2
+    },
+    {
+      "truth": "g",
+      "predicted": "E",
+      "count": 2
+    },
+    {
+      "truth": "F",
+      "predicted": "T",
+      "count": 2
+    },
+    {
+      "truth": "F",
+      "predicted": "K",
+      "count": 2
+    },
+    {
+      "truth": "V",
+      "predicted": "0",
+      "count": 2
+    },
+    {
+      "truth": "J",
+      "predicted": "7",
+      "count": 2
+    },
+    {
+      "truth": "A",
+      "predicted": "n",
+      "count": 2
+    },
+    {
+      "truth": "W",
+      "predicted": "U",
+      "count": 2
+    },
+    {
+      "truth": "U",
+      "predicted": "I",
+      "count": 2
+    },
+    {
+      "truth": "A",
+      "predicted": "F",
+      "count": 2
+    },
+    {
+      "truth": "G",
+      "predicted": "E",
+      "count": 2
+    },
+    {
+      "truth": "X",
+      "predicted": "Y",
+      "count": 2
+    },
+    {
+      "truth": "x",
+      "predicted": "n",
+      "count": 2
+    },
+    {
+      "truth": "B",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "U",
+      "count": 2
+    },
+    {
+      "truth": "I",
+      "predicted": "7",
+      "count": 2
+    },
+    {
+      "truth": "y",
+      "predicted": "J",
+      "count": 2
+    },
+    {
+      "truth": "X",
+      "predicted": "K",
+      "count": 2
+    },
+    {
+      "truth": "I",
+      "predicted": "n",
+      "count": 2
+    },
+    {
+      "truth": "X",
+      "predicted": "\n",
+      "count": 2
+    },
+    {
+      "truth": "D",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "U",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "A",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "H",
+      "predicted": "N",
+      "count": 2
+    },
+    {
+      "truth": "H",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "N",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "Z",
+      "predicted": "1",
+      "count": 2
+    },
+    {
+      "truth": "N",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "M",
+      "predicted": "R",
+      "count": 2
+    },
+    {
+      "truth": "D",
+      "predicted": "U",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "Q",
+      "count": 2
+    },
+    {
+      "truth": "E",
+      "predicted": "F",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "v",
+      "count": 2
+    },
+    {
+      "truth": "j",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "j",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "r",
+      "predicted": "R",
+      "count": 2
+    },
+    {
+      "truth": "3",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "M",
+      "predicted": "H",
+      "count": 2
+    },
+    {
+      "truth": "G",
+      "predicted": "C",
+      "count": 2
+    },
+    {
+      "truth": "H",
+      "predicted": "E",
+      "count": 2
+    },
+    {
+      "truth": "t",
+      "predicted": "1",
+      "count": 2
+    },
+    {
+      "truth": "V",
+      "predicted": "N",
+      "count": 2
+    },
+    {
+      "truth": "D",
+      "predicted": "O",
+      "count": 2
+    },
+    {
+      "truth": "O",
+      "predicted": "n",
+      "count": 2
+    },
+    {
+      "truth": "R",
+      "predicted": "P",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "z",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "j",
+      "count": 2
+    },
+    {
+      "truth": "i",
+      "predicted": "I",
+      "count": 2
+    },
+    {
+      "truth": "B",
+      "predicted": "R",
+      "count": 2
+    },
+    {
+      "truth": "C",
+      "predicted": "O",
+      "count": 2
+    },
+    {
+      "truth": "E",
+      "predicted": "C",
+      "count": 2
+    },
+    {
+      "truth": "S",
+      "predicted": "G",
+      "count": 2
+    },
+    {
+      "truth": "K",
+      "predicted": "Y",
+      "count": 2
+    },
+    {
+      "truth": "K",
+      "predicted": "R",
+      "count": 2
+    },
+    {
+      "truth": "I",
+      "predicted": "0",
+      "count": 2
+    },
+    {
+      "truth": "Y",
+      "predicted": "7",
+      "count": 2
+    },
+    {
+      "truth": "F",
+      "predicted": "3",
+      "count": 2
+    },
+    {
+      "truth": "L",
+      "predicted": "V",
+      "count": 2
+    },
+    {
+      "truth": "w",
+      "predicted": "v",
+      "count": 2
+    },
+    {
+      "truth": "y",
+      "predicted": "9",
+      "count": 2
+    },
+    {
+      "truth": "L",
+      "predicted": "1",
+      "count": 2
+    },
+    {
+      "truth": "W",
+      "predicted": "X",
+      "count": 2
+    },
+    {
+      "truth": "w",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "A",
+      "predicted": "N",
+      "count": 2
+    },
+    {
+      "truth": "N",
+      "predicted": "M",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "q",
+      "count": 2
+    },
+    {
+      "truth": "U",
+      "predicted": "V",
+      "count": 2
+    },
+    {
+      "truth": "Y",
+      "predicted": "V",
+      "count": 2
+    },
+    {
+      "truth": "G",
+      "predicted": "9",
+      "count": 2
+    },
+    {
+      "truth": "Z",
+      "predicted": "7",
+      "count": 2
+    },
+    {
+      "truth": "W",
+      "predicted": "0",
+      "count": 2
+    },
+    {
+      "truth": "J",
+      "predicted": "0",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "R",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "B",
+      "count": 2
+    },
+    {
+      "truth": "0",
+      "predicted": "o",
+      "count": 2
+    },
+    {
+      "truth": "R",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "V",
+      "predicted": "1",
+      "count": 2
+    },
+    {
+      "truth": "I",
+      "predicted": "3",
+      "count": 2
+    },
+    {
+      "truth": "K",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "B",
+      "predicted": "n",
+      "count": 2
+    },
+    {
+      "truth": "T",
+      "predicted": "\n",
+      "count": 2
+    },
+    {
+      "truth": "S",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "i",
+      "predicted": "1",
+      "count": 2
+    },
+    {
+      "truth": "T",
+      "predicted": "7",
+      "count": 2
+    },
+    {
+      "truth": "F",
+      "predicted": "O",
+      "count": 2
+    },
+    {
+      "truth": "l",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "y",
+      "predicted": "g",
+      "count": 2
+    },
+    {
+      "truth": "z",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "K",
+      "count": 2
+    },
+    {
+      "truth": "M",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "F",
+      "predicted": "n",
+      "count": 2
+    },
+    {
+      "truth": "B",
+      "predicted": "\n",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "e",
+      "count": 2
+    },
+    {
+      "truth": "I",
+      "predicted": "t",
+      "count": 2
+    },
+    {
+      "truth": "q",
+      "predicted": "a",
+      "count": 2
+    },
+    {
+      "truth": "F",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "Q",
+      "predicted": "U",
+      "count": 2
+    },
+    {
+      "truth": "d",
+      "predicted": "\n",
+      "count": 2
+    },
+    {
+      "truth": "R",
+      "predicted": "\n",
+      "count": 2
+    },
+    {
+      "truth": "S",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "u",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "F",
+      "predicted": "\n",
+      "count": 2
+    },
+    {
+      "truth": "h",
+      "predicted": "`",
+      "count": 2
+    },
+    {
+      "truth": "s",
+      "predicted": "S",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "N",
+      "count": 2
+    },
+    {
+      "truth": "c",
+      "predicted": " ",
+      "count": 2
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "J",
+      "count": 2
+    },
+    {
+      "truth": "T",
+      "predicted": "J",
+      "count": 2
+    },
+    {
+      "truth": "q",
+      "predicted": "\u1021",
+      "count": 1
+    },
+    {
+      "truth": "y",
+      "predicted": "\u1001",
+      "count": 1
+    },
+    {
+      "truth": "y",
+      "predicted": "\u102b",
+      "count": 1
+    },
+    {
+      "truth": "x",
+      "predicted": "\u1019",
+      "count": 1
+    },
+    {
+      "truth": "b",
+      "predicted": "\u103e",
+      "count": 1
+    },
+    {
+      "truth": "W",
+      "predicted": "\u102c",
+      "count": 1
+    },
+    {
+      "truth": "l",
+      "predicted": "I",
+      "count": 1
+    },
+    {
+      "truth": "H",
+      "predicted": "k",
+      "count": 1
+    },
+    {
+      "truth": "B",
+      "predicted": "3",
+      "count": 1
+    },
+    {
+      "truth": "W",
+      "predicted": "v",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "r",
+      "count": 1
+    },
+    {
+      "truth": "O",
+      "predicted": "A",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "Q",
+      "count": 1
+    },
+    {
+      "truth": "Z",
+      "predicted": "M",
+      "count": 1
+    },
+    {
+      "truth": "B",
+      "predicted": "G",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "C",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "Q",
+      "count": 1
+    },
+    {
+      "truth": "M",
+      "predicted": "K",
+      "count": 1
+    },
+    {
+      "truth": "k",
+      "predicted": "R",
+      "count": 1
+    },
+    {
+      "truth": "3",
+      "predicted": "U",
+      "count": 1
+    },
+    {
+      "truth": "q",
+      "predicted": "i",
+      "count": 1
+    },
+    {
+      "truth": "n",
+      "predicted": "m",
+      "count": 1
+    },
+    {
+      "truth": "1",
+      "predicted": "X",
+      "count": 1
+    },
+    {
+      "truth": "1",
+      "predicted": "7",
+      "count": 1
+    },
+    {
+      "truth": "B",
+      "predicted": "5",
+      "count": 1
+    },
+    {
+      "truth": "u",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "4",
+      "predicted": "<",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "K",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "G",
+      "count": 1
+    },
+    {
+      "truth": "B",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "X",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "P",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "W",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "o",
+      "predicted": "9",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "Z",
+      "count": 1
+    },
+    {
+      "truth": "8",
+      "predicted": "3",
+      "count": 1
+    },
+    {
+      "truth": "8",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "x",
+      "predicted": "\u00d7",
+      "count": 1
+    },
+    {
+      "truth": "S",
+      "predicted": "m",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "B",
+      "count": 1
+    },
+    {
+      "truth": "X",
+      "predicted": "W",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "X",
+      "count": 1
+    },
+    {
+      "truth": "M",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "F",
+      "predicted": "Z",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "A",
+      "count": 1
+    },
+    {
+      "truth": "S",
+      "predicted": "&",
+      "count": 1
+    },
+    {
+      "truth": "E",
+      "predicted": "H",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "%",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "\u2075",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "L",
+      "count": 1
+    },
+    {
+      "truth": "k",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "5",
+      "count": 1
+    },
+    {
+      "truth": "s",
+      "predicted": "{",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "k",
+      "predicted": "}",
+      "count": 1
+    },
+    {
+      "truth": "A",
+      "predicted": "}",
+      "count": 1
+    },
+    {
+      "truth": "f",
+      "predicted": "$",
+      "count": 1
+    },
+    {
+      "truth": "i",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "q",
+      "predicted": "d",
+      "count": 1
+    },
+    {
+      "truth": "q",
+      "predicted": "S",
+      "count": 1
+    },
+    {
+      "truth": "E",
+      "predicted": "5",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "5",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "w",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "g",
+      "count": 1
+    },
+    {
+      "truth": "8",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "7",
+      "predicted": "3",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "2",
+      "count": 1
+    },
+    {
+      "truth": "d",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "e",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "t",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "f",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "3",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "5",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "j",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "c",
+      "predicted": "9",
+      "count": 1
+    },
+    {
+      "truth": "s",
+      "predicted": "$",
+      "count": 1
+    },
+    {
+      "truth": "9",
+      "predicted": "7",
+      "count": 1
+    },
+    {
+      "truth": "8",
+      "predicted": "Q",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "{",
+      "count": 1
+    },
+    {
+      "truth": "O",
+      "predicted": "{",
+      "count": 1
+    },
+    {
+      "truth": "T",
+      "predicted": "L",
+      "count": 1
+    },
+    {
+      "truth": "E",
+      "predicted": "+",
+      "count": 1
+    },
+    {
+      "truth": "G",
+      "predicted": "\u05d0",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": "\u05d5",
+      "count": 1
+    },
+    {
+      "truth": "q",
+      "predicted": "\u05d5",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "\u05d5",
+      "count": 1
+    },
+    {
+      "truth": "9",
+      "predicted": "\u05d5",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "\u05d5",
+      "count": 1
+    },
+    {
+      "truth": "g",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "v",
+      "predicted": "H",
+      "count": 1
+    },
+    {
+      "truth": "f",
+      "predicted": "T",
+      "count": 1
+    },
+    {
+      "truth": "o",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "5",
+      "count": 1
+    },
+    {
+      "truth": "g",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "7",
+      "count": 1
+    },
+    {
+      "truth": "X",
+      "predicted": "8",
+      "count": 1
+    },
+    {
+      "truth": "m",
+      "predicted": "9",
+      "count": 1
+    },
+    {
+      "truth": "9",
+      "predicted": "S",
+      "count": 1
+    },
+    {
+      "truth": "c",
+      "predicted": "=",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "$",
+      "count": 1
+    },
+    {
+      "truth": "W",
+      "predicted": "N",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "l",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "O",
+      "count": 1
+    },
+    {
+      "truth": "X",
+      "predicted": "%",
+      "count": 1
+    },
+    {
+      "truth": "T",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "S",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "M",
+      "count": 1
+    },
+    {
+      "truth": "O",
+      "predicted": "B",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "H",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "Y",
+      "count": 1
+    },
+    {
+      "truth": "4",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "R",
+      "count": 1
+    },
+    {
+      "truth": "H",
+      "predicted": "A",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "S",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "T",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": "$",
+      "count": 1
+    },
+    {
+      "truth": "0",
+      "predicted": "$",
+      "count": 1
+    },
+    {
+      "truth": "c",
+      "predicted": "e",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "w",
+      "count": 1
+    },
+    {
+      "truth": "B",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "B",
+      "predicted": "O",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "Y",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "e",
+      "count": 1
+    },
+    {
+      "truth": "E",
+      "predicted": "c",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "0",
+      "count": 1
+    },
+    {
+      "truth": "A",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "H",
+      "predicted": "5",
+      "count": 1
+    },
+    {
+      "truth": "K",
+      "predicted": "J",
+      "count": 1
+    },
+    {
+      "truth": "T",
+      "predicted": "s",
+      "count": 1
+    },
+    {
+      "truth": "H",
+      "predicted": "s",
+      "count": 1
+    },
+    {
+      "truth": "P",
+      "predicted": "t",
+      "count": 1
+    },
+    {
+      "truth": "B",
+      "predicted": "s",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "s",
+      "count": 1
+    },
+    {
+      "truth": "M",
+      "predicted": "9",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "0",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "9",
+      "count": 1
+    },
+    {
+      "truth": "K",
+      "predicted": "3",
+      "count": 1
+    },
+    {
+      "truth": "T",
+      "predicted": "X",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "X",
+      "count": 1
+    },
+    {
+      "truth": "c",
+      "predicted": "F",
+      "count": 1
+    },
+    {
+      "truth": "K",
+      "predicted": "x",
+      "count": 1
+    },
+    {
+      "truth": "e",
+      "predicted": "E",
+      "count": 1
+    },
+    {
+      "truth": "F",
+      "predicted": "P",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "b",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "V",
+      "count": 1
+    },
+    {
+      "truth": "W",
+      "predicted": "I",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "D",
+      "count": 1
+    },
+    {
+      "truth": "W",
+      "predicted": "O",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "E",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "L",
+      "count": 1
+    },
+    {
+      "truth": "A",
+      "predicted": "E",
+      "count": 1
+    },
+    {
+      "truth": "R",
+      "predicted": "H",
+      "count": 1
+    },
+    {
+      "truth": "O",
+      "predicted": "C",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "t",
+      "count": 1
+    },
+    {
+      "truth": "t",
+      "predicted": "e",
+      "count": 1
+    },
+    {
+      "truth": "e",
+      "predicted": "c",
+      "count": 1
+    },
+    {
+      "truth": "w",
+      "predicted": "X",
+      "count": 1
+    },
+    {
+      "truth": "G",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "8",
+      "count": 1
+    },
+    {
+      "truth": "d",
+      "predicted": "w",
+      "count": 1
+    },
+    {
+      "truth": "R",
+      "predicted": "g",
+      "count": 1
+    },
+    {
+      "truth": "A",
+      "predicted": "h",
+      "count": 1
+    },
+    {
+      "truth": "O",
+      "predicted": "+",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "J",
+      "count": 1
+    },
+    {
+      "truth": "g",
+      "predicted": "j",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "/",
+      "count": 1
+    },
+    {
+      "truth": "T",
+      "predicted": "F",
+      "count": 1
+    },
+    {
+      "truth": "3",
+      "predicted": "s",
+      "count": 1
+    },
+    {
+      "truth": "4",
+      "predicted": "A",
+      "count": 1
+    },
+    {
+      "truth": "5",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "3",
+      "predicted": "2",
+      "count": 1
+    },
+    {
+      "truth": "T",
+      "predicted": "W",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "*",
+      "count": 1
+    },
+    {
+      "truth": "F",
+      "predicted": "u",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "'",
+      "count": 1
+    },
+    {
+      "truth": "A",
+      "predicted": "5",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "V",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "\u2082",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "J",
+      "count": 1
+    },
+    {
+      "truth": "m",
+      "predicted": "N",
+      "count": 1
+    },
+    {
+      "truth": "w",
+      "predicted": "N",
+      "count": 1
+    },
+    {
+      "truth": "g",
+      "predicted": "8",
+      "count": 1
+    },
+    {
+      "truth": "c",
+      "predicted": "O",
+      "count": 1
+    },
+    {
+      "truth": "2",
+      "predicted": "z",
+      "count": 1
+    },
+    {
+      "truth": "m",
+      "predicted": "w",
+      "count": 1
+    },
+    {
+      "truth": "9",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "j",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "e",
+      "predicted": "8",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "E",
+      "count": 1
+    },
+    {
+      "truth": "O",
+      "predicted": "Z",
+      "count": 1
+    },
+    {
+      "truth": "H",
+      "predicted": "I",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "W",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "v",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "G",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "C",
+      "count": 1
+    },
+    {
+      "truth": "G",
+      "predicted": "q",
+      "count": 1
+    },
+    {
+      "truth": "5",
+      "predicted": "S",
+      "count": 1
+    },
+    {
+      "truth": "t",
+      "predicted": "T",
+      "count": 1
+    },
+    {
+      "truth": "1",
+      "predicted": "i",
+      "count": 1
+    },
+    {
+      "truth": "5",
+      "predicted": "r",
+      "count": 1
+    },
+    {
+      "truth": "d",
+      "predicted": "D",
+      "count": 1
+    },
+    {
+      "truth": "s",
+      "predicted": "8",
+      "count": 1
+    },
+    {
+      "truth": "p",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "7",
+      "predicted": "?",
+      "count": 1
+    },
+    {
+      "truth": "d",
+      "predicted": "a",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "I",
+      "count": 1
+    },
+    {
+      "truth": "H",
+      "predicted": "F",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "0",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "c",
+      "count": 1
+    },
+    {
+      "truth": "Z",
+      "predicted": "c",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "k",
+      "count": 1
+    },
+    {
+      "truth": "X",
+      "predicted": "T",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "3",
+      "count": 1
+    },
+    {
+      "truth": "H",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "\u1f00",
+      "count": 1
+    },
+    {
+      "truth": "X",
+      "predicted": "\u1f00",
+      "count": 1
+    },
+    {
+      "truth": "R",
+      "predicted": "\ufffd",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "\u1021",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "\u1001",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "\u102b",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "\u1021",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "\u1001",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "\u103b",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": "\u102d",
+      "count": 1
+    },
+    {
+      "truth": "K",
+      "predicted": "\u1014",
+      "count": 1
+    },
+    {
+      "truth": "M",
+      "predicted": "\u103a",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "\u0259",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "\u0259",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "x",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "8",
+      "count": 1
+    },
+    {
+      "truth": "F",
+      "predicted": "0",
+      "count": 1
+    },
+    {
+      "truth": "A",
+      "predicted": "T",
+      "count": 1
+    },
+    {
+      "truth": "j",
+      "predicted": "9",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "y",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "y",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "W",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "c",
+      "predicted": "G",
+      "count": 1
+    },
+    {
+      "truth": "K",
+      "predicted": "X",
+      "count": 1
+    },
+    {
+      "truth": "8",
+      "predicted": "C",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "v",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "v",
+      "count": 1
+    },
+    {
+      "truth": "R",
+      "predicted": "p",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "y",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "c",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "N",
+      "count": 1
+    },
+    {
+      "truth": "G",
+      "predicted": "B",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "I",
+      "count": 1
+    },
+    {
+      "truth": "c",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "z",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "f",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "P",
+      "predicted": "8",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "A",
+      "count": 1
+    },
+    {
+      "truth": "9",
+      "predicted": "E",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "H",
+      "count": 1
+    },
+    {
+      "truth": "0",
+      "predicted": "D",
+      "count": 1
+    },
+    {
+      "truth": "d",
+      "predicted": "G",
+      "count": 1
+    },
+    {
+      "truth": "P",
+      "predicted": "A",
+      "count": 1
+    },
+    {
+      "truth": "x",
+      "predicted": "+",
+      "count": 1
+    },
+    {
+      "truth": "d",
+      "predicted": "l",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "g",
+      "count": 1
+    },
+    {
+      "truth": "s",
+      "predicted": "5",
+      "count": 1
+    },
+    {
+      "truth": "g",
+      "predicted": "q",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "P",
+      "count": 1
+    },
+    {
+      "truth": "P",
+      "predicted": "q",
+      "count": 1
+    },
+    {
+      "truth": "n",
+      "predicted": "S",
+      "count": 1
+    },
+    {
+      "truth": "k",
+      "predicted": "Y",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "+",
+      "count": 1
+    },
+    {
+      "truth": "b",
+      "predicted": "^",
+      "count": 1
+    },
+    {
+      "truth": "x",
+      "predicted": "{",
+      "count": 1
+    },
+    {
+      "truth": "<insertion>",
+      "predicted": "x",
+      "count": 1
+    },
+    {
+      "truth": "y",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "v",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": "N",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "Z",
+      "predicted": "l",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "i",
+      "count": 1
+    },
+    {
+      "truth": "W",
+      "predicted": "t",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "l",
+      "count": 1
+    },
+    {
+      "truth": "P",
+      "predicted": "e",
+      "count": 1
+    },
+    {
+      "truth": "E",
+      "predicted": "]",
+      "count": 1
+    },
+    {
+      "truth": "G",
+      "predicted": "[",
+      "count": 1
+    },
+    {
+      "truth": "Z",
+      "predicted": "]",
+      "count": 1
+    },
+    {
+      "truth": "C",
+      "predicted": "E",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "k",
+      "count": 1
+    },
+    {
+      "truth": "3",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "3",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "2",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "8",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "0",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "4",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "B",
+      "predicted": "C",
+      "count": 1
+    },
+    {
+      "truth": "G",
+      "predicted": "O",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "J",
+      "count": 1
+    },
+    {
+      "truth": "Z",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "R",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "E",
+      "predicted": "m",
+      "count": 1
+    },
+    {
+      "truth": "H",
+      "predicted": "a",
+      "count": 1
+    },
+    {
+      "truth": "F",
+      "predicted": "t",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "h",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "b",
+      "count": 1
+    },
+    {
+      "truth": "M",
+      "predicted": "f",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "V",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "S",
+      "predicted": "Q",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": "2",
+      "count": 1
+    },
+    {
+      "truth": "Q",
+      "predicted": "9",
+      "count": 1
+    },
+    {
+      "truth": "j",
+      "predicted": "Z",
+      "count": 1
+    },
+    {
+      "truth": "s",
+      "predicted": "i",
+      "count": 1
+    },
+    {
+      "truth": "i",
+      "predicted": "S",
+      "count": 1
+    },
+    {
+      "truth": "Z",
+      "predicted": "j",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "Q",
+      "count": 1
+    },
+    {
+      "truth": "z",
+      "predicted": "N",
+      "count": 1
+    },
+    {
+      "truth": "H",
+      "predicted": "7",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "Z",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "u",
+      "count": 1
+    },
+    {
+      "truth": "G",
+      "predicted": "u",
+      "count": 1
+    },
+    {
+      "truth": "s",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "L",
+      "count": 1
+    },
+    {
+      "truth": "0",
+      "predicted": "8",
+      "count": 1
+    },
+    {
+      "truth": "d",
+      "predicted": "t",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "z",
+      "count": 1
+    },
+    {
+      "truth": "3",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "s",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "T",
+      "predicted": "d",
+      "count": 1
+    },
+    {
+      "truth": "v",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "Z",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "8",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "S",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "S",
+      "count": 1
+    },
+    {
+      "truth": "1",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "2",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "5",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "0",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "z",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "4",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "p",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "6",
+      "predicted": "5",
+      "count": 1
+    },
+    {
+      "truth": "w",
+      "predicted": "V",
+      "count": 1
+    },
+    {
+      "truth": "w",
+      "predicted": "3",
+      "count": 1
+    },
+    {
+      "truth": "c",
+      "predicted": "2",
+      "count": 1
+    },
+    {
+      "truth": "x",
+      "predicted": "4",
+      "count": 1
+    },
+    {
+      "truth": "n",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "q",
+      "predicted": "l",
+      "count": 1
+    },
+    {
+      "truth": "t",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "e",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "I",
+      "predicted": "W",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "Y",
+      "predicted": "w",
+      "count": 1
+    },
+    {
+      "truth": "J",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "U",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "Z",
+      "predicted": "\n",
+      "count": 1
+    },
+    {
+      "truth": "M",
+      "predicted": "`",
+      "count": 1
+    },
+    {
+      "truth": "O",
+      "predicted": "P",
+      "count": 1
+    },
+    {
+      "truth": "Z",
+      "predicted": "J",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "B",
+      "predicted": "P",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "K",
+      "count": 1
+    },
+    {
+      "truth": "9",
+      "predicted": "6",
+      "count": 1
+    },
+    {
+      "truth": "r",
+      "predicted": "1",
+      "count": 1
+    },
+    {
+      "truth": "z",
+      "predicted": "<",
+      "count": 1
+    },
+    {
+      "truth": "D",
+      "predicted": "i",
+      "count": 1
+    },
+    {
+      "truth": "b",
+      "predicted": "\u30ed",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "\u30ec",
+      "count": 1
+    },
+    {
+      "truth": "7",
+      "predicted": "Z",
+      "count": 1
+    },
+    {
+      "truth": "0",
+      "predicted": "C",
+      "count": 1
+    },
+    {
+      "truth": "j",
+      "predicted": "C",
+      "count": 1
+    },
+    {
+      "truth": "4",
+      "predicted": "h",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "7",
+      "count": 1
+    },
+    {
+      "truth": "e",
+      "predicted": "0",
+      "count": 1
+    },
+    {
+      "truth": "p",
+      "predicted": "n",
+      "count": 1
+    },
+    {
+      "truth": "n",
+      "predicted": "D",
+      "count": 1
+    },
+    {
+      "truth": "N",
+      "predicted": "R",
+      "count": 1
+    },
+    {
+      "truth": "S",
+      "predicted": "E",
+      "count": 1
+    },
+    {
+      "truth": "X",
+      "predicted": "3",
+      "count": 1
+    },
+    {
+      "truth": "K",
+      "predicted": "g",
+      "count": 1
+    },
+    {
+      "truth": "R",
+      "predicted": "U",
+      "count": 1
+    },
+    {
+      "truth": "L",
+      "predicted": "2",
+      "count": 1
+    },
+    {
+      "truth": "A",
+      "predicted": "9",
+      "count": 1
+    },
+    {
+      "truth": "G",
+      "predicted": " ",
+      "count": 1
+    },
+    {
+      "truth": "F",
+      "predicted": "-",
+      "count": 1
+    }
+  ],
+  "deletions": {
+    "H": 8,
+    "J": 8,
+    "P": 6,
+    "N": 6,
+    "D": 7,
+    "V": 8,
+    "Z": 2,
+    "m": 3,
+    "n": 1,
+    "I": 16,
+    "G": 3,
+    "g": 1,
+    "z": 3,
+    "4": 3,
+    "O": 3,
+    "W": 4,
+    "Y": 4,
+    "M": 7,
+    "T": 8,
+    "L": 5,
+    "S": 2,
+    "7": 1,
+    "q": 1,
+    "U": 6,
+    "F": 5,
+    "X": 3,
+    "E": 4,
+    "A": 7,
+    "0": 1,
+    "l": 2,
+    "o": 3,
+    "f": 1,
+    "3": 2,
+    "C": 3,
+    "8": 1,
+    "K": 5,
+    "B": 1,
+    "i": 2,
+    "t": 1,
+    "9": 2,
+    "e": 1,
+    "r": 1,
+    "a": 1,
+    "Q": 2,
+    "2": 1,
+    "j": 1,
+    "k": 1,
+    "u": 1
+  }
+}

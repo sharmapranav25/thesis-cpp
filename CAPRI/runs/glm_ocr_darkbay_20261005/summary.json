@@ -1,0 +1,13 @@
+{
+  "model": "GLM-OCR",
+  "revision": "2e85a62840ccac27daa451df36c736c4636b8628",
+  "correct": 645,
+  "total": 900,
+  "accuracy": 71.66666666666667,
+  "CER": 13.182743936308091,
+  "raw_exact_correct": 645,
+  "hit_token_limit": 0,
+  "ds1_epoch20_ensemble_correct": 496,
+  "preprocessing": "Official processor; no target-specific tuning",
+  "prediction_sha256": "e8e1013aaefc51fd1593d6a1788a19ce8233747a39983a780d34e2320f4570a5"
+}

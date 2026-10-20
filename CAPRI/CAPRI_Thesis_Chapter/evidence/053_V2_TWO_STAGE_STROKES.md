@@ -1,0 +1,9 @@
+# Two-stage strokes v1: controlled learnability trial
+
+User authorized locating non-text strokes first, then classifying straight versus curved. This finite experiment trains a small dense detector with exact synthetic masks and a separate shape classifier with synthetic masks. End-to-end evaluation uses predicted masks, never target masks. Oracle-mask accuracy is separately labeled. Full-image 128x64 context is retained; no broad grid search until learnability established.
+
+2400 train, 600 selection, 600 fresh locked examples, seeds101m/102m/103m; disjoint font groups (six train, seventh additionally selection, last two locked). Equal absent/straight/curve cases. Four clean detector epochs then twelve text-clutter epochs. Shape trains sixteen epochs; best checkpoints selected on selection only. No real fitting, target generators/fonts, VLM or production promotion.
+
+Gate: locked mean positive mask IoU >=0.70, absent-image false positive rate <=0.05, end-to-end shape accuracy on positive images >=0.85. Mask threshold0.5 and minimum12pixels fixed before evaluation. Report localization, detection, oracle shape and predicted-mask shape separately. Passing this diagnostic does not establish robust acceptance.
+
+Scope limits: zero or one target stroke, bright plain backgrounds and dark foreground, single quadratic curve recipe, no instance grouping or simultaneous multiple shapes, no texture/grid/occlusion robustness. These limitations are deliberate ablations, not a completed replacement pipeline. Shape transfer from clean true masks to predicted masks may fail and must be measured. No new paper consulted. Historical curve run and dots preserved. Dots may continue concurrently. Training logs and per-job status live in feature_specialists_v2/strokes_two_stage_v1/run; monitor/strokes_two_stage_status.json mirrors this job alone.

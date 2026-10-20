@@ -1,0 +1,15 @@
+{
+  "dataset_images": 100000,
+  "batch_shape": [
+    128,
+    3,
+    32,
+    128
+  ],
+  "loss": 4.190185546875,
+  "forward_backward_seconds": 1.5707855224609375,
+  "peak_gpu_gib": 7.199338912963867,
+  "optimizer_steps": 0,
+  "training_started": false,
+  "note": "Readiness check only; random weights discarded, not used as initialization for requested run."
+}

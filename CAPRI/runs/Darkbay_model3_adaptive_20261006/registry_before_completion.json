@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "models": {
+    "hybrid": {
+      "path": "models/active/hybrid/hybrid.pt",
+      "source": "E:\\pranav\\Final sem\\sourcefree_synth\\runs\\iter2_baseline_15_20261003_04\\baseline_training\\epoch_15\\ema.pt",
+      "sha256": "ae73375ead99071d55c6394f7c4eb7c4d27c0a3285f8f15d8d84c9df43bc6b32",
+      "bytes": 14686760,
+      "status": "active",
+      "role": "Simple hybrid: initial labels and length votes; CTC is not decoded."
+    },
+    "custom_encoder": {
+      "path": "models/active/custom_encoder/custom_encoder.pt",
+      "source": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\learned_controller_20261004\\training\\encoder.pt",
+      "sha256": "0dfac96c3b903cab88bddcfe28dde69550fe53d7d43571a26eb2cd5bd7e3ba38",
+      "bytes": 4231794,
+      "status": "active",
+      "role": "Frozen custom appearance encoder; not an adjustment policy."
+    },
+    "text_mask": {
+      "path": "models/active/text_mask/text_mask.pt",
+      "source": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\controller_mvp_v3\\mask_training\\best.pt",
+      "sha256": "8d7747a31215371a3d0721536bb14e46ffb07cdd00798effeaf732f57785f33c",
+      "bytes": 1563758,
+      "status": "active",
+      "role": "Synthetic-trained text-region mask estimator."
+    },
+    "dino": {
+      "path": "models/active/dino/dino.pth",
+      "source": "C:\\Users\\pranav\\.cache\\torch\\hub\\checkpoints\\dino_deitsmall8_pretrain.pth",
+      "sha256": "55c8b267f479b614ec20858947ce361ba804846c193e20be74263a096bb6d75e",
+      "bytes": 86728949,
+      "status": "active",
+      "role": "Original DINO ViT-S/8, used by controller iteration v2. Not DINOv2 or DINOv3 pretrained weights."
+    }
+  },
+  "reader_experiments": {
+    "model3_darkbay_adaptive": {
+      "run": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_model3_adaptive_20261006",
+      "selection": "final_epoch",
+      "epoch": 20,
+      "seeds": [
+        48,
+        123,
+        456
+      ],
+      "selection_record": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_model3_adaptive_20261006\\checkpoint_selection_override.json",
+      "status": "training; use each immutable epoch_20.pth when complete",
+      "original_synthetic_best_preserved": true
+    }
+  }
+}

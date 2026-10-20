@@ -1,0 +1,33 @@
+<!doctype html><meta charset="utf-8"><title>DINOv3 and SAM controller MVPs</title><style>body{font:17px system-ui;max-width:1100px;margin:30px auto;padding:16px;background:#f4f6f8;color:#182033}img{width:100%}td,th{padding:10px;border:1px solid #ccd}table{border-collapse:collapse}</style>
+<h1>DINOv3 and SAM controller MVPs</h1><p>Target RGB pixels only. No VLM, OCR, supplied target strings or target masks. Synthetic render labels are saved. Same hybrid recipe initialization and coordinate-search code for both backends.</p>
+<p>DINOv3 is prepared and architecture-tested, but cannot be evaluated until approved official ViT-S/16 weights are supplied. No DINOv3 result below is fabricated or substituted with another backbone.</p>
+<p>SAM regions are object-mask proposals filtered with a geometry heuristic. They are not verified character masks. DINOv3 uses dense features and a border-background clustering heuristic. This is a small MVP, with only 3 fit renders per candidate; test targets were previously exposed in earlier experiments. No solver-transfer claim. A validation usability gate was added after the City export exposed failures: require 100% complete and at least 90% usable validation renders, otherwise retain the baseline. This is a development revision, not a pristine blind test.</p>
+<h2>SAM results</h2><p>Appearance scores exclude renderer-validity penalties. Lower is better. DINO-v1 is an independent diagnostic, not used in this controller search or selection.</p>
+<table><tr><th>Family</th><th>Appearance: baseline → controller</th><th>Usable</th><th>DINO diagnostic</th></tr>
+<tr><td>City</td><td>0.813 → 0.813</td><td>100% → 100%</td><td>1.000 → 1.000</td></tr>
+<tr><td>CryptBB</td><td>0.527 → 0.527</td><td>100% → 100%</td><td>1.000 → 1.000</td></tr>
+<tr><td>DarkBay</td><td>0.482 → 0.482</td><td>100% → 100%</td><td>1.000 → 1.000</td></tr>
+<tr><td>Outlined</td><td>0.610 → 0.610</td><td>96% → 96%</td><td>1.000 → 1.000</td></tr>
+<tr><td>SimpleCaptcha</td><td>0.729 → 0.406</td><td>42% → 96%</td><td>1.000 → 0.871</td></tr>
+</table>
+<h2>City</h2>
+<p>Retained baseline: True. Validation gate passed: True.</p>
+<img src="sam/City/regions.png">
+<img src="sam/City/validated_renders.png">
+<h2>CryptBB</h2>
+<p>Retained baseline: True. Validation gate passed: False.</p>
+<img src="sam/CryptBB/regions.png">
+<img src="sam/CryptBB/validated_renders.png">
+<h2>DarkBay</h2>
+<p>Retained baseline: True. Validation gate passed: True.</p>
+<img src="sam/DarkBay/regions.png">
+<img src="sam/DarkBay/validated_renders.png">
+<h2>Outlined</h2>
+<p>Retained baseline: True. Validation gate passed: True.</p>
+<img src="sam/Outlined/regions.png">
+<img src="sam/Outlined/validated_renders.png">
+<h2>SimpleCaptcha</h2>
+<p>Retained baseline: False. Validation gate passed: True.</p>
+<img src="sam/SimpleCaptcha/regions.png">
+<img src="sam/SimpleCaptcha/validated_renders.png">
+<p>Official sources: <a href="https://github.com/facebookresearch/dinov3">DINOv3</a> | <a href="https://github.com/facebookresearch/segment-anything">SAM</a>.</p>

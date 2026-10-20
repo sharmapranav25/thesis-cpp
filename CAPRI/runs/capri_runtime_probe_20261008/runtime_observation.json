@@ -1,0 +1,316 @@
+{
+  "created_at": "2026-10-08T00:31:12.201150+00:00",
+  "source": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007",
+  "trainer_pid": 16572,
+  "elapsed_seconds": 30.01600000000326,
+  "stop_reason": "duration_complete",
+  "process_usage": [
+    {
+      "pid": 16572,
+      "role": "trainer",
+      "mean_cpu_cores": 1.0437141857674772,
+      "read_MiB_per_second": 0.042273641140979985,
+      "write_MiB_per_second": 0.0001971147207817075,
+      "rss_MiB": 2675.609375
+    },
+    {
+      "pid": 33196,
+      "role": "loader",
+      "mean_cpu_cores": 0.14992004264390696,
+      "read_MiB_per_second": 0.7656980742777011,
+      "write_MiB_per_second": 0.010546082372603257,
+      "rss_MiB": 696.69140625
+    },
+    {
+      "pid": 37036,
+      "role": "loader",
+      "mean_cpu_cores": 0.15148170975478098,
+      "read_MiB_per_second": 0.7376266059590009,
+      "write_MiB_per_second": 0.010343153339458067,
+      "rss_MiB": 694.2109375
+    },
+    {
+      "pid": 39384,
+      "role": "loader",
+      "mean_cpu_cores": 0.1306594816097939,
+      "read_MiB_per_second": 0.6978199489588681,
+      "write_MiB_per_second": 0.010160526741287007,
+      "rss_MiB": 701.28125
+    },
+    {
+      "pid": 36272,
+      "role": "loader",
+      "mean_cpu_cores": 0.15148170975478098,
+      "read_MiB_per_second": 0.7482677825223358,
+      "write_MiB_per_second": 0.011223878687631653,
+      "rss_MiB": 696.15625
+    }
+  ],
+  "gpu_samples": [
+    {
+      "elapsed": 0.125,
+      "gpu_percent": 14.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 91.85,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 1.2810000000026776,
+      "gpu_percent": 25.0,
+      "memory_controller_percent": 7.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 89.55,
+      "sm_clock_MHz": 1635.0
+    },
+    {
+      "elapsed": 2.3910000000032596,
+      "gpu_percent": 26.0,
+      "memory_controller_percent": 12.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 96.25,
+      "sm_clock_MHz": 1770.0
+    },
+    {
+      "elapsed": 3.562000000005355,
+      "gpu_percent": 20.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 95.63,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 4.7189999999973224,
+      "gpu_percent": 23.0,
+      "memory_controller_percent": 4.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 96.62,
+      "sm_clock_MHz": 1740.0
+    },
+    {
+      "elapsed": 5.828000000008615,
+      "gpu_percent": 39.0,
+      "memory_controller_percent": 26.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 105.98,
+      "sm_clock_MHz": 1710.0
+    },
+    {
+      "elapsed": 6.953000000008615,
+      "gpu_percent": 80.0,
+      "memory_controller_percent": 66.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 106.46,
+      "sm_clock_MHz": 1845.0
+    },
+    {
+      "elapsed": 8.078000000008615,
+      "gpu_percent": 17.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 99.65,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 9.187000000005355,
+      "gpu_percent": 73.0,
+      "memory_controller_percent": 53.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 96.79,
+      "sm_clock_MHz": 1830.0
+    },
+    {
+      "elapsed": 10.328000000008615,
+      "gpu_percent": 21.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 102.47,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 11.437000000005355,
+      "gpu_percent": 18.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 98.36,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 12.578000000008615,
+      "gpu_percent": 17.0,
+      "memory_controller_percent": 5.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 90.9,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 13.718999999997322,
+      "gpu_percent": 90.0,
+      "memory_controller_percent": 69.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 99.85,
+      "sm_clock_MHz": 1830.0
+    },
+    {
+      "elapsed": 14.843999999997322,
+      "gpu_percent": 55.0,
+      "memory_controller_percent": 39.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 99.59,
+      "sm_clock_MHz": 1515.0
+    },
+    {
+      "elapsed": 15.968999999997322,
+      "gpu_percent": 18.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 99.35,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 17.10899999999674,
+      "gpu_percent": 92.0,
+      "memory_controller_percent": 71.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 96.81,
+      "sm_clock_MHz": 1815.0
+    },
+    {
+      "elapsed": 18.218999999997322,
+      "gpu_percent": 21.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 103.81,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 19.328000000008615,
+      "gpu_percent": 17.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 92.88,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 20.468999999997322,
+      "gpu_percent": 17.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 93.36,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 21.593999999997322,
+      "gpu_percent": 41.0,
+      "memory_controller_percent": 27.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 94.48,
+      "sm_clock_MHz": 1620.0
+    },
+    {
+      "elapsed": 22.718999999997322,
+      "gpu_percent": 17.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 93.5,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 23.828000000008615,
+      "gpu_percent": 80.0,
+      "memory_controller_percent": 63.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 97.32,
+      "sm_clock_MHz": 1800.0
+    },
+    {
+      "elapsed": 24.937000000005355,
+      "gpu_percent": 46.0,
+      "memory_controller_percent": 28.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 95.1,
+      "sm_clock_MHz": 1665.0
+    },
+    {
+      "elapsed": 26.062000000005355,
+      "gpu_percent": 22.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 97.37,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 27.172000000005937,
+      "gpu_percent": 73.0,
+      "memory_controller_percent": 54.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 97.72,
+      "sm_clock_MHz": 1605.0
+    },
+    {
+      "elapsed": 28.281000000002678,
+      "gpu_percent": 21.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 102.35,
+      "sm_clock_MHz": 1875.0
+    },
+    {
+      "elapsed": 29.422000000005937,
+      "gpu_percent": 22.0,
+      "memory_controller_percent": 2.0,
+      "memory_used_MiB": 15107.0,
+      "power_W": 102.41,
+      "sm_clock_MHz": 1875.0
+    }
+  ],
+  "progress_before": {
+    "updated_at": "2026-10-08T00:30:31.871225+00:00",
+    "pid": 16572,
+    "state": "training",
+    "phase": "baseline_localization",
+    "epoch": 1,
+    "epochs": 1,
+    "batches": 14801,
+    "total_batches": 57333,
+    "images": 116136,
+    "total_images": 450000,
+    "optimizer_updates": 14801,
+    "loss": 3.29101300239563,
+    "mean_loss": 4.132856943420493,
+    "online_train_count_accuracy": 0.676517186746573,
+    "lr": 8.665624755898857e-05,
+    "gradient_norm": 33.29326629638672,
+    "amp_scale": 256.0,
+    "images_per_second": 10.37223723792892,
+    "elapsed_seconds": 11196.8129282,
+    "weights": "raw",
+    "estimated_remaining_epoch_seconds": 32188.234065755365
+  },
+  "progress_after": {
+    "updated_at": "2026-10-08T00:31:08.378880+00:00",
+    "pid": 16572,
+    "state": "training",
+    "phase": "baseline_localization",
+    "epoch": 1,
+    "epochs": 1,
+    "batches": 14851,
+    "total_batches": 57333,
+    "images": 116530,
+    "total_images": 450000,
+    "optimizer_updates": 14851,
+    "loss": 1.3032970428466797,
+    "mean_loss": 4.129108816452787,
+    "online_train_count_accuracy": 0.6767785119711662,
+    "lr": 8.65677308722476e-05,
+    "gradient_norm": 337.350830078125,
+    "amp_scale": 256.0,
+    "images_per_second": 10.373602667361647,
+    "elapsed_seconds": 11233.3201624,
+    "weights": "raw",
+    "estimated_remaining_epoch_seconds": 32146.016258092575
+  },
+  "gpu_mean_percent": 37.22222222222222,
+  "gpu_median_percent": 22.0,
+  "limitation": "Coarse driver/process telemetry, not an operator profiler or causal bottleneck diagnosis. Periodic GPU samples can alias the training cycle; process CPU/read counters include runtime and filesystem caching. No training state changed."
+}

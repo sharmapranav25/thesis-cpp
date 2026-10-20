@@ -1,0 +1,8 @@
+The initial root-level City artifacts are an interrupted development run, not results.
+The font intervention could change font identity when the requested attribute target
+was already equal to the original target. Run 02 fixes this with an exact no-op guard.
+All seven unchanged font targets passed a recipe-preservation check before restarting.
+Run 02 was also interrupted during recipe preparation to strengthen paired-control
+isolation: removing condensed must preserve expanded, tight must preserve wide,
+and curve layout must preserve two-layer layout (and vice versa).
+Use run_03 only for experiment results. Initial artifacts are retained for audit.

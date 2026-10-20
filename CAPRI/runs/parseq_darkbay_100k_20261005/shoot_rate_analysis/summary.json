@@ -1,0 +1,426 @@
+{
+  "48": [
+    {
+      "threshold": 0.99,
+      "attempts": 406,
+      "correct": 311,
+      "shoot_rate_percent": 45.111111111111114,
+      "accuracy_on_attempts_percent": 76.60098522167488,
+      "ecps": 2.8938906752411575
+    },
+    {
+      "threshold": 0.95,
+      "attempts": 546,
+      "correct": 380,
+      "shoot_rate_percent": 60.666666666666664,
+      "accuracy_on_attempts_percent": 69.59706959706959,
+      "ecps": 2.3684210526315788
+    },
+    {
+      "threshold": 0.9,
+      "attempts": 599,
+      "correct": 407,
+      "shoot_rate_percent": 66.55555555555556,
+      "accuracy_on_attempts_percent": 67.9465776293823,
+      "ecps": 2.211302211302211
+    },
+    {
+      "threshold": 0.85,
+      "attempts": 641,
+      "correct": 422,
+      "shoot_rate_percent": 71.22222222222223,
+      "accuracy_on_attempts_percent": 65.83463338533541,
+      "ecps": 2.132701421800948
+    },
+    {
+      "threshold": 0.8,
+      "attempts": 673,
+      "correct": 434,
+      "shoot_rate_percent": 74.77777777777777,
+      "accuracy_on_attempts_percent": 64.48736998514116,
+      "ecps": 2.0737327188940093
+    },
+    {
+      "threshold": 0.7,
+      "attempts": 745,
+      "correct": 458,
+      "shoot_rate_percent": 82.77777777777777,
+      "accuracy_on_attempts_percent": 61.47651006711409,
+      "ecps": 1.965065502183406
+    },
+    {
+      "threshold": 0.6,
+      "attempts": 810,
+      "correct": 472,
+      "shoot_rate_percent": 90.0,
+      "accuracy_on_attempts_percent": 58.27160493827161,
+      "ecps": 1.9067796610169492
+    },
+    {
+      "threshold": 0.5,
+      "attempts": 861,
+      "correct": 485,
+      "shoot_rate_percent": 95.66666666666667,
+      "accuracy_on_attempts_percent": 56.329849012775846,
+      "ecps": 1.8556701030927836
+    },
+    {
+      "threshold": 0.4,
+      "attempts": 888,
+      "correct": 490,
+      "shoot_rate_percent": 98.66666666666667,
+      "accuracy_on_attempts_percent": 55.18018018018018,
+      "ecps": 1.836734693877551
+    },
+    {
+      "threshold": 0.3,
+      "attempts": 897,
+      "correct": 491,
+      "shoot_rate_percent": 99.66666666666667,
+      "accuracy_on_attempts_percent": 54.73801560758083,
+      "ecps": 1.8329938900203666
+    },
+    {
+      "threshold": 0.2,
+      "attempts": 900,
+      "correct": 492,
+      "shoot_rate_percent": 100.0,
+      "accuracy_on_attempts_percent": 54.666666666666664,
+      "ecps": 1.829268292682927
+    },
+    {
+      "threshold": 0.1,
+      "attempts": 900,
+      "correct": 492,
+      "shoot_rate_percent": 100.0,
+      "accuracy_on_attempts_percent": 54.666666666666664,
+      "ecps": 1.829268292682927
+    },
+    {
+      "threshold": 0.0,
+      "attempts": 900,
+      "correct": 492,
+      "shoot_rate_percent": 100.0,
+      "accuracy_on_attempts_percent": 54.666666666666664,
+      "ecps": 1.829268292682927
+    }
+  ],
+  "123": [
+    {
+      "threshold": 0.99,
+      "attempts": 423,
+      "correct": 278,
+      "shoot_rate_percent": 47.0,
+      "accuracy_on_attempts_percent": 65.72104018912529,
+      "ecps": 3.237410071942446
+    },
+    {
+      "threshold": 0.95,
+      "attempts": 536,
+      "correct": 330,
+      "shoot_rate_percent": 59.55555555555556,
+      "accuracy_on_attempts_percent": 61.56716417910448,
+      "ecps": 2.727272727272727
+    },
+    {
+      "threshold": 0.9,
+      "attempts": 595,
+      "correct": 358,
+      "shoot_rate_percent": 66.11111111111111,
+      "accuracy_on_attempts_percent": 60.168067226890756,
+      "ecps": 2.5139664804469275
+    },
+    {
+      "threshold": 0.85,
+      "attempts": 647,
+      "correct": 378,
+      "shoot_rate_percent": 71.88888888888889,
+      "accuracy_on_attempts_percent": 58.42349304482226,
+      "ecps": 2.380952380952381
+    },
+    {
+      "threshold": 0.8,
+      "attempts": 683,
+      "correct": 390,
+      "shoot_rate_percent": 75.88888888888889,
+      "accuracy_on_attempts_percent": 57.10102489019034,
+      "ecps": 2.3076923076923075
+    },
+    {
+      "threshold": 0.7,
+      "attempts": 745,
+      "correct": 402,
+      "shoot_rate_percent": 82.77777777777777,
+      "accuracy_on_attempts_percent": 53.95973154362416,
+      "ecps": 2.2388059701492535
+    },
+    {
+      "threshold": 0.6,
+      "attempts": 802,
+      "correct": 419,
+      "shoot_rate_percent": 89.11111111111111,
+      "accuracy_on_attempts_percent": 52.244389027431424,
+      "ecps": 2.1479713603818618
+    },
+    {
+      "threshold": 0.5,
+      "attempts": 853,
+      "correct": 430,
+      "shoot_rate_percent": 94.77777777777777,
+      "accuracy_on_attempts_percent": 50.41031652989449,
+      "ecps": 2.0930232558139537
+    },
+    {
+      "threshold": 0.4,
+      "attempts": 885,
+      "correct": 437,
+      "shoot_rate_percent": 98.33333333333333,
+      "accuracy_on_attempts_percent": 49.378531073446325,
+      "ecps": 2.059496567505721
+    },
+    {
+      "threshold": 0.3,
+      "attempts": 898,
+      "correct": 439,
+      "shoot_rate_percent": 99.77777777777777,
+      "accuracy_on_attempts_percent": 48.88641425389755,
+      "ecps": 2.050113895216401
+    },
+    {
+      "threshold": 0.2,
+      "attempts": 899,
+      "correct": 439,
+      "shoot_rate_percent": 99.88888888888889,
+      "accuracy_on_attempts_percent": 48.83203559510567,
+      "ecps": 2.050113895216401
+    },
+    {
+      "threshold": 0.1,
+      "attempts": 900,
+      "correct": 439,
+      "shoot_rate_percent": 100.0,
+      "accuracy_on_attempts_percent": 48.77777777777778,
+      "ecps": 2.050113895216401
+    },
+    {
+      "threshold": 0.0,
+      "attempts": 900,
+      "correct": 439,
+      "shoot_rate_percent": 100.0,
+      "accuracy_on_attempts_percent": 48.77777777777778,
+      "ecps": 2.050113895216401
+    }
+  ],
+  "456": [
+    {
+      "threshold": 0.99,
+      "attempts": 388,
+      "correct": 268,
+      "shoot_rate_percent": 43.111111111111114,
+      "accuracy_on_attempts_percent": 69.0721649484536,
+      "ecps": 3.3582089552238807
+    },
+    {
+      "threshold": 0.95,
+      "attempts": 532,
+      "correct": 352,
+      "shoot_rate_percent": 59.111111111111114,
+      "accuracy_on_attempts_percent": 66.16541353383458,
+      "ecps": 2.5568181818181817
+    },
+    {
+      "threshold": 0.9,
+      "attempts": 601,
+      "correct": 378,
+      "shoot_rate_percent": 66.77777777777777,
+      "accuracy_on_attempts_percent": 62.89517470881864,
+      "ecps": 2.380952380952381
+    },
+    {
+      "threshold": 0.85,
+      "attempts": 659,
+      "correct": 408,
+      "shoot_rate_percent": 73.22222222222223,
+      "accuracy_on_attempts_percent": 61.91198786039454,
+      "ecps": 2.2058823529411766
+    },
+    {
+      "threshold": 0.8,
+      "attempts": 692,
+      "correct": 419,
+      "shoot_rate_percent": 76.88888888888889,
+      "accuracy_on_attempts_percent": 60.54913294797688,
+      "ecps": 2.1479713603818618
+    },
+    {
+      "threshold": 0.7,
+      "attempts": 754,
+      "correct": 437,
+      "shoot_rate_percent": 83.77777777777777,
+      "accuracy_on_attempts_percent": 57.95755968169761,
+      "ecps": 2.059496567505721
+    },
+    {
+      "threshold": 0.6,
+      "attempts": 795,
+      "correct": 453,
+      "shoot_rate_percent": 88.33333333333333,
+      "accuracy_on_attempts_percent": 56.9811320754717,
+      "ecps": 1.9867549668874172
+    },
+    {
+      "threshold": 0.5,
+      "attempts": 858,
+      "correct": 469,
+      "shoot_rate_percent": 95.33333333333333,
+      "accuracy_on_attempts_percent": 54.66200466200466,
+      "ecps": 1.9189765458422174
+    },
+    {
+      "threshold": 0.4,
+      "attempts": 883,
+      "correct": 473,
+      "shoot_rate_percent": 98.11111111111111,
+      "accuracy_on_attempts_percent": 53.5673839184598,
+      "ecps": 1.9027484143763214
+    },
+    {
+      "threshold": 0.3,
+      "attempts": 897,
+      "correct": 474,
+      "shoot_rate_percent": 99.66666666666667,
+      "accuracy_on_attempts_percent": 52.84280936454849,
+      "ecps": 1.8987341772151898
+    },
+    {
+      "threshold": 0.2,
+      "attempts": 899,
+      "correct": 474,
+      "shoot_rate_percent": 99.88888888888889,
+      "accuracy_on_attempts_percent": 52.72525027808676,
+      "ecps": 1.8987341772151898
+    },
+    {
+      "threshold": 0.1,
+      "attempts": 900,
+      "correct": 474,
+      "shoot_rate_percent": 100.0,
+      "accuracy_on_attempts_percent": 52.666666666666664,
+      "ecps": 1.8987341772151898
+    },
+    {
+      "threshold": 0.0,
+      "attempts": 900,
+      "correct": 474,
+      "shoot_rate_percent": 100.0,
+      "accuracy_on_attempts_percent": 52.666666666666664,
+      "ecps": 1.8987341772151898
+    }
+  ],
+  "ensemble": [
+    {
+      "threshold": 0.99,
+      "attempts": 269,
+      "correct": 211,
+      "shoot_rate_percent": 29.88888888888889,
+      "accuracy_on_attempts_percent": 78.43866171003718,
+      "ecps": 4.265402843601896
+    },
+    {
+      "threshold": 0.95,
+      "attempts": 358,
+      "correct": 267,
+      "shoot_rate_percent": 39.77777777777778,
+      "accuracy_on_attempts_percent": 74.58100558659218,
+      "ecps": 3.3707865168539324
+    },
+    {
+      "threshold": 0.9,
+      "attempts": 398,
+      "correct": 293,
+      "shoot_rate_percent": 44.22222222222222,
+      "accuracy_on_attempts_percent": 73.61809045226131,
+      "ecps": 3.0716723549488054
+    },
+    {
+      "threshold": 0.85,
+      "attempts": 439,
+      "correct": 312,
+      "shoot_rate_percent": 48.77777777777778,
+      "accuracy_on_attempts_percent": 71.07061503416857,
+      "ecps": 2.8846153846153846
+    },
+    {
+      "threshold": 0.8,
+      "attempts": 478,
+      "correct": 332,
+      "shoot_rate_percent": 53.111111111111114,
+      "accuracy_on_attempts_percent": 69.4560669456067,
+      "ecps": 2.710843373493976
+    },
+    {
+      "threshold": 0.7,
+      "attempts": 499,
+      "correct": 340,
+      "shoot_rate_percent": 55.44444444444444,
+      "accuracy_on_attempts_percent": 68.13627254509018,
+      "ecps": 2.6470588235294117
+    },
+    {
+      "threshold": 0.6,
+      "attempts": 645,
+      "correct": 421,
+      "shoot_rate_percent": 71.66666666666667,
+      "accuracy_on_attempts_percent": 65.27131782945736,
+      "ecps": 2.137767220902613
+    },
+    {
+      "threshold": 0.5,
+      "attempts": 749,
+      "correct": 451,
+      "shoot_rate_percent": 83.22222222222223,
+      "accuracy_on_attempts_percent": 60.213618157543394,
+      "ecps": 1.9955654101995566
+    },
+    {
+      "threshold": 0.4,
+      "attempts": 807,
+      "correct": 468,
+      "shoot_rate_percent": 89.66666666666667,
+      "accuracy_on_attempts_percent": 57.99256505576208,
+      "ecps": 1.9230769230769231
+    },
+    {
+      "threshold": 0.3,
+      "attempts": 871,
+      "correct": 491,
+      "shoot_rate_percent": 96.77777777777777,
+      "accuracy_on_attempts_percent": 56.37198622273249,
+      "ecps": 1.8329938900203666
+    },
+    {
+      "threshold": 0.2,
+      "attempts": 897,
+      "correct": 495,
+      "shoot_rate_percent": 99.66666666666667,
+      "accuracy_on_attempts_percent": 55.18394648829432,
+      "ecps": 1.8181818181818181
+    },
+    {
+      "threshold": 0.1,
+      "attempts": 900,
+      "correct": 496,
+      "shoot_rate_percent": 100.0,
+      "accuracy_on_attempts_percent": 55.111111111111114,
+      "ecps": 1.814516129032258
+    },
+    {
+      "threshold": 0.0,
+      "attempts": 900,
+      "correct": 496,
+      "shoot_rate_percent": 100.0,
+      "accuracy_on_attempts_percent": 55.111111111111114,
+      "ecps": 1.814516129032258
+    }
+  ]
+}

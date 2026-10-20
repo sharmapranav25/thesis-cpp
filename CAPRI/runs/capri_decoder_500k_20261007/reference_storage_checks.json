@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-10-07T20:06:47.388275+00:00",
+  "passed": true,
+  "interrupted_resume": true,
+  "unchanged_completed_archives": true,
+  "partial_preserved": true,
+  "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\reference_storage_smoke_1791403602101668300",
+  "generation_source_sha256": "717af4a12f04b89712a12af8e94618d725dbc2d796f34d43e551d6e4b6c24eae"
+}

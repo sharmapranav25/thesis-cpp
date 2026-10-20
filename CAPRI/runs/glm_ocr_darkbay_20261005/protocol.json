@@ -1,0 +1,25 @@
+{
+  "model": "zai-org/GLM-OCR",
+  "revision": "2e85a62840ccac27daa451df36c736c4636b8628",
+  "download_receipt_sha256": "582c132bbffc19913cfe6d5b697eba97ddcf0b1be239636daaac0d866ff0bb81",
+  "images": 900,
+  "image_manifest_sha256": "2c1cab619e407fab42e4655d8a9f4dec15c176fd190a1ecaafd5b844859e48de",
+  "prompt": "Text Recognition:",
+  "preprocessing": "Official AutoProcessor, original RGB pixels, no custom crop or enlargement",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 64,
+    "num_beams": 1
+  },
+  "dtype": "bfloat16",
+  "attention": "sdpa",
+  "batch_size": 1,
+  "scoring": "Case-sensitive whole-string match after trimming only leading/trailing whitespace; raw text retained",
+  "label_access": "Predictions frozen before labels loaded for scoring",
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.17.0"
+  },
+  "limitation": "Pretrained external multimodal baseline explicitly requested by user; not part of the no-VLM CAPRI controller or DS2 training. Historical real evaluation set; pretrained corpus overlap unknown.",
+  "code_sha256": "f5d9f2ac3a36ff36ff9b7d5c74549d34f300c031036521c64b0285b654e769be"
+}

@@ -1,0 +1,8 @@
+{
+  "images": 100000,
+  "lmdb_sha256": "2060d68ba1ccb36306eed6a888d3c4fbc6659e4582b2454b65224d1b760aded4",
+  "ds1_overlap": 0,
+  "target_overlap": 0,
+  "unique_pixels": 100000,
+  "samples_sha256": "57f740d7bfa2511e986cacd6cb621a46e80b5eb2142e5b8a12d6e59eef9aac42"
+}

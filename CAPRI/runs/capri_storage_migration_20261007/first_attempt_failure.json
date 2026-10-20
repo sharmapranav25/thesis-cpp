@@ -1,0 +1,7 @@
+{
+  "updated_at": "2026-10-08T00:43:00.784062+00:00",
+  "pid": 28392,
+  "state": "failed",
+  "error": "CalledProcessError(1, ['powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', 'C:\\\\Users\\\\pranav\\\\Documents\\\\ChatGPT\\\\thesis\\\\src\\\\capri_controller\\\\decoder\\\\storage_cutover.ps1', '-Action', 'Switch'])",
+  "note": "Copies preserved; inspect before retry. No automatic deletion on failure."
+}

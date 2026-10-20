@@ -1,0 +1,8 @@
+{
+  "model_tensors_exact": true,
+  "scheduler_exact": true,
+  "adaptive_state_exact": true,
+  "global_steps": 6,
+  "interrupted_after_epoch": 1,
+  "completed_epoch": 2
+}

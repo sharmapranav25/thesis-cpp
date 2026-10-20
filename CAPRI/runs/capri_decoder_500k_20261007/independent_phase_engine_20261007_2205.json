@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-07T22:04:42.292456+00:00",
+  "frozen_sources_verified": 141,
+  "mismatches": [],
+  "verified_recovery_5000": {
+    "epoch": 5000,
+    "sha256": "5fab137667c22ea8b8db49d3e273f9712abe398e0541baaaa25e71d0f53c2b7d",
+    "bytes": 498126445,
+    "protocol_hash": "055a82778f000cdb8cae0d4396ea937a458f797f8bef95424160d2b62cbd588e",
+    "contains": [
+      "raw",
+      "ema",
+      "optimizer",
+      "scheduler",
+      "scaler",
+      "sampler_state",
+      "rng",
+      "metrics",
+      "execution",
+      "optimizer_layout"
+    ],
+    "verified_at": "2026-10-07T21:57:29.360904+00:00"
+  },
+  "progress": {
+    "updated_at": "2026-10-07T22:04:24.998021+00:00",
+    "pid": 8416,
+    "state": "training",
+    "phase": "baseline_localization",
+    "epoch": 1,
+    "epochs": 1,
+    "batches": 5551,
+    "total_batches": 57333,
+    "images": 43576,
+    "total_images": 450000,
+    "optimizer_updates": 5551,
+    "loss": 3.2552716732025146,
+    "mean_loss": 5.6682842960866715,
+    "online_train_count_accuracy": 0.514388654305122,
+    "lr": 9.825734002583674e-05,
+    "gradient_norm": 31.418428421020508,
+    "amp_scale": 64.0,
+    "images_per_second": 10.174826039767389,
+    "elapsed_seconds": 4282.7267837,
+    "weights": "raw",
+    "estimated_remaining_epoch_seconds": 39944.07358037656
+  }
+}

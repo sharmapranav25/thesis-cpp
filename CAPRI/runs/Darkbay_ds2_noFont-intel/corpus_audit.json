@@ -1,0 +1,21 @@
+{
+  "images": 100000,
+  "unique_pixel_hashes": 100000,
+  "unique_seeds": 100000,
+  "target_pixel_overlap": 0,
+  "controllers": {
+    "custom": 33334,
+    "dino": 33333,
+    "mixed": 33333
+  },
+  "lengths": {
+    "6": 100000
+  },
+  "strict": 36738,
+  "rejections": 57,
+  "entries": 300,
+  "shards": 300,
+  "all_pngs_decoded": true,
+  "all_lengths_model_derived": true,
+  "limitation": "Renderer usability is not human legibility or solver accuracy; target fidelity and transfer are not established."
+}

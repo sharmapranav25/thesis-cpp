@@ -1,0 +1,8 @@
+# Snapshot of the tested existing environment; renderer and feature-model sources are external.
+# No dependency installation or environment change was performed by the cleanup.
+numpy==2.0.2
+Pillow==11.3.0
+scipy==1.13.1
+torch==2.5.1+cu121
+torchvision==0.20.1+cu121
+PyYAML==6.0.3

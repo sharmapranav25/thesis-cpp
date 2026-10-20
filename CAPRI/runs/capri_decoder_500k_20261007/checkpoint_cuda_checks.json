@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-10-07T18:40:52.648159+00:00",
+  "passed": true,
+  "exact_cuda_amp_continuation": true,
+  "exact_batch_plan_resume": true,
+  "raw_ema_scaler_rng_restored": true,
+  "nonfinite_ema_and_optimizer_refused": true,
+  "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\checkpoint_cuda_smoke_1791398452518005000\\epoch_0001\\checkpoint.pt",
+  "device": "NVIDIA RTX A4000",
+  "limitation": "Tiny random-tensor infrastructure test. Actual decoder gradients/matching/AMP/memory and end-to-end continuation still require its implementation and approved pretrained weights."
+}

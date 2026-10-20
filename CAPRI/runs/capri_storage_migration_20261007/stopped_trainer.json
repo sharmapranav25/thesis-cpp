@@ -1,0 +1,35 @@
+{
+  "checkpoint": {
+    "epoch": 15000,
+    "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\training_recovery\\baseline_localization\\epoch_15000\\checkpoint.pt",
+    "sha256": "063bc6079ec124257180f64ee1807fd0199885e5b4f08b15106ac550a743a850"
+  },
+  "lock": {
+    "pid": 16572,
+    "process_created": 1791415767.254114,
+    "created_at": "2026-10-07T23:29:27.603639+00:00"
+  },
+  "progress": {
+    "updated_at": "2026-10-08T00:33:02.416701+00:00",
+    "pid": 16572,
+    "state": "training",
+    "phase": "baseline_localization",
+    "epoch": 1,
+    "epochs": 1,
+    "batches": 15001,
+    "total_batches": 57333,
+    "images": 117710,
+    "total_images": 450000,
+    "optimizer_updates": 15001,
+    "loss": 2.4230127334594727,
+    "mean_loss": 4.115219350591227,
+    "online_train_count_accuracy": 0.6783790671990485,
+    "lr": 8.63007366445679e-05,
+    "gradient_norm": 122.51592254638672,
+    "amp_scale": 256.0,
+    "images_per_second": 10.373341151219034,
+    "elapsed_seconds": 11347.3564866,
+    "weights": "raw",
+    "estimated_remaining_epoch_seconds": 32033.073544578318
+  }
+}

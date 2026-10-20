@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-10-08T02:39:34.950750+00:00",
+  "passed": true,
+  "references": 3060,
+  "snapshot_hash": "2188b0104bbff31498e0e2167c97ff42d9564c2706a5a88dae81cbb3a03a7f6a",
+  "decoded_samples": 32,
+  "all_samples_once": true,
+  "pixel_only_inputs": true,
+  "explicit_dev_identity": true,
+  "wrong_splits_rejected": true,
+  "altered_pixel_identity_rejected": true,
+  "source_sha256": "6ae932b0b11f571f4ba346fb0eca1671d0ff933f2cb31559eadcd12a16cfcc37",
+  "limitation": "CPU reader checks only; no model training or retrieval performance."
+}

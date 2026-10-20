@@ -1,0 +1,71 @@
+{
+  "checked_at": "2026-10-08T02:39:17.830796+00:00",
+  "active_stages": [
+    {
+      "stage": "train-baseline",
+      "pid": 12920,
+      "started_at": "2026-10-08T00:50:04.366594+00:00",
+      "children": 4,
+      "rss_MiB": 3207.77734375
+    }
+  ],
+  "stale_locks": [],
+  "alerts": [],
+  "corpus": {
+    "updated_at": "2026-10-07T17:33:08.021036+00:00",
+    "state": "complete",
+    "accepted_unique": 500000,
+    "split_sizes": {
+      "train": 450000,
+      "dev": 20000,
+      "calibration": 10000,
+      "test": 20000
+    },
+    "shards": 500,
+    "archive_bytes": 17540399832,
+    "protocol_hash": "ef0432aa3e61a71326921efd9747e24e9b6131720384d6281b2884d7e156781f"
+  },
+  "font_references": {
+    "updated_at": "2026-10-07T20:35:33.379700+00:00",
+    "state": "complete",
+    "accepted_references": 36492,
+    "planned": 36492,
+    "shards": 73,
+    "duplicate_reference_pixels": 6419,
+    "protocol_hash": "b374661614c53f7ae720a96acac82ab67300a49441fdee3c41a9f18efd290a08",
+    "trained_embedding_index": false
+  },
+  "free_GiB": 5842.904796600342,
+  "available_RAM_GiB": 232.47559356689453,
+  "gpu": {
+    "raw_csv": "NVIDIA RTX A4000, 16376, 14927, 7"
+  },
+  "saved_decoder_training_epochs": 0,
+  "verified_recovery_snapshots": 5,
+  "training": [
+    {
+      "phase": "baseline_localization",
+      "updated_at": "2026-10-08T02:39:02.407283+00:00",
+      "pid": 12920,
+      "state": "training",
+      "epoch": 1,
+      "epochs": 1,
+      "batches": 21951,
+      "total_batches": 57333,
+      "images": 172244,
+      "total_images": 450000,
+      "optimizer_updates": 21951,
+      "loss": 2.9434993267059326,
+      "mean_loss": 3.63237721745024,
+      "online_train_count_accuracy": 0.7316713499454263,
+      "lr": 7.190167183208531e-05,
+      "gradient_norm": 17.14807891845703,
+      "amp_scale": 128.0,
+      "images_per_second": 9.703341445441966,
+      "elapsed_seconds": 17750.998557400002,
+      "weights": "raw",
+      "estimated_remaining_epoch_seconds": 28624.77854270218
+    }
+  ],
+  "dependency": "Authorized pretrained DINOv2; see training progress and readiness for current phase"
+}

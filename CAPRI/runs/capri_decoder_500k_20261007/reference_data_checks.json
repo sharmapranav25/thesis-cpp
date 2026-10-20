@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-10-07T21:04:13.474356+00:00",
+  "passed": true,
+  "split": "train",
+  "references": 36492,
+  "snapshot_hash": "0673bbd2b2aeca803d9405b5f3e71ebc3dad46c18dcc451c8bbf44fc0f943c13",
+  "batches": 4562,
+  "decoded_samples": 75,
+  "verified_archive_hashes": true,
+  "all_samples_once": true,
+  "pixel_only_inputs": true,
+  "shared_aspect_preserving_transform": true,
+  "source_sha256": "357ab4ee688fd6fbc8c33da817445c27a84a04d9e97a24307f4b43f9f813ffd8",
+  "trained_embedding_index": false,
+  "limitation": "CPU reference-reader verification only. Predicted-region extraction and trained font-index creation require the later trained font branch; held-out galleries remain separate."
+}

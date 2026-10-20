@@ -1,0 +1,32 @@
+{
+  "cutoffs": [
+    1.8522607083805762e-05,
+    8.649211287178485e-05
+  ],
+  "counts": {
+    "medium": 33333,
+    "hard": 33333,
+    "easy": 33334
+  },
+  "train": 95000,
+  "validation": 5000,
+  "ensemble_accuracy": 95.267,
+  "buckets": {
+    "easy": {
+      "images": 33334,
+      "accuracy": 100.0,
+      "mean_nll": 1.283940448748074e-05
+    },
+    "medium": {
+      "images": 33333,
+      "accuracy": 100.0,
+      "mean_nll": 3.755429551585096e-05
+    },
+    "hard": {
+      "images": 33333,
+      "accuracy": 85.80085800858008,
+      "mean_nll": 0.6764874652598706
+    }
+  },
+  "curriculum_sha256": "c38e1cc256ed6f848c51c0299615fc20984f4552b9a579d076ecaa87ce639d54"
+}

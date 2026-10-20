@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-10-07T22:29:49.779660+00:00",
+  "passed": true,
+  "device": "cpu",
+  "checks": {
+    "pixel_only_forward_and_predicted_regions": true,
+    "no_forced_count_or_ground_truth_crops": true,
+    "one_to_one_duplicate_rejection": true,
+    "missing_regions_fonts_and_families_reported": true,
+    "identical_pixels_different_families_preserved": true,
+    "rng_and_modes_restored": true,
+    "diagnostic_index_roundtrip_and_ambiguity_ties": true,
+    "library_labels_only_audit_predictions_after_forward": true,
+    "heldout_invalid_threshold_nonfinite_and_zero_vectors_refused": true,
+    "empty_bank_returns_audit_without_fabrication": true,
+    "failure_restores_modes_and_rng": true
+  },
+  "diagnostic_root": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\font_extraction_smoke_1791412189729356000",
+  "source_sha256": "17de2b120423351cee0f57f09e21f926a4fae9890194e01a8ea1322d7f38d55c",
+  "limitation": "Fabricated predictions only. Real pretrained/font-trained extraction and coverage acceptance remain unrun; no production font index or font accuracy claim."
+}

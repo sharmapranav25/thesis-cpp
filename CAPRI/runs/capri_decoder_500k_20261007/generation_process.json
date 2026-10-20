@@ -1,0 +1,8 @@
+{
+  "pid": 32792,
+  "started_at_utc": "2026-10-07T09:22:11.2187237Z",
+  "stage": "generate-corpus",
+  "workers": 8,
+  "stdout": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\generation.stdout.log",
+  "stderr": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\generation.stderr.log"
+}

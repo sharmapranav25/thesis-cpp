@@ -1,0 +1,11 @@
+{
+  "verified": true,
+  "checks": [
+    "dataset and manifest hashes",
+    "selected and final checkpoint hashes",
+    "60 epoch checkpoints",
+    "60 validation records",
+    "prediction hashes and independently recomputed real scores"
+  ],
+  "shoot_rate_limitation": "Saved shoot_rate.json is a real confidence sweep, not a synthetic-calibrated rejection policy."
+}

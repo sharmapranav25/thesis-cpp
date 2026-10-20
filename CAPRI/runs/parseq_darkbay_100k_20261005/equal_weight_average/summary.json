@@ -1,0 +1,44 @@
+{
+  "correct": 0,
+  "total": 900,
+  "exact_match_percent": 0.0,
+  "character_error_rate_percent": 253.95297167191262,
+  "predicted_lengths": {
+    "26": 416,
+    "6": 484
+  },
+  "individual_seed_results": [
+    {
+      "seed": 48,
+      "correct": 492,
+      "total": 900,
+      "exact_match_percent": 54.666666666666664,
+      "character_error_rate_percent": 9.794482503240141,
+      "predicted_lengths": {
+        "6": 900
+      }
+    },
+    {
+      "seed": 123,
+      "correct": 439,
+      "total": 900,
+      "exact_match_percent": 48.77777777777778,
+      "character_error_rate_percent": 11.275689687094982,
+      "predicted_lengths": {
+        "6": 900
+      }
+    },
+    {
+      "seed": 456,
+      "correct": 474,
+      "total": 900,
+      "exact_match_percent": 52.666666666666664,
+      "character_error_rate_percent": 10.33142010738752,
+      "predicted_lengths": {
+        "6": 900
+      }
+    }
+  ],
+  "checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\parseq_darkbay_100k_20261005\\equal_weight_average\\averaged.pth",
+  "checkpoint_sha256": "65e398581897a11b39823501e6649d981237649c7c73083a84b0e4c80b5ffb96"
+}

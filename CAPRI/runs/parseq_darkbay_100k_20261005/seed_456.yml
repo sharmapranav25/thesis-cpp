@@ -1,0 +1,139 @@
+Architecture:
+  Decoder:
+    decode_ar: true
+    name: PARSeqDecoder
+    only_attn: false
+    refine_iters: 1
+  Encoder:
+    depths:
+    - 6
+    - 6
+    - 6
+    dims:
+    - 128
+    - 256
+    - 384
+    last_stage: false
+    local_k:
+    - - 5
+      - 5
+    - - 5
+      - 5
+    - - -1
+      - -1
+    mixer:
+    - - Conv
+      - Conv
+      - Conv
+      - Conv
+      - Conv
+      - Conv
+    - - Conv
+      - Conv
+      - FGlobal
+      - Global
+      - Global
+      - Global
+    - - Global
+      - Global
+      - Global
+      - Global
+      - Global
+      - Global
+    name: SVTRv2LNConvTwo33
+    num_heads:
+    - 4
+    - 8
+    - 12
+    sub_k:
+    - - 1
+      - 1
+    - - 2
+      - 1
+    - - -1
+      - -1
+    use_pos_embed: false
+  Transform: null
+  algorithm: PARSeq
+  model_type: rec
+Eval: null
+Global:
+  cal_metric_during_train: false
+  character_dict_path: C:\Users\pranav\Documents\ChatGPT\thesis\runs\parseq_darkbay_100k_20261005\charset.txt
+  checkpoints: null
+  device: gpu
+  distributed: false
+  epoch_num: 20
+  eval_batch_step: 9223372036854775807
+  eval_epoch_step: 9223372036854775807
+  grad_clip_val: 20
+  infer_img: null
+  log_smooth_window: 20
+  max_text_length: 25
+  output_dir: C:\Users\pranav\Documents\ChatGPT\thesis\runs\parseq_darkbay_100k_20261005\seed_456
+  pretrained_model: null
+  print_batch_step: 50
+  save_epoch_step:
+  - 1
+  - 1
+  save_res_path: C:\Users\pranav\Documents\ChatGPT\thesis\runs\parseq_darkbay_100k_20261005\seed_456\predictions_unused.txt
+  use_amp: true
+  use_space_char: false
+  use_tensorboard: false
+  seed: 456
+LRScheduler:
+  cycle_momentum: false
+  name: OneCycleLR
+  warmup_epoch: 2
+Loss:
+  name: PARSeqLoss
+Metric:
+  is_filter: false
+  main_indicator: acc
+  name: RecMetric
+  is_lower: false
+Optimizer:
+  filter_bias_and_bn: true
+  lr: 0.00035
+  name: AdamW
+  weight_decay: 0.05
+PostProcess:
+  character_dict_path: C:\Users\pranav\Documents\ChatGPT\thesis\runs\parseq_darkbay_100k_20261005\charset.txt
+  name: ARLabelDecode
+  use_space_char: false
+Train:
+  dataset:
+    data_dir_list:
+    - C:\Users\pranav\Documents\ChatGPT\thesis\runs\parseq_darkbay_100k_20261005\train_lmdb
+    ds_width: true
+    name: RatioDataSetTVResize
+    padding: false
+    transforms:
+    - DecodeImagePIL:
+        img_mode: RGB
+    - ARLabelEncode:
+        character_dict_path: C:\Users\pranav\Documents\ChatGPT\thesis\runs\parseq_darkbay_100k_20261005\charset.txt
+        max_text_length: 25
+        use_space_char: false
+    - KeepKeys:
+        keep_keys:
+        - image
+        - label
+        - length
+  loader:
+    batch_size_per_card: 128
+    drop_last: true
+    max_ratio: 4
+    num_workers: 0
+    shuffle: true
+  sampler:
+    divided_factor:
+    - 4
+    - 16
+    first_bs: 128
+    fix_bs: true
+    is_training: true
+    name: RatioSampler
+    scales:
+    - - 128
+      - 32

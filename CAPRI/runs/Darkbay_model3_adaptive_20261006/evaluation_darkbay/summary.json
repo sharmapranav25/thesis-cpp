@@ -1,0 +1,34 @@
+{
+  "model": "Model3",
+  "results": {
+    "seed_48": {
+      "correct": 569,
+      "total": 900,
+      "accuracy": 63.22222222222222,
+      "CER": 8.128124421403443
+    },
+    "seed_123": {
+      "correct": 539,
+      "total": 900,
+      "accuracy": 59.888888888888886,
+      "CER": 8.868728013330864
+    },
+    "seed_456": {
+      "correct": 531,
+      "total": 900,
+      "accuracy": 59.0,
+      "CER": 8.609516756156268
+    },
+    "ensemble": {
+      "correct": 569,
+      "total": 900,
+      "accuracy": 63.22222222222222,
+      "CER": 7.831882984632475
+    }
+  },
+  "ds1_ensemble_correct": 496,
+  "ds2_ensemble_correct": 565,
+  "difference_vs_ds1": 73,
+  "difference_vs_ds2": 4,
+  "limitation": "Historical900-image set; selection recorded in evaluation_selection.json. User final-epoch designation followed examination of seed48 real results; training curriculum unchanged."
+}

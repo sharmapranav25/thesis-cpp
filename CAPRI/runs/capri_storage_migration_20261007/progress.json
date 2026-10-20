@@ -1,0 +1,15 @@
+{
+  "updated_at": "2026-10-08T00:52:50.639553+00:00",
+  "pid": 30800,
+  "state": "completed",
+  "checkpoint": {
+    "epoch": 15000,
+    "path": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\training_recovery\\baseline_localization\\epoch_15000\\checkpoint.pt",
+    "sha256": "063bc6079ec124257180f64ee1807fd0199885e5b4f08b15106ac550a743a850"
+  },
+  "physical_root": "E:\\pranav\\CAPRI\\runs\\capri_decoder_500k_20261007",
+  "logical_root": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007",
+  "migrated_files": 19028,
+  "migrated_bytes": 26150870743,
+  "trainer_pid": 12920
+}

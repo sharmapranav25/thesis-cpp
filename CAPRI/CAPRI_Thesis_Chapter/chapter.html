@@ -1,0 +1,909 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CAPRI thesis chapter</title><style>body{margin:0;background:#f0f2f4;color:#18212b;font:18px/1.7 Georgia,serif}main{max-width:1020px;margin:32px auto;padding:64px;background:white;box-shadow:0 2px 16px #0001}h1,h2,h3,nav{font-family:system-ui,sans-serif;line-height:1.3}h1{font-size:35px}h2{margin-top:58px;padding-top:20px;border-top:1px solid #ddd;font-size:27px}h3{font-size:21px;margin-top:35px}a{color:#165579}table{border-collapse:collapse;width:100%;font:14px/1.45 system-ui,sans-serif;margin:25px 0}th,td{border:1px solid #d6dde4;padding:10px;text-align:left;vertical-align:top}th{background:#edf2f7}tr:nth-child(even){background:#fafbfc}pre{white-space:pre-wrap;background:#eff3f6;padding:18px;font-size:14px}code{overflow-wrap:anywhere}img{max-width:100%;height:auto;border:1px solid #ddd}nav{font-size:14px;background:#f7f9fb;padding:24px;columns:2}nav a{display:block;margin:0 0 10px;break-inside:avoid}p{margin:18px 0}li{margin:7px 0}@media(max-width:800px){main{padding:24px;margin:0}nav{columns:1}body{font-size:17px}table{font-size:12px}}@media print{body{background:white;font-size:11pt}main{max-width:none;margin:0;padding:0;box-shadow:none}nav{display:none}h2,h3{break-after:avoid}tr,img,pre{break-inside:avoid}a{color:inherit}table{font-size:9pt}h2{font-size:17pt}h3{font-size:13pt}}</style></head><body><main><nav><a href="#section-1">1. Research problem and scope</a><a href="#section-2">2. Research lineage and implementation attribution</a><a href="#section-3">3. Data, boundaries and evaluation semantics</a><a href="#section-4">4. V1: building the feature bank before training</a><a href="#section-5">5. V1 classifiers, feature pop and real-image failure</a><a href="#section-6">6. Rendering regressions, font adjustment and rejected refinement</a><a href="#section-7">7. V2: expanding views, features and supervision</a><a href="#section-8">8. Feature specialists and the mask bottleneck</a><a href="#section-9">9. Multi-label CNN and pure transformer comparison</a><a href="#section-10">10. Joint feature and rendering-parameter learning</a><a href="#section-11">11. CAPRI: combining learned inference with V1 measurements</a><a href="#section-12">12. Meta-Sim-inspired refinement of CAPRI recipes</a><a href="#section-13">13. Tools, implementation and corpus production</a><a href="#section-14">14. Critical synthesis</a><a href="#section-15">15. Contribution statement and conclusion</a><a href="#section-16">References</a><a href="#section-17">Appendix A. Reading the accompanying evidence</a><a href="#section-18">Appendix B. Recorded visual evidence</a></nav><h1>CAPRI: From Local Feature Classification to Distribution-Guided Procedural CAPTCHA Generation</h1>
+<p><strong>Detailed thesis chapter draft — evidence cut-off: 28 September 2026.</strong></p>
+<p>This chapter reconstructs the progression from the original three-feature, 10 × 3 block classifier to CAPRI and its Meta-Sim-inspired refinement. It includes unsuccessful experiments rather than presenting the final system as the inevitable outcome of a clean sequence. Numerical results are project measurements, not results borrowed from the cited papers. Historical documents sometimes retain superseded status statements; later run records take precedence. The accompanying evidence index identifies the local sources. This is an experimental-methodology chapter, not a claim of demonstrated downstream recognition success.</p>
+<h2 id="section-1">1. Research problem and scope</h2>
+<h3>1.1 Why a generic generator was insufficient</h3>
+<p>The starting point was a practical mismatch between generating plausible CAPTCHA images and generating training images representative of a particular CAPTCHA family. An imported generator could draw characters, backgrounds and interference using predefined choices. Configuring its alphabet or text length did not make it infer the fonts, spatial organisation, colour distribution or clutter of an unfamiliar reference collection. A working generator therefore did not by itself solve the distribution-matching problem.</p>
+<p>Earlier work using a generator closely associated with a target family offered a potentially misleading baseline. High similarity between that generator and the real family could make recognition transfer easier without establishing a generic adaptation method. This motivation should not be confused with a measured comparison in the present chapter: no newly verified PARSeq result is available here demonstrating that the proposed method beats that earlier setup.</p>
+<p>The revised objective was to inspect untranscribed reference images, infer which available rendering operations could approximate their appearance, and generate new images with known synthetic text. The method must work within a bank of general-purpose operations and independently sourced fonts. It must not obtain the target family&#39;s generator, copy its font assets, or use its text labels to train the style classifiers.</p>
+<p>The resulting system is called <strong>CAPRI: CAPTCHA Analysis and Procedural Rendering Inference</strong>. It is best described as constrained inverse graphics followed by procedural generation. It is not an unrestricted image generator, a transcription system, or a mechanism that discovers arbitrary source code. Its representational ceiling is the set of operations already implemented in its renderer.</p>
+<h3>1.2 Formalising the task</h3>
+<p>Let X be a collection of untranscribed real reference images. Let R(t, f, θ, s) be a procedural renderer with chosen text t, font f, rendering controls θ and random seed s. The initial objective is to estimate a distribution of plausible recipes from X, rather than reconstruct each observed image pixel for pixel:</p>
+<pre><code>X → {CV measurements, frozen learned feature estimates}
+  → family recipe profile → font selection/adjustment
+  → R(new text, font, recipe, seed) → labelled synthetic corpus
+</code></pre>
+<p>An optional adapter subsequently modifies a restricted subset of recipe parameters using an unlabelled real fitting subset. In the final tested refinement, it does not directly paint over the output image.</p>
+<p>This formulation has an identifiability problem. A dark stroke could be a character edge, an interference line, a border or overlapping primitives. Different recipes can produce similar pixels. Requested primitive count also differs from visible count after overlap and occlusion. Consequently, even a correct pixel interpretation need not uniquely recover the original generator settings. Learning to reproduce a useful distribution is a more defensible objective than claiming to identify the original source recipe.</p>
+<h3>1.3 Questions investigated</h3>
+<p>The experiments address six connected questions:</p>
+<ol>
+<li>Can classifiers trained only on procedural examples recognise useful features in real CAPTCHA images?</li>
+<li>Does dividing images into blocks, or supplying multiple grids, improve feature recognition and coherent global interpretation?</li>
+<li>Can local CNN representations and global transformer reasoning jointly estimate both feature presence and usable rendering controls?</li>
+<li>Can independently sourced fonts approximate target typography without obtaining the target font?</li>
+<li>Can distribution-based refinement improve generated appearance without changing text identity or creating artefacts?</li>
+<li>Can the resulting corpus improve real-image character recognition?</li>
+</ol>
+<p>The first five received experimental investigation, with mixed outcomes. The sixth remains a downstream hypothesis. Generating and auditing labelled files is not a substitute for training and evaluating PARSeq.</p>
+<h3>1.4 What “no VLM” means in this work</h3>
+<p>No vision-language model is used by the implemented feature inference, font inference, generation or refinement algorithms. Assistant visual inspection was used during development to review galleries and identify obvious mismatches. The research process therefore includes VLM-assisted qualitative feedback, even though the deployed computational pipeline does not. This distinction must remain explicit.</p>
+<p>The later DINO experiments use a pretrained visual transformer, not a VLM. Their presence also means that a blanket claim of “no pretrained model anywhere” would be false. Feature and font classifiers were trained on synthetic data; DINO representations were imported for selected experiments. Optional distribution adapters were fitted to unlabelled real images. Thus, “the classifiers never train on real data” is accurate within the stated boundary, while “nothing in CAPRI ever learns from real data” is not.</p>
+<h2 id="section-2">2. Research lineage and implementation attribution</h2>
+<p>The project combines established ideas rather than establishing novelty by giving an assembly of components a new name. Table 1 distinguishes direct adaptation, background motivation and work considered but not reproduced.</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Idea used or investigated</th>
+<th>What this project did not reproduce</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DeepFont <a href="#ref-1">[R1]</a></td>
+<td>Synthetic font-labelled examples, augmentation and multiple image views</td>
+<td>AdobeVFR, the complete DeepFont network, its adaptation procedure or its published accuracy</td>
+</tr>
+<tr>
+<td>SimGAN <a href="#ref-2">[R2]</a></td>
+<td>Synthetic-to-real adversarial refinement and restrictions on image changes</td>
+<td>Its full architecture, history buffer, training regime or benchmarks</td>
+</tr>
+<tr>
+<td>Deep CORAL <a href="#ref-3">[R3]</a></td>
+<td>Motivation for distribution-statistic alignment</td>
+<td>Full covariance alignment; early project losses used means and diagonal standard deviations</td>
+</tr>
+<tr>
+<td>Vision Transformer <a href="#ref-4">[R4]</a></td>
+<td>Patch-token attention for image understanding</td>
+<td>Large-scale ViT pretraining or a matched reproduction of ViT results</td>
+</tr>
+<tr>
+<td>Gridded Transformer Neural Processes <a href="#ref-5">[R5]</a></td>
+<td>Efficient organisation of local observations into a global grid</td>
+<td>A neural-process probabilistic decoder, the paper&#39;s full model or its theoretical properties</td>
+</tr>
+<tr>
+<td>Conformer <a href="#ref-6">[R6]</a></td>
+<td>Communication between local convolutional and global transformer representations</td>
+<td>The original network configuration or a reproduction on its benchmarks</td>
+</tr>
+<tr>
+<td>DINO <a href="#ref-7">[R7]</a></td>
+<td>Frozen pretrained visual features; attention-map experiments</td>
+<td>CAPTCHA-specific self-supervised DINO training</td>
+</tr>
+<tr>
+<td>Learning to Count Objects in Images <a href="#ref-8">[R8]</a></td>
+<td>Unit-mass density supervision as an alternative to classification</td>
+<td>The original MESA formulation and optimisation procedure</td>
+</tr>
+<tr>
+<td>Vision Transformers Need Registers <a href="#ref-9">[R9]</a></td>
+<td>Caution when interpreting attention and feature artefacts</td>
+<td>Register-token retraining or a register-equipped replacement model</td>
+</tr>
+<tr>
+<td>Meta-Sim <a href="#ref-10">[R10]</a></td>
+<td>Learning simulator-parameter changes through distribution discrepancy and numerical renderer derivatives</td>
+<td>The complete graph-based method, task objective or published benchmarks</td>
+</tr>
+<tr>
+<td>Learning to Simulate <a href="#ref-11">[R11]</a></td>
+<td>Related work on adapting simulation for downstream learning</td>
+<td>Its reinforcement-learning optimisation</td>
+</tr>
+<tr>
+<td>Yet Another Text CAPTCHA Solver <a href="#ref-12">[R12]</a></td>
+<td>Prior art demonstrating that GAN-related CAPTCHA synthesis/adaptation is not a new category</td>
+<td>Its target-specific training setup or reported recognition performance</td>
+</tr>
+<tr>
+<td>PARSeq <a href="#ref-13">[R13]</a></td>
+<td>Planned downstream recogniser for evaluating corpus utility</td>
+<td>Completed recogniser training in the experiments reported here</td>
+</tr>
+<tr>
+<td>Stroke Width Transform <a href="#ref-14">[R14]</a></td>
+<td>Motivation for stroke consistency as a visual cue</td>
+<td>Ray-based SWT; project code used MSER and simpler stroke proxies</td>
+</tr>
+</tbody></table>
+<p>The word “transformer” requires particular care. An attention-based vision transformer is a neural architecture. Meta-Sim&#39;s distribution transformation is an adaptation concept and does not imply the use of that architecture. The CAPRI refinement adapter is a small multilayer perceptron. Its frozen DINO feature extractor is a transformer, but the adapter itself is not.</p>
+<p>The defensible prospective contribution is the evaluated combination of constrained feature inference, procedural mapping, typography approximation and distribution-guided adaptation under restricted target access. Establishing originality and usefulness still requires stronger baselines, genuinely independent evaluation and downstream recognition measurements.</p>
+<h2 id="section-3">3. Data, boundaries and evaluation semantics</h2>
+<h3>3.1 Real reference collections</h3>
+<p>The main development bank contains CryptBB, City, Courier, DarkBay and Outlined Text CAPTCHA. Their file counts changed across experimental scopes. The following distinction resolves an otherwise misleading apparent discrepancy in the records.</p>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th align="right">Earlier available style pool</th>
+<th align="right">Later full-directory feature inference</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CryptBB</td>
+<td align="right">600</td>
+<td align="right">600</td>
+</tr>
+<tr>
+<td>City</td>
+<td align="right">2,000</td>
+<td align="right">2,000</td>
+</tr>
+<tr>
+<td>Courier</td>
+<td align="right">2,510</td>
+<td align="right">2,510</td>
+</tr>
+<tr>
+<td>DarkBay</td>
+<td align="right">799</td>
+<td align="right">999, including 200 evaluation images</td>
+</tr>
+<tr>
+<td>Outlined Text CAPTCHA</td>
+<td align="right">800</td>
+<td align="right">800</td>
+</tr>
+<tr>
+<td>Total</td>
+<td align="right">6,709 files before experiment-specific exclusions</td>
+<td align="right">6,909 files</td>
+</tr>
+</tbody></table>
+<p>These are inventory counts, not a universal count of unique, readable or eligible images. An early annotation-selection record reports 6,708 historical unique images. Decode checks, deduplication and per-run selection determine the actual denominator. The additional 200 images in the later 6,909-file run came from DarkBay&#39;s evaluation directory, not an enlargement of the outlined collection.</p>
+<p>The full-directory dot-scatter run explicitly included those DarkBay evaluation images at the user&#39;s request. That did not train the classifier on real text labels, but it exposed previously reserved visual distributions to development review. Later comparisons on those images must therefore not be described as completely untouched evaluations. Preserving a folder named <code>eval</code> does not preserve experimental independence once its contents influence decisions.</p>
+<p>Additional independent-source probes included Roncuevas, Pymlex and Sloth collections. They were small convenience probes, not a statistically random sample of all CAPTCHA schemes. The Pymlex family-specific refinement report contained only one held-out example after a 2/1/1 split. Such a sample can reveal a failure but cannot estimate reliable generalisation performance.</p>
+<h3>3.2 Synthetic-only training is necessary but insufficient</h3>
+<p>The style classifiers receive synthetic pixels and synthetic supervision. Target labels, generator identifiers, masks and hidden recipe values must not enter their image input. However, this restriction alone does not eliminate leakage or shortcuts. Synthetic variants can share text, backgrounds, rendering seeds or crop pixels. Training and testing on different crops from the same base image can yield optimistic results even when no real image is used.</p>
+<p>The early corpus therefore retained base-group membership and used hash checks. Subsequent trials introduced font, combination and recipe-shift tests. These boundaries improve the experiments, but they do not create a fully independent real benchmark. Repeated inspection of the same five families gradually turns them into development data, even when each new model is frozen before its next inference run.</p>
+<h3>3.3 Metrics that must not be conflated</h3>
+<p>Average precision measures score ranking. F1 measures a thresholded balance of precision and recall. False-positive rate measures the fraction of negative cases called positive. Calibration coverage describes how often an abstaining classifier makes a confident decision. None is interchangeable with the others.</p>
+<p>Likewise, the fraction of real images predicted to contain dots is <strong>prediction prevalence</strong>, not detection accuracy and not dot density. Density is a spatial or count measurement. Accuracy requires trustworthy reference labels. A model can consistently predict a spurious grid throughout a family and produce a stable, wrong prevalence estimate.</p>
+<p>Descriptor distance and DINO-space discrepancy measure similarity in their chosen representation. They are neither human perceptual ground truth nor recognition accuracy. A model may reduce a distance by spreading colour around text, while making the image less representative or less readable. Several experiments below exhibit precisely that behaviour.</p>
+<h3>3.4 Historical gate overrides</h3>
+<p>The original plan required an audited real-image feature review before supervised-model progression. That audit remained incomplete. The user explicitly authorised synthetic-only exploratory training while real evaluation remained pending. Later exploratory refinement also proceeded despite an unresolved Phase 1 gate. These were scope decisions, not retrospective gate passes.</p>
+<p>Acceptance thresholds were engineering choices in the experiment protocols, not universal thresholds established by the cited literature. Failed gates are retained as failures. Some later components were packaged for experimentation despite incomplete gates; packaging is an operational milestone, not scientific certification.</p>
+<h2 id="section-4">4. V1: building the feature bank before training</h2>
+<h3>4.1 Resource acquisition and adapter pilots</h3>
+<p>The initial bank investigated Gregwar/Captcha, Securimage, MobiCMS, simple-php-captcha and an existing Python renderer. Each backend rendered 64 initial cases, giving 320 pilot images. These tests examined reproducibility and available operations before attempting to learn their appearance.</p>
+<table>
+<thead>
+<tr>
+<th>Backend</th>
+<th align="right">Successful initial renders</th>
+<th align="right">Exact seed replays</th>
+<th>Main qualification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Gregwar</td>
+<td align="right">64/64</td>
+<td align="right">64/64</td>
+<td>Edge cases approached text boundaries; warping could also bend interference</td>
+</tr>
+<tr>
+<td>Securimage</td>
+<td align="right">64/64</td>
+<td align="right">64/64</td>
+<td>Enabling noise changed text placement, invalidating naive counterfactual pairing</td>
+</tr>
+<tr>
+<td>MobiCMS</td>
+<td align="right">64/64</td>
+<td align="right">0/64</td>
+<td>Native random draws were not controlled by the initial seed mechanism</td>
+</tr>
+<tr>
+<td>simple-php-captcha</td>
+<td align="right">64/64</td>
+<td align="right">64/64</td>
+<td>Text/shadow clipping concerns; unresolved bundled texture rights</td>
+</tr>
+<tr>
+<td>Python</td>
+<td align="right">64/64</td>
+<td align="right">64/64</td>
+<td>Some requested marks were faint; requested operations were not automatically visible labels</td>
+</tr>
+</tbody></table>
+<p>A separate MobiCMS capture-and-replay repair recorded native random draws and checked their bounds and order. It achieved 64/64 exact replays for that instrumented variant. This fixed determinism, not every outstanding corpus-quality issue.</p>
+<p>The original repository and historical experiments were preserved. Hash checks covered 164 downloaded source files and 50 original/vendor paths. Unresolved decorative fonts and texture assets were excluded. Securimage&#39;s package metadata and licence text required care because their descriptions did not match exactly. A code repository&#39;s licence also does not automatically establish the licence of every bundled image or font.</p>
+<p>The early catalogue contained more proposed features than validated capabilities. Straight strokes, curves and dots were practical starting points. Hollow lettering, decorative shapes, textures and several typography operations initially lacked a verified eligible mapping. Returning a capability gap was more honest than claiming that every feature could already be recreated.</p>
+<h3>4.2 The 10 × 3 representation</h3>
+<p>The user&#39;s central hypothesis was that different portions of a CAPTCHA collectively reveal its style. The initial view divided an image into <strong>10 columns and 3 rows</strong>, producing 30 overlapping native-pixel bricks. This notation counts cells, not ten vertical cuts and three horizontal cuts. Local crops preserve original pixel scale before descriptor processing.</p>
+<p>The appeal is straightforward: one block may expose a line, another a colour patch and another a curved segment. Their combined evidence may be more informative than a single whole-image summary. The immediate difficulty is equally important: small blocks discard context. A curved line is nearly straight over a short interval; a dot can resemble an antialiased character fragment; a coloured rectangle may be part of a glyph.</p>
+<p>The initial proposal should therefore be understood as a representation hypothesis, not a guarantee that smaller crops improve recognition. Later experiments repeatedly returned to this trade-off.</p>
+<p>The initial overlap extended each brick by 12.5% of its width and height on available sides, rounded up and clipped to the image boundary. Adjacent crops consequently shared approximately 25% overlap. Geometry tests verified exact native-pixel extraction, coverage and reassembly; they did not verify feature recognition. Shared pixels establish adjacency, not that two observations belong to the same physical stroke.</p>
+<h3>4.3 Causal supervision and the first rejected shortcuts</h3>
+<p>A labelled-brick demonstration used eight independent base configurations and all eight combinations of three effects: straight lines, sine curves and dots. This produced 64 parent images and 1,920 crop occurrences. The effects were instrumented Python/Pillow overlays, not a demonstration of generalisation across the original PHP backends.</p>
+<p>The renderer recorded geometry and colours once. Leave-one-effect-out images reused those choices without resampling randomness. A pixel counted as a visible contribution when removing the effect changed an RGB channel by at least 20. This separated a requested operation from an operation that survived in the final image.</p>
+<p>The first pilot assigned effect-specific colours and coupled font choice with background polarity. Those shortcuts were rejected before training. A revision sampled all effects from a common colour distribution and used both polarities for each font. Another revision counted visibly distinct connected dots rather than accepting repeated or overlapping draws as multiple marks.</p>
+<p>The local label policy also included uncertainty. A crop with insufficient visible context was not forced into the negative class. Curves required local deviation from a straight axis; dots required distinct marks; hidden or faint operations remained uncertain. Later repairs stopped curve fragments borrowing curvature from invisible recorded geometry and required background margin around candidate dots touching text.</p>
+<p>These decisions were scientifically useful because synthetic labels can be wrong in a semantic sense even when the generator knows exactly what it drew. A latent “curve enabled” bit does not prove that a human or classifier could identify curvature in every crop.</p>
+<h3>4.4 Expanded candidate corpus</h3>
+<p>The expanded candidate comprised 5,600 synthetic parents and 168,000 crop occurrences. Quality filtering and exact deduplication left 119,292 unique crops. The initial 1,920-occurrence pilot itself contained only 1,139 unique pixel crops. Neither figure should be presented as an equivalent number of independent observations.</p>
+<p>The expanded corpus varied image size, typography, text proportions, colour, polarity and effect strength. Its audits checked parent/crop hashes, base-group boundaries, exclusions and deterministic replay. A perceptual duplicate screen produced 483 candidate cross-partition pairs; none passed its subsequent RGB difference criterion. That is evidence about a particular screening procedure, not proof that all perceptual dependence was removed.</p>
+<p>Despite the larger corpus, the original acceptance gate remained partial. The real annotation audit, broader renderer coverage and several local-semantic questions were unresolved. Training proceeded only under an explicitly exploratory scope.</p>
+<h2 id="section-5">5. V1 classifiers, feature pop and real-image failure</h2>
+<h3>5.1 What actually trained</h3>
+<p>The first completed training run took 1,716.9 seconds, approximately 28.6 minutes including descriptor extraction for 84,907 crops. It trained both Logistic Regression and Extra Trees candidates separately for straight interference, curved interference and dot scatter. Each feature used a seeded sample of 6,000 positive and 6,000 negative training crops. Unknown and uncertain labels were omitted per feature.</p>
+<p>The representation combined native colour, contrast and connectivity statistics with orientation-pooled HOG on a proportionally padded 256 × 96 canvas. HOG blocks touching padding were excluded. The descriptor schema records 53 base values and 135 total values for the enhanced representation. Inputs were derived from pixels, not generator masks or recipe metadata.</p>
+<p>HOG&#39;s established descriptor lineage is Dalal and Triggs <a href="#ref-15">[R15]</a>. The tree comparison uses the Extra Trees family introduced by Geurts, Ernst and Wehenkel <a href="#ref-16">[R16]</a>, through scikit-learn. These are method attributions, not claims that their original benchmark experiments were repeated.</p>
+<p>Logistic Regression tested C values 0.1, 1 and 10, with training-only standardisation, balanced weights and the liblinear solver. Extra Trees used 256 trees, depths 16 or 32, and minimum leaf sizes 2 or 5. Model and representation selection used synthetic selection AP. Sigmoid calibration and decision thresholds used a separate calibration partition. Logistic Regression was preferred when within 0.01 selection AP of the best tree candidate, and was selected for all three features.</p>
+<h3>5.2 What feature pop did—and did not establish</h3>
+<p>The enhanced descriptor package added CLAHE, morphological, threshold and feature-pop measurements. Its best selection AP exceeded the ordinary representation:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th align="right">Ordinary LR selection AP</th>
+<th align="right">Enhanced LR selection AP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Straight interference</td>
+<td align="right">0.8241</td>
+<td align="right">0.8755</td>
+</tr>
+<tr>
+<td>Curved interference</td>
+<td align="right">0.8523</td>
+<td align="right">0.9010</td>
+</tr>
+<tr>
+<td>Dot scatter</td>
+<td align="right">0.8807</td>
+<td align="right">0.9514</td>
+</tr>
+</tbody></table>
+<p>This supports the enhanced package on that synthetic selection distribution. It does not isolate the contribution of one normalised image because several descriptor additions changed together. Feature pop also enhances character edges and background patterns. It is not a clean segmentation mask showing only the desired feature.</p>
+<table>
+<thead>
+<tr>
+<th>Selected model</th>
+<th align="right">Reserved synthetic test AP</th>
+<th align="right">F1 at 0.5</th>
+<th align="right">Confident abstaining-decision coverage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Straight LR</td>
+<td align="right">0.8832</td>
+<td align="right">0.7974</td>
+<td align="right">94.2%</td>
+</tr>
+<tr>
+<td>Curve LR</td>
+<td align="right">0.8800</td>
+<td align="right">0.7657</td>
+<td align="right">0%</td>
+</tr>
+<tr>
+<td>Dot LR</td>
+<td align="right">0.9455</td>
+<td align="right">0.8729</td>
+<td align="right">0%</td>
+</tr>
+</tbody></table>
+<p>The curve and dot models ranked examples reasonably well but had no accepted separated thresholds under the implemented calibration rule. They therefore could not be described as deployable confident classifiers. The threshold procedure independently selected broad positive and negative sets, then rejected overlapping cutoffs; its failure did not prove that no alternative feasible threshold pair existed. Calibration precision was also estimated on data used to fit the sigmoid, limiting its independence.</p>
+<p>Macro F1 at the fixed cutoff was about 0.812, below the planned 0.85 exploratory target. A withheld combination contained no positive curve examples, so its curve AP was not a meaningful generalisation measurement. These qualifications are more informative than reporting only the best dot AP.</p>
+<h3>5.3 Frozen real inference exposed domain shift</h3>
+<p>A later frozen five-family run processed 840 images, using 128 fit and 40 historical report images per family, and generated 25,200 blocks and 75,600 feature predictions. Straight interference was predicted at image level in every one of the 168 images of every family. Curves were similarly saturated: 168, 166, 168, 158 and 168 positives across CryptBB, City, Courier, DarkBay and Outlined respectively. Dot positives were 110, 27, 9, 56 and 0.</p>
+<p>These counts showed that inference executed; they did not establish correctness. If the aggregation says “present if any block is positive,” even moderate crop false-positive rates can become severe image false-positive rates. Under a deliberately simplified independence assumption, 30 blocks with a 5% false-positive probability would yield 1 − 0.95³⁰, approximately 78.5%, image-level false positives. Real blocks are correlated, so this is an explanatory calculation rather than an empirical estimate.</p>
+<p>Adding synthetic hard negatives reduced one straight-line false-positive diagnostic from 71.09% to 0.78%, while ordinary test AP decreased slightly from 0.8832 to 0.8709. The analogous curve revision reduced AP from 0.8800 to 0.8063 and failed its criterion. A real-block audit still produced 480/480 straight positives. The central lesson was that success on a repaired synthetic negative distribution did not demonstrate transfer to real backgrounds and typography.</p>
+<h3>5.4 CV measurements and the first end-to-end gate</h3>
+<p>The procedural mapping grew beyond the three classifiers. It measured palettes, gradients, edge structure, orientations, text-region proposals, tilt proxies, density and relationships between blocks. MSER and connected components proposed text-like regions; distance transforms and contour holes supplied limited stroke/topology cues. These regions were not verified characters, and the method did not implement full SWT <a href="#ref-14">[R14]</a>.</p>
+<p>Block adjacency and global line linking attempted to combine local observations into a coherent family profile. This was explicit CV logic, not a learned scene graph. Measurements were mapped to general rendering controls; they did not identify the original CAPTCHA library.</p>
+<p>The first end-to-end Phase 1 pilot improved the declared descriptor distance by at least 20% for all five families. Nevertheless, generated family centroids were nearest their own real family for only 3/5, below the required 4/5. Assistant review judged only 3/5 partial broad matches. Courier showed incorrect blocks/pixel-like fonts, and the outlined family remained filled rather than hollow. The overall gate failed.</p>
+<p>The result already foreshadowed the rest of the study: family differentiation and lower summary distance are useful, but insufficient. A generator can become quantitatively less generic while still reproducing the wrong visual mechanisms.</p>
+<h2 id="section-6">6. Rendering regressions, font adjustment and rejected refinement</h2>
+<h3>6.1 Why unrelated families acquired similar backgrounds</h3>
+<p>A conspicuous regression was the appearance of block-like backgrounds in Courier, where they did not represent the observed family. The immediate explanation was not that a GAN had transferred CryptBB&#39;s weights into Courier. The baseline renderer already introduced blocks because a CV rule interpreted colour variation too readily as rectangular background structure. A shared renderer can therefore spread the same incorrect visual vocabulary across families without sharing a fitted refinement model.</p>
+<p>The repair required positive geometric evidence: median filtering, RGB quantisation, high rectangular fill, limited text overlap, minimum size, sharp sides and multiple supported regions. In an audit of 596 profiles, Courier block support changed from 64/96 to zero. CryptBB support fell from 91 to 17, DarkBay from 87 to 74, while City and Outlined changed from zero to one and two respectively. This is evidence that the rule became more selective; there was no independent labelled recall study proving that it retained every legitimate block.</p>
+<p>A separate 160-replay background audit found that changing the font stage did not itself change the recorded background operations. Recipe offsets were a more direct cause of clutter regressions. Example multipliers included approximately 4.08 for Courier line count and 4.03 for City line width. DarkBay and Outlined had zero offsets in that particular comparison, so their mismatch predated those adjustments. Diagnosing the regression required tracing operations rather than attributing every visible difference to the most recently added model.</p>
+<p>Randomness was another source of confounding. Changing an earlier operation count can consume different random draws and alter later text placement or colour. Separate random streams reduce this coupling, but later large-scale assertions showed that exact invariants still needed enforcement. “Same seed” alone does not guarantee a valid counterfactual pair.</p>
+<h3>6.2 Early recipe models and direct image refiners</h3>
+<p>The initial distribution-shift pilot used 96 fit, 32 development and 40 additional historical report images per family. Recipe search considered 32 candidates over 11 controls, including colour offsets, text geometry and clutter parameters. CNN and transformer recipe models learned to imitate search-selected targets. A discriminator scored candidates. These were distinct experiments: the candidate discriminator was not an unrestricted recipe-generating GAN.</p>
+<p>The pilot also tested direct CNN, transformer and GAN image refiners. Recipe models ran for 250 steps, the candidate discriminator for 200, and direct models for 400. The pilot was short, about 2.53 minutes in the recorded setting. It cannot justify claims about exhaustive optimisation or the maximum capability of these model families.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th align="right">Mean reported descriptor-distance reduction</th>
+<th>Main limitation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Candidate search</td>
+<td align="right">33.2%</td>
+<td>Improved only 3/5 families</td>
+</tr>
+<tr>
+<td>Recipe CNN</td>
+<td align="right">34.7%</td>
+<td>Improved only 3/5; some families worsened</td>
+</tr>
+<tr>
+<td>Recipe transformer</td>
+<td align="right">31.6%</td>
+<td>Improved only 3/5</td>
+</tr>
+<tr>
+<td>Candidate discriminator</td>
+<td align="right">36.5%</td>
+<td>Improved only 3/5</td>
+</tr>
+<tr>
+<td>Direct CNN</td>
+<td align="right">62.6%</td>
+<td>Visually rejected: halos and appearance distortions</td>
+</tr>
+<tr>
+<td>Direct transformer</td>
+<td align="right">61.5%</td>
+<td>Visually rejected despite metric gain</td>
+</tr>
+<tr>
+<td>Direct GAN</td>
+<td align="right">61.9%</td>
+<td>Visually rejected despite metric gain</td>
+</tr>
+</tbody></table>
+<p>The direct models&#39; stronger metric gains were not better scientific outcomes. They exposed an objective mismatch: low-level moment alignment could be improved by unwanted changes around protected glyphs. Exact preservation inside a text mask did not prevent disturbing contours outside it. The analogy to SimGAN <a href="#ref-2">[R2]</a> motivated an experiment; it did not validate its result. Nor should a means-and-standard-deviations loss be described as implementation of full Deep CORAL <a href="#ref-3">[R3]</a>.</p>
+<h3>6.3 Why font adjustment moved before optional refinement</h3>
+<p>Typography repeatedly dominated perceptual mismatch. The project therefore moved font adjustment directly after feature/style extraction, leaving distribution refinement optional. Historical documents used “Phase 3” for fonts, character count and several refinement variants at different times. The current conceptual order is: Phase 1 style extraction/mapping; Phase 2 font adjustment; optional refinement. Historical experiment names are retained as identifiers, not current stage definitions.</p>
+<p>The font model used synthetic font-labelled examples from 12 independently sourced OFL font files. Its small CNN and font/effect heads were inspired by DeepFont <a href="#ref-1">[R1]</a>, but did not reproduce its network or adaptation machinery. Four views were used rather than the paper&#39;s full procedure. The task was selection among available fonts, not exact recovery of an unknown target font.</p>
+<p>Matched fresh testing showed a useful early improvement: top-1 font accuracy rose from 45.70% to 56.25%, top-3 from 77.47% to 84.77%, and hollow/filled accuracy from 89.06% to 90.23%. Later augmentation revisions improved another matched comparison from 45.96% to 54.56% top-1 and 74.09% to 84.24% top-3. These are separate comparisons on different evaluation conditions, not one monotonic leaderboard.</p>
+<p>Low contrast and topology remained serious weaknesses. In one contrast diagnostic, reducing contrast to a gain of 0.15 reduced font accuracy from 55.99% to 18.23% and hollow recognition from 87.5% to 41.67%. A later low-contrast revision improved hollow accuracy from 39.71% to 68.75% but reduced a normal-condition score from 95.31% to 91.93%. Stronger robustness in one stratum could cost accuracy elsewhere.</p>
+<p>The outlined real family remained problematic: generated examples still often used filled or heavy text. Available font identity and hollow/filled rendering are different factors. Correctly ranking an available font does not recover missing topology. New-source probes likewise did not establish generalisation: font or hollow mismatches persisted in Pymlex and Sloth examples.</p>
+<h3>6.4 Character-count inference was tried and removed</h3>
+<p>A count classifier was investigated so that the generator could infer text length without predicting character identity. It used synthetic-only training and achieved 89.29% exact accuracy with MAE 0.161 on an ordinary synthetic test, and 93.53% with MAE 0.085 on a withheld-font test. These values initially appeared promising.</p>
+<p>However, shorter real strings exposed weaknesses, and the generator&#39;s layout could encode count-dependent shortcuts. A model might infer the occupied band width or spacing convention rather than robustly count characters. Good withheld-font performance does not remove that possibility when the same layout mechanism remains in both splits.</p>
+<p>Alternative heatmap approaches compared classical cues, DINO attention and a density CNN. On fresh matched tests, CV reached approximately 50.89%/48.81% and DINO 53.87%/53.27%, while the earlier count classifier reached 88.10%/91.37%. The density CNN reached 38.99%/48.81%. Its Gaussian centre targets had unit mass and the output count was their sum, adapting the density-estimation idea in <a href="#ref-8">[R8]</a>, not reproducing the original method.</p>
+<p>DINO attention did not reliably correspond to one response per character. Lines could attract attention, characters could split into several peaks, and adjacent glyphs could merge. Attention is not an object-count oracle. The count component was ultimately removed from the active pipeline. The current generation policy intentionally spans lengths 2–8 across three character buckets rather than claiming that a failed real-image count estimate is reliable.</p>
+<h3>6.5 DINO-guided parameter search and direct-image Phase 3B</h3>
+<p>An earlier DINO-guided recipe trial used 15 candidate parameter changes and compared CLS features with an attention-augmented representation. Mean gain on its optimisation metric was about 2.55%; independent CV improved in four of eight sources and worsened in four. Attention changed selection relative to CLS alone for only Courier. This did not show that attention maps supplied a broadly useful control signal.</p>
+<p>The later direct-image Phase 3B revisited CNN, transformer and GAN modifications of already generated images. A shared-model trial raised concern about recurring family patterns. Independent per-family fitting then removed shared refinement weights as an explanation. The models used family-specific real fitting data and protected text while modifying the image. The experiment still failed visually.</p>
+<p>The per-family audit verified fitting membership and partition-hash separation. Nevertheless, post-hoc DINO distance worsened for seven of eight families. For example, CryptBB changed from 0.2052 to 0.3932, City from 0.1684 to 0.3083 and DarkBay from 0.1346 to 0.3444. Sloth improved only slightly, from 0.4259 to 0.4217. These distances belong to this audit and are not numerically comparable to the later Meta-Sim MMD table.</p>
+<p>Specifically, the independent-family continuation used eight separately initialised GAN refiners, with no shared fitted weights. Its protocol allowed up to 1,500 steps, at least 500, validation every 100 and patience four. Selection used own-family grayscale moment distance with identity eligible. The ordinary split was 72 fit, 12 selection and 12 report images where 96 were available. Its residual output was projected to colours from its own synthetic input using a straight-through gradient. These details distinguish it from the earlier shared CNN/transformer/GAN comparison.</p>
+<p>Assistant review reported glyph halos, misplaced contours, colour coverage changes and persistent typography mismatch. Restricting outputs to existing RGB values did not preserve perceived colour: reusing a colour across a much larger area changes the image distribution. Exact text pixels at the trial&#39;s 192 × 64 resolution also did not establish independent readability. The user stopped the experiment, and it was not promoted.</p>
+<p>The useful conclusion is narrower than “GANs do not work.” These particular objectives, protection mechanisms, data amounts and optimisation schedules did not produce convincing improvement. A failed small experiment is evidence against that implementation, not a universal architectural impossibility.</p>
+<h2 id="section-7">7. V2: expanding views, features and supervision</h2>
+<h3>7.1 Tier-one scope</h3>
+<p>V2 was intended to move beyond the minimal three-feature baseline. Its first tier used five target families for development and nine font families for synthetic feature experiments: IBM Plex Mono, Balsamiq Sans, Pixelify Sans, IBM Plex Serif, Bitter, Oswald, Anton, Lora and Caveat. This nine-family experimental split is distinct from the 12-file font-matching bank.</p>
+<p>Initial V2 outputs covered lines, curves, dots, rectangles and grain. Six fonts supported training, a seventh selection, and two were withheld. A first small trial collapsed toward negative predictions and zero mask IoU. A larger revision corrected batch-normalisation handling, adjusted positive weighting and increased mask resolution. Architecture was only one potential bottleneck; training implementation and supervision mattered too.</p>
+<h3>7.2 Multi-view did not automatically beat a simpler view</h3>
+<p>Eight grid layouts were used: 1 × 1, 2 × 1, 3 × 1, 1 × 2, 2 × 2, 3 × 2, 5 × 3 and 10 × 3. Together they supply 63 crops. The early multi-view model shared a CNN encoder and used positional information and tanh-based attention. It was not yet a transformer and did not train 63 independent classifiers.</p>
+<p>In one comparison, whole-image, single-view and multi-view F1 values were respectively about 0.706, 0.710 and 0.698 on the ordinary test. Withheld results were about 0.670, 0.680 and 0.679. These values did not support a broad multi-view advantage. Multi-view line, curve and dot false-positive rates remained high, including approximately 0.472, 0.414 and 0.516 in the reported stratum.</p>
+<p>A native-resolution revision improved several measures. Dot F1 rose from 0.587 to 0.860 while its false-positive rate fell from 0.575 to 0.028; rectangle F1 rose from 0.585 to 0.828 while false-positive rate fell from 0.252 to 0.016. However, training duration and mask resolution also changed. This was not an isolated proof that preserving native resolution caused the entire improvement.</p>
+<p>A subsequent grid-specialist experiment assigned separate heads to views while retaining shared encoding. Aggregate scores remained mixed: the earlier model, shared-local model and grid-specialist variant scored roughly 0.831/0.817/0.807, 0.815/0.819/0.825 and 0.822/0.814/0.813 across their three reported conditions. No clean overall winner emerged. More heads increased modelling options but did not fix ambiguous local labels.</p>
+<h3>7.3 Curve identity requires sufficient context</h3>
+<p>Curve debugging found that 340 of 341 eligible small 10 × 3 fragments in one diagnostic had at most one pixel of deviation from a straight line. A globally curved primitive can therefore be visually straight inside almost every small crop. Demanding that each fragment confidently predict the parent&#39;s curve identity can force the model to learn colour, context or renderer shortcuts.</p>
+<p>Local curve AUC fell from approximately 0.845 in a whole-image view to 0.807 in the fine grid. Moreover, clamping a local curve representation changed the global mean probability by only about 0.00221. The model could largely bypass that representation through other appearance features. An attention visualisation alone would not reveal this dependency problem.</p>
+<p>Removing a local auxiliary objective improved one curve F1 from 0.754 to 0.793 and reduced false positives from 0.456 to 0.262, but worsened a recipe-shift score from 0.705 to 0.681. This suggests a conflict between the supervision design and local evidence, not a universally beneficial deletion of local learning.</p>
+<h3>7.4 Tilt and neighbouring blocks</h3>
+<p>To model continuity, another revision added local PCA orientation represented by cos(2θ) and sin(2θ), centroids, coherence and coverage. Doubling the angle respects the fact that an undirected line at θ is equivalent to one at θ + 180°. Eighty-four neighbour relations connected the 63 crops, and a message-passing step supplied relational information.</p>
+<p>The trial modestly improved one same-distribution curve F1 from 0.751 to 0.759, but worsened Bezier-shift performance from 0.675 to 0.607 and rectangle performance from 0.798 to 0.672. Most tellingly, 96.98% of predicted orientations lay within ten degrees of horizontal, compared with 37.59% of targets. Angular MAE was 21.503°, slightly worse than a constant-horizontal baseline at 21.312°.</p>
+<p>This failed tilt gate is important. Adding a geometrically meaningful target does not establish that the model learns useful geometry. The orientation head mainly reproduced a dominant prior. The user&#39;s intuition that neighbouring tilts could reveal a curve remains plausible, but this implementation did not validate it.</p>
+<h2 id="section-8">8. Feature specialists and the mask bottleneck</h2>
+<h3>8.1 Curve-specialist failure diagnosis</h3>
+<p>The specialist direction trained each feature separately and selected views using synthetic evidence. A curve experiment used 20,000 paired examples and withheld curve recipes and rasterisation conditions. Sixteen grid/view combinations and raw versus feature-pop representations were screened.</p>
+<p>The confirmed model remained near chance: BCE approximately 0.693 and AP approximately 0.507. Scores on a training diagnostic were almost constant, ranging from 0.496124 to 0.496196 with standard deviation about 8.68 × 10⁻⁶. Yet the same implementation could memorise 16 examples in 100 steps. That argued against a completely broken gradient path, while not proving that the full optimisation setup or targets were adequate.</p>
+<p>Threshold selection compounded the problem: coarse 0.01 threshold ties could select 0.99, producing all-negative predictions and zero recall. Fixing threshold search would improve the reporting mechanism, but it would not turn a nearly constant ranking into a useful classifier. Both failures must be acknowledged separately.</p>
+<h3>8.2 Dot scatter: good ranking, failed robustness</h3>
+<p>A 5 × 3 feature-pop dot specialist achieved selection AP near 0.979. This initially encouraged real-data inference. Locked cluster-shift recall was only approximately 0.484, 0.556 and 0.522 across reported conditions, and raster-shift false-positive rates were approximately 0.192, 0.194 and 0.170. Thus, the apparent selection success did not satisfy the robustness gate.</p>
+<p>Full-family inference was still useful as exploratory distribution inspection, provided that its limitations remained explicit. Increasing the number of images reduces sampling variation in a predicted prevalence. It does not remove a systematic bias shared across the entire family. Whole-dataset inference cannot, by itself, validate the classifier that generated those predictions.</p>
+<h3>8.3 Separating stroke detection from shape classification</h3>
+<p>A two-stage approach first detected a stroke mask and then classified straight versus curved shape. The controlled synthetic trial achieved positive mask IoU 0.7813 and detection recall 0.9975, but absent-image false-positive rate 0.155. Shape accuracy was 0.8525 using oracle masks and only 0.765 using predicted masks.</p>
+<p>The gap between oracle and predicted masks directly exposed error propagation. A shape model cannot reliably interpret a curve when its upstream mask retains text fragments and discards the actual interference. The black panels shown during review were mask visualisations; their sparse or incorrect white regions were not proof that the original RGB image lacked a feature.</p>
+<p>At the user&#39;s request, another trial returned to raw RGB, multiple colours and the 10 × 3 view without feature pop. Thirty patches were obtained by padding 128 × 64 images to 130 × 66 and using 13 × 22 cells. It reached oracle-mask shape accuracy 0.935, but predicted-mask accuracy only 0.525, mask IoU 0.295 and absent-image false-positive rate 0.845.</p>
+<p>This was a clear failure of the end-to-end detector, despite a strong oracle result. It also was not a clean ablation of feature pop because view, colour distribution and architecture changed together. The broader lesson is to diagnose where evidence is lost rather than infer that a particular preprocessing method is solely responsible from one gallery.</p>
+<h2 id="section-9">9. Multi-label CNN and pure transformer comparison</h2>
+<h3>9.1 Expanding the vocabulary</h3>
+<p>The next formulation jointly predicted 15 labels from each image. This permits co-occurring features instead of forcing one class per image. The implemented label names require their actual rendering definitions:</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Implemented synthetic meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Straight interference</td>
+<td>Added straight strokes</td>
+</tr>
+<tr>
+<td>Curved interference</td>
+<td>Added parameterised curved strokes</td>
+</tr>
+<tr>
+<td>Dot scatter</td>
+<td>Discrete added dots</td>
+</tr>
+<tr>
+<td>Decorative shapes</td>
+<td>The tested circle-outline operation, not arbitrary shapes</td>
+</tr>
+<tr>
+<td>Periodic grid</td>
+<td>Axis-aligned grid lines</td>
+</tr>
+<tr>
+<td>Background texture</td>
+<td>Gaussian-noise texture, not all textures</td>
+</tr>
+<tr>
+<td>Background gradient</td>
+<td>RGB ramp</td>
+</tr>
+<tr>
+<td>Background blocks</td>
+<td>Rectangular patches</td>
+</tr>
+<tr>
+<td>Hollow lettering</td>
+<td>Hollow glyph rendering</td>
+</tr>
+<tr>
+<td>Glyph border</td>
+<td>Dilation-based border</td>
+</tr>
+<tr>
+<td>Glyph shadow</td>
+<td>Offset glyph shadow</td>
+</tr>
+<tr>
+<td>Nonlinear text deformation</td>
+<td>Sinusoidal text remapping</td>
+</tr>
+<tr>
+<td>Blur</td>
+<td>Gaussian blur</td>
+</tr>
+<tr>
+<td>Glyph rotation</td>
+<td>Per-glyph rotation</td>
+</tr>
+<tr>
+<td>Multicolour text</td>
+<td>Variation in glyph colours</td>
+</tr>
+</tbody></table>
+<p>These definitions constrain interpretation. A texture classifier trained on Gaussian noise is not automatically a detector of stripes, woven patterns or structured background grain. Broad natural-language labels can disguise narrow synthetic coverage.</p>
+<p>The corpus contained 8,000 training, 1,200 selection and 1,000 calibration images, plus four locked sets of 800 each: 13,400 in total. Inputs were raw RGB at 192 × 96 without feature pop. Counterfactual visibility checks excluded labels whose removal changed too few pixels. Recipe-shift coverage was also feature-dependent, rather than an independent new renderer for every label.</p>
+<h3>9.2 The CNN and transformer architectures</h3>
+<p>The multi-label CNN shared visual encoding and used feature-specific attention across 50 spatial tokens derived from 1 × 1, 2 × 2, 5 × 3 and 10 × 3 layouts. The pure transformer used 8 × 8 image patches, giving 288 tokens, an embedding width of 96, three layers, four attention heads, feed-forward width 384, dropout 0.2 and 15 learned feature tokens. It contained 384,783 parameters.</p>
+<p>The pure transformer was trained from scratch on the synthetic corpus. It was not a pretrained large ViT <a href="#ref-4">[R4]</a>. It is therefore inappropriate to infer its likely performance merely from claims that transformers scale well on large datasets. Scale, pretraining, locality, resolution and optimisation all matter.</p>
+<p>The CNN reached selection macro AP around 0.855. Transformer seed results were approximately 0.690, 0.695 and 0.698. On the relevant robustness evaluation, the CNN passed seven feature gates and the transformer four: grid, texture, blocks and blur. This experiment favoured the CNN under the tested budget. It did not establish that all CNNs outperform all transformers, especially because compute-optimal settings and pretraining were not matched.</p>
+<h3>9.3 Real rendering remained the decisive weakness</h3>
+<p>Both model families were used in real-image inference and matched generation trials, including 6,909 predictions and 105 renders, or 21 cases per family. The renderer exposed errors that synthetic AP did not capture. For example, the CNN predicted periodic grids on about 68.7% of DarkBay images while predicting blocks on only about 0.2%. Qualitative inspection indicated the opposite kind of structure was important.</p>
+<p>These are predicted rates, not annotated real-image error rates. Nevertheless, they help locate a concrete mechanism behind poor renders: an incorrect feature estimate becomes a repeated drawing operation. The transformer did not visibly resolve the City/Courier false-grid problem. Stronger architecture alone did not repair the observation-to-operation mapping.</p>
+<h2 id="section-10">10. Joint feature and rendering-parameter learning</h2>
+<h3>10.1 Why joint learning was introduced</h3>
+<p>The next hypothesis addressed a disconnect in the earlier pipeline: feature classification was learned, but much of its conversion into rendering settings was separate. A model saying “curve present” still left amplitude, count and width unspecified. Joint learning added regression targets for controls already known during synthetic rendering.</p>
+<p>This is a constrained form of learning the mapping. It learns associations between pixels and named, predefined controls; it does not learn which arbitrary library function to call or invent a new primitive. The renderer schema and the interpretation of each output remain authored code.</p>
+<h3>10.2 Gridded and bidirectionally coupled variants</h3>
+<p>Two architectures were tested, drawing respectively on gridded representation ideas <a href="#ref-5">[R5]</a> and CNN–transformer coupling <a href="#ref-6">[R6]</a>. Both used a convolutional stem with channels 3 → 32 → 64 → 64, strides 1, 2 and 2, group normalisation and SiLU. At 192 × 96 input resolution, this produced a 64-channel, 24 × 48 map.</p>
+<p>The gridded model padded its feature-map width to 50 and organised it into 3 × 10 cells. Each cell contained 8 × 5 local positions. Local features were projected to width 96 and pooled through learned-query cross-attention before three transformer layers processed the 30 positioned grid tokens. The model had 442,599 parameters. It borrowed a structured grid idea without implementing the full Gridded Transformer Neural Process, its probabilistic prediction task or its claimed properties.</p>
+<p>The coupled hybrid added three rounds of local residual convolution and communication with the global tokens. Global information was upsampled to local features and passed through a learned tanh gate, initially small. It had 553,770 parameters. This was a project-specific Conformer-inspired architecture, not the original Conformer reproduced at a smaller input size.</p>
+<p>The design permits local evidence to inform the global interpretation and global context to influence local processing. That capacity is not itself proof that the network uses the interaction correctly. Appropriate ablations and interventions remain necessary, as the earlier bypass and tilt failures demonstrated.</p>
+<h3>10.3 Outputs, loss and optimisation</h3>
+<p>Fifteen feature heads predicted presence. Nine regression heads predicted normalised renderer controls:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Synthetic training range</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Line count</td>
+<td>1–4</td>
+</tr>
+<tr>
+<td>Line width</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td>Curve count</td>
+<td>1–4</td>
+</tr>
+<tr>
+<td>Curve width</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td>Curve amplitude</td>
+<td>9–24</td>
+</tr>
+<tr>
+<td>Dot count</td>
+<td>8–64</td>
+</tr>
+<tr>
+<td>Dot radius</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td>Grid spacing</td>
+<td>9–26</td>
+</tr>
+<tr>
+<td>Blur radius</td>
+<td>0.8–1.5</td>
+</tr>
+</tbody></table>
+<p>The objective combined masked binary cross-entropy with weighted Smooth L1 regression:</p>
+<pre><code>L = L_feature_BCE + 0.5 × L_parameter_SmoothL1
+</code></pre>
+<p>Parameter supervision was conditioned on the owning feature and visibility. This avoids asking the model to infer a meaningful curve amplitude from an image without a visible curve. It does not completely solve identifiability: overlap can hide some drawn dots, and integer width may produce indistinguishable rasterisations.</p>
+<p>Training used AdamW with learning rate 0.0005, weight decay 0.02, batch size 32, gradient clipping at 3 and dropout 0.2. The schedule allowed up to 40 epochs, with minimum training and patience constraints. Selection combined macro AP and normalised parameter MAE:</p>
+<pre><code>selection score = macro AP − 0.25 × parameter MAE
+</code></pre>
+<p>This weighted objective encodes a project preference. Its coefficient is not a theoretically optimal balance. The selected checkpoint must also not be confused with the final epoch, and a best single-seed metric must not replace an all-seed robustness claim.</p>
+<h3>10.4 What the completed trials support</h3>
+<p>Across the required seeds and strata, the gridded model passed six of the 15 feature gates; the hybrid passed seven. The hybrid&#39;s additional passing feature was curved interference. Both passed dot scatter, grid, texture, gradient, blocks and blur. Both failed several typography-related features and straight interference under the full gate.</p>
+<p>Both architectures passed six of nine parameter criteria against a training-median baseline. Line width, dot radius and curve amplitude failed the all-seed/all-test criterion. Curve amplitude had looked acceptable in one hybrid seed, illustrating why a selected checkpoint&#39;s result cannot be reported as robust across training runs.</p>
+<p>These results are more encouraging than the pure-transformer experiment but remain partial. Some controls are learnable within the synthetic setup; several are not robust even there. No corresponding labelled real-feature evaluation establishes that the passing controls retain those properties on real CAPTCHA families.</p>
+<h2 id="section-11">11. CAPRI: combining learned inference with V1 measurements</h2>
+<h3>11.1 Why fusion was preferable to wholesale replacement</h3>
+<p>The newer classifiers did not consistently render closer images than V1. The practical response was to retain useful CV measurements rather than force all rendering decisions through neural predictions. CAPRI combined the frozen seed-731 joint model with the earlier palette, density, layout and block measurements.</p>
+<p>The fusion policy preserves CV evidence rather than letting a weak learned negative erase it. Unsupported grid and blur additions are suppressed without corroborating measurement. Only selected learned controls are applied, notably curve controls; the existence of 15 heads does not mean all 15 unconditionally drive the renderer.</p>
+<p>This makes the system less elegant than an entirely learned inverse renderer, but more faithful to the experimental evidence. It also creates a new attribution problem: improved renders cannot automatically be credited to the neural model when CV measurements dominate important decisions. A CV-only versus fused comparison is therefore essential.</p>
+<p>The joint-model real trial produced 420 matched renders across both architectures and CV/fused conditions. Its conclusions remained mixed. The packaged hybrid checkpoint includes a curve-amplitude choice supported by that seed, although the stronger all-seed amplitude criterion failed. The release should consequently be described as an experimental checkpoint with a documented policy, not a fully validated mapping model.</p>
+<h3>11.2 Similar-font variety</h3>
+<p>The later CAPRI package retained font adjustment but replaced a single chosen font with a small weighted pool. By default, one font is sampled per image from the top three frozen font-model scores. If their scores are p₁, p₂ and p₃, the sampling weights are their normalised values, pᵢ divided by their sum. Fonts are not mixed arbitrarily within one word.</p>
+<p>The rationale is to avoid overcommitting the recognition corpus to one imperfect approximation. However, top-three classification probabilities are not verified perceptual distances, and their calibration on real images is unknown. A confidently wrong ranking can still generate an inappropriate pool. “Similar-font variety” is therefore a practical policy name, not a demonstrated perceptual guarantee.</p>
+<p>The intended benefit is recognition robustness, but that benefit is untested until a recogniser is trained with and without the mixture under matched conditions. Variety may also increase the domain gap if the extra fonts are less representative. The policy introduces a measurable hypothesis, not a free improvement.</p>
+<h2 id="section-12">12. Meta-Sim-inspired refinement of CAPRI recipes</h2>
+<h3>12.1 A deliberately restricted adaptation problem</h3>
+<p>After direct image refinement failed, a narrower approach adapted six procedural controls while retaining the renderer&#39;s structure. This experiment was inspired by Meta-Sim <a href="#ref-10">[R10]</a>: learn how simulator parameters should change so that generated outputs better match real observations in a fixed representation. It was not a reproduction of Meta-Sim&#39;s full method.</p>
+<p>Each family received its own small adapter: eight inputs, a hidden layer of 24 units with tanh, and six output gains. Output log-gains were bounded using ln(4) × tanh, giving multiplicative gains between 0.25 and 4. Initial output was the identity transformation. The six mutable controls were line count, line width, dot count, curve count, curve amplitude and measured block count.</p>
+<p>Palettes, gradients, text, fonts and layout were not optimisation outputs. The candidate had to preserve the chosen baseline&#39;s exact glyph geometry and RGB. An invalid candidate fell back to the baseline with a recorded reason. This restriction sacrifices flexibility to reduce the likelihood of corrupting labels or repeating the earlier recolouring failures.</p>
+<p>Multiplicative control has its own limitation: multiplying a zero baseline count does not create an absent primitive. The adapter cannot generally repair a missing operation outside its permitted support. Nor can it fix an incorrect font topology or invent a stepped background pattern that the renderer does not represent.</p>
+<h3>12.2 Frozen DINO objective and numerical derivatives</h3>
+<p>The fitting procedure used frozen DINO ViT-S/8 CLS features <a href="#ref-7">[R7]</a> with 224 × 80 input processing and the recorded normalisation. DINO was not retrained on the CAPTCHA collections. The distribution loss was a biased Gaussian-kernel maximum mean discrepancy estimate:</p>
+<pre><code>MMD² = mean k(z_real, z_real)
+     + mean k(z_synthetic, z_synthetic)
+     − 2 × mean k(z_real, z_synthetic)
+</code></pre>
+<p>The kernel bandwidth came from fit-set pairwise distances, with a lower bound. Since the renderer is not differentiable, symmetric finite differences approximated changes in the visual features for parameter perturbations. The adapter then used these numerical sensitivities during optimisation. The trial used 12 optimisation steps, batch size four, Adam learning rate 0.035, gradient clipping at one and finite-difference perturbation 0.2. Identity remained an eligible checkpoint, and selection occurred every four steps.</p>
+<p>The protocol is a small pilot. It explores whether a bounded distribution-based adjustment can help, not whether the adapter has converged to the best attainable family model. Quantised operations can make finite differences zero: line-width gains remained at one in the reported trial. More training does not automatically solve an insensitive numerical derivative.</p>
+<p>Each family used 48 real fit, 16 selection and 32 report images, with distinct membership in that run. Sixty-four fresh paired outputs per family produced 640 baseline/refined images across five families. These partitions reduce direct within-run reuse, but historical visual exposure means the report sets are not pristine new-family evaluations.</p>
+<h3>12.3 Results and their limits</h3>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th align="right">DINO MMD reduction</th>
+<th align="right">Independent CV distance: before → after</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CryptBB</td>
+<td align="right">3.79%</td>
+<td align="right">1.86174 → 2.18527</td>
+<td>Mixed: DINO gain but CV worsened</td>
+</tr>
+<tr>
+<td>City</td>
+<td align="right">4.33%</td>
+<td align="right">1.40547 → 1.25970</td>
+<td>Both metrics improved</td>
+</tr>
+<tr>
+<td>Courier</td>
+<td align="right">7.20%</td>
+<td align="right">0.77412 → 0.51403</td>
+<td>Both metrics improved</td>
+</tr>
+<tr>
+<td>DarkBay</td>
+<td align="right">27.71%</td>
+<td align="right">1.01952 → 0.72089</td>
+<td>Largest measured gain; two of 64 candidates fell back</td>
+</tr>
+<tr>
+<td>Outlined Text CAPTCHA</td>
+<td align="right">5.96%</td>
+<td align="right">0.84504 → 0.68543</td>
+<td>Both improved; typography mismatch persisted</td>
+</tr>
+</tbody></table>
+<p>The CV comparator used 12 dimensions derived from colour, edges and projection-related summaries, standardised using fitting data. It supplied a check outside the optimised DINO representation. It was still a low-dimensional proxy and not an independent human judgement or text-recognition measurement.</p>
+<p>A paired bootstrap with 300 resamples gave a CryptBB absolute discrepancy-change interval of approximately [−0.02610, 0.00370], crossing zero. The other reported intervals lay below zero: City [−0.03536, −0.01066], Courier [−0.03560, −0.01718], DarkBay [−0.12952, −0.08816] and Outlined [−0.05264, −0.02941]. These are intervals for absolute discrepancy changes, not percentage improvements. They are conditional on the fitted checkpoint and sampled data; they do not include variation from retraining many adapters.</p>
+<p>The learned controls tended to reduce dots and increase some supported blocks. CryptBB and DarkBay block gains were about 3.77 and 3.56. Dot gains ranged from approximately 0.25 to 0.65 across families. These changes are interpretable, but interpretability does not prove correctness: a metric can prefer the wrong change for the wrong reason.</p>
+<p>Qualitative inspection remained cautious. DarkBay&#39;s broad block/dot balance improved while coherent structure remained imperfect. City still lacked the target&#39;s stepped appearance. Outlined text remained too filled. The evidence supports “a bounded recipe adapter improved two chosen distances in four of five development families,” not “Meta-Sim solved the target distribution.”</p>
+<h3>12.4 Adapter binding and the font-mixture caveat</h3>
+<p>Adapters are bound to the exact profile for which they were fitted. A new family or changed profile does not silently receive another family&#39;s adapter. Automatic refinement is available only for the five matching hybrid profiles; forced refinement on an unmatched profile fails. This prevents one obvious form of cross-family misuse.</p>
+<p>The adapters were fitted using the single-font baseline. Combining them with the newer font mixture changes the generator distribution. A 378-image smoke validation checked determinism, operation and relevant invariants, including mismatch rejection; it did not re-establish the earlier quality gains for every mixed-font configuration. One DarkBay fallback appeared in that smoke test.</p>
+<p>Therefore, the released combination is supported by component evidence and an operational test, but lacks a complete quality ablation. The correct next comparison is a factorial experiment: single versus mixed fonts crossed with refinement off versus on, using matched labels, seeds, budgets and recognition evaluation.</p>
+<h2 id="section-13">13. Tools, implementation and corpus production</h2>
+<h3>13.1 Software and assets</h3>
+<table>
+<thead>
+<tr>
+<th>Tool or resource</th>
+<th>Role in the work</th>
+<th>Reproducibility qualification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Python</td>
+<td>Experiment orchestration, training, inference and generation</td>
+<td>Existing environment reused; per-run snapshots retained</td>
+</tr>
+<tr>
+<td>PyTorch 2.5.1+cu121</td>
+<td>CNN, transformer, font, count and refinement training</td>
+<td>CUDA-enabled experiments used the available RTX A4000</td>
+</tr>
+<tr>
+<td>NumPy 2.0.2</td>
+<td>Arrays, sampling, descriptors and numerical analysis</td>
+<td>Recorded package version</td>
+</tr>
+<tr>
+<td>Pillow 11.3.0</td>
+<td>Text and primitive rasterisation, masks, image I/O</td>
+<td>Rasterisation affects feature appearance and labels</td>
+</tr>
+<tr>
+<td>OpenCV 4.13.0 / package 4.13.0.92</td>
+<td>MSER, components, geometry and image measurements</td>
+<td>MSER proposals are not ground-truth character boxes</td>
+</tr>
+<tr>
+<td>scikit-learn 1.6.1</td>
+<td>Logistic Regression, Extra Trees, calibration and metrics</td>
+<td>Synthetic selection and calibration boundaries matter</td>
+</tr>
+<tr>
+<td>scikit-image 0.24.0</td>
+<td>Image descriptors and supporting processing</td>
+<td>Initial environment record; not every module used in every run</td>
+</tr>
+<tr>
+<td>PHP backends and instrumented adapters</td>
+<td>Initial capability and determinism pilots</td>
+<td>Their use must not be confused with the later Python overlay corpus</td>
+</tr>
+<tr>
+<td>DINO source and weights</td>
+<td>Frozen visual embeddings in selected experiments</td>
+<td>Pretrained vision model; no language component</td>
+</tr>
+<tr>
+<td>Google Fonts / audited OFL files</td>
+<td>Independent typography bank</td>
+<td>Font notices and asset hashes retained</td>
+</tr>
+<tr>
+<td>JSON, JSONL, CSV, NPZ and joblib/checkpoints</td>
+<td>Protocols, memberships, labels, predictions and models</td>
+<td>Machine-readable records supplement narrative notes</td>
+</tr>
+<tr>
+<td>PowerShell and local status files</td>
+<td>Launching, monitoring and audit coordination</td>
+<td>Status can be stale; corroborate with logs and audit completion</td>
+</tr>
+</tbody></table>
+<p>The project used open-source methods and code with asset-specific checks, rather than assuming every item in an open repository was freely reusable. Package metadata is not a complete transitive licence audit, and proprietary operating-system or driver components should not be misrepresented as open-source research algorithms. The initial paper register&#39;s statement that no paper-supplied weights were used became obsolete once DINO was introduced; the chronology in this chapter explicitly corrects that claim.</p>
+<h3>13.2 Release structure and generation contract</h3>
+<p>The release includes frozen model checkpoints, profiles, renderer code, font assets/notices, integrity manifests and instructions. A fresh profile uses both CV measurements and frozen learned inference. Generating from a cached profile does not require rereading the target images. No recogniser is involved in choosing the synthetic label: the label is the string intentionally submitted to the renderer.</p>
+<p>The generation policy covers lengths 2–8 and three buckets: numeric, alphabetic and alphanumeric. Their Cartesian product gives 21 cells. A deterministic cycle balances these cells without assuming the target&#39;s hidden alphabet or length. This is a deliberate generic-training policy; it does not reproduce the target family&#39;s true text prior.</p>
+<p>Text-hash partitioning reserves disjoint string partitions for training, validation and testing. Strings may repeat within an allowed partition, while image hashes are audited for uniqueness. Repeated text is not automatically a duplicate image, and unique image pixels do not prove semantic diversity.</p>
+<h3>13.3 Scaling to 100,000 images per family</h3>
+<p>The requested production target was 100,000 images for each of five families, or 500,000 total. Generation used shards, per-image label/recipe metadata, aggregate manifests and an audit stage. At the chapter&#39;s initial recorded snapshot, DarkBay, City and Outlined each had 100,000 generated and audited images. A subsequent log check found that CryptBB&#39;s recovery coordinator had stopped on a Windows status-file replacement error, leaving the bank recovery incomplete; Courier had previously failed and was awaiting recovery. These are dated operational facts, not a permanent description of the eventual dataset. The accompanying status snapshot and any later recovery notes should take precedence over treating this paragraph as a live monitor.</p>
+<p>Large-scale generation exposed an important gap in the smoke test. Some refinement candidates violated exact glyph geometry/RGB assertions. A conservative generation wrapper rejects such a candidate and returns the valid baseline with explicit fallback metadata. It does not weaken the invariant to allow a distorted candidate to pass. Historical failed attempts and completed shards are preserved.</p>
+<p>DarkBay recorded 2,483 refinement fallbacks among 100,000 outputs, or 2.483%. Consequently, its corpus is a documented mixture of accepted refined outputs and baseline fallbacks. That mixture must be included when interpreting downstream performance. City and Outlined reported zero fallbacks in their completed snapshot.</p>
+<p>The recovery mechanism demonstrates operational resilience, not aesthetic success. An audit can establish that files decode, labels and paths match, counts balance and invariant checks pass. It cannot establish that a glyph is independently readable, that every label remains perceptually unambiguous, or that the synthetic distribution resembles the real family sufficiently for recognition transfer.</p>
+<p>During preparation of this chapter, the finite recovery coordinator was resumed with bounded retries for status-file replacement. All ten CryptBB shards were already complete, so they were reused for auditing rather than regenerated. Courier remained next in the recovery sequence. This repair did not restart the stopped research loop, alter frozen model weights or interrupt the separate recognition-training processes found in another project.</p>
+<h2 id="section-14">14. Critical synthesis</h2>
+<h3>14.1 What demonstrably worked</h3>
+<p>Several concrete capabilities were achieved. The project constructed reproducible synthetic examples with visible-effect supervision and uncertainty handling. It trained classical and neural feature models while keeping real text labels out of classifier fitting. It identified and repaired a specific shared-background mapping bug. It showed that a hybrid model could learn some feature and parameter targets across synthetic strata. It packaged a reproducible, inspectable procedural pipeline and generated large labelled corpora. Finally, bounded Meta-Sim-inspired adaptation improved both selected distribution metrics for four of five development families.</p>
+<p>These achievements justify continued evaluation. They do not establish that the complete system passes every original gate or that the resulting data improves a recogniser. A thesis should present these as separate propositions, supported by separate evidence.</p>
+<h3>14.2 Principal threats to validity</h3>
+<p><strong>Generator-induced shortcuts.</strong> Common colour, layout, rasteriser and co-occurrence conventions can make synthetic tests easier than real transfer. Withheld fonts alone do not remove these conventions. The rejected colour-coded pilot and count-layout concern are direct examples.</p>
+<p><strong>Locally unidentifiable labels.</strong> Fine crops may not contain the evidence needed to identify their parent&#39;s feature. A globally curved line can be locally straight. Causal masks answer what operation changed the pixels, not always what shape is recognisable from those pixels.</p>
+<p><strong>Repeated development exposure.</strong> The five principal families guided many revisions. Some previously reserved images later entered whole-family inference. Freezing each model before inference does not reset that accumulated exposure or restore a pristine benchmark.</p>
+<p><strong>Objective mismatch.</strong> Synthetic AP, low-level distance, DINO discrepancy, subjective similarity and OCR accuracy are different outcomes. The direct-refiner failures show why improvement on one cannot stand in for another.</p>
+<p><strong>Incomplete ablations.</strong> Resolution, training duration, architecture and palette sometimes changed together. Such experiments identify a better configuration under their conditions, but cannot cleanly assign causal credit to one component.</p>
+<p><strong>Seed and checkpoint selection.</strong> Seed-731 packaging is an engineering choice. The all-seed curve-amplitude failure remains relevant even if that checkpoint looked good. Reporting only the selected seed would conceal instability.</p>
+<p><strong>Representation limits.</strong> Finite font banks, axis-aligned grids, Gaussian texture and bounded curve families cannot express every target style. Optimising within the wrong support can increase confidence without creating the missing structure.</p>
+<p><strong>Assistant-review limitations.</strong> Visual review found useful failures, but was neither a blinded human study nor independently audited feature ground truth. It influenced development and should not be presented as an unbiased final evaluation.</p>
+<p><strong>Small refinement budgets and uncertainty.</strong> Twelve adapter steps and a single fitted run per family are insufficient to characterise optimisation variance. Bootstrap intervals over samples do not include all sources of training or model-selection uncertainty.</p>
+<p><strong>Combined-policy uncertainty.</strong> Font mixture plus refinement was operationally tested after the adapter had been fitted on a different single-font policy. Quality and recognition gains of that combination remain to be measured.</p>
+<h3>14.3 Why intentional underfitting is not the right objective</h3>
+<p>The motivation for generic recognition was sometimes expressed as making PARSeq underfit the synthetic data. The useful goal is better transfer, not deliberately poor training fit. Underfitting can discard genuinely transferable character structure. A stronger protocol controls synthetic diversity, regularisation, model capacity and stopping criteria, then measures performance on appropriately reserved real data.</p>
+<p>Likewise, making every family look different is only a weak sanity check. A renderer could assign a different wrong colour to every family and satisfy that test. Meaningful differentiation must correspond to the relevant visual factors and ultimately support the intended recognition task.</p>
+<h3>14.4 Required downstream study</h3>
+<p>A rigorous next experiment would compare a generic baseline, CV/font-only generation, CAPRI fusion, font-mixture CAPRI and CAPRI with bounded refinement. Training budgets, string distributions, decoder architecture and random seeds should be matched. A factorial subset should isolate font variety from refinement. Both mean performance and per-family failure should be reported.</p>
+<p>PARSeq <a href="#ref-13">[R13]</a> is an appropriate planned recogniser, but the protocol must not tune repeatedly on its final real test. Distinct style-fit, development and test roles should be defined before new family acquisition. For the historical bank, exposure should be disclosed rather than concealed by renaming files. A genuinely new source provides a stronger transfer test than another rerender of the five development families.</p>
+<p>Feature evaluation should additionally use independently audited real labels for a bounded subset of interpretable features. That would allow precision, recall and false-positive rates instead of prediction prevalence alone. Intervals should respect image/base-group dependence, and recognition experiments should include multiple training seeds where feasible.</p>
+<h2 id="section-15">15. Contribution statement and conclusion</h2>
+<p>CAPRI is an implemented exploratory framework for converting untranscribed CAPTCHA appearance into constrained procedural generation. Its development demonstrates that local feature classification, renderer mapping and distribution matching are separate problems. Solving one incompletely does not automatically solve the others.</p>
+<p>The progression was not a simple replacement of weak classical methods by stronger neural networks. The original 10 × 3 classifiers offered useful synthetic ranking but poor real transfer. Multi-view and specialist models exposed context and supervision problems. A pure transformer did not outperform the tested CNN. The later hybrid learned some useful controls, but the packaged pipeline still benefited from retaining V1&#39;s explicit measurements. Direct image refinement was rejected, while restricted recipe adaptation produced modest, measurable and family-dependent improvements.</p>
+<p>The strongest current claim is therefore conditional: <strong>within a fixed rendering vocabulary, synthetic-trained inference combined with explicit measurements and bounded unlabelled-real adaptation can produce an operational, partially style-adapted labelled corpus.</strong> Exact family recreation, robust real-feature detection, broad unseen-family generalisation and improved real CAPTCHA recognition remain unproven. Those limits are central findings of this chapter rather than qualifications to be hidden after the results.</p>
+<h2 id="section-16">References</h2>
+<p><strong id="ref-1">[R1]</strong> Wang, Z., Yang, J., Jin, H., Shechtman, E., Agarwala, A., Brandt, J., and Huang, T. S. (2015). <em>DeepFont: Identify Your Font from An Image</em>. ACM Multimedia. <a href="https://arxiv.org/abs/1507.03196">Primary paper</a>.</p>
+<p><strong id="ref-2">[R2]</strong> Shrivastava, A., Pfister, T., Tuzel, O., Susskind, J., Wang, W., and Webb, R. (2017). <em>Learning from Simulated and Unsupervised Images through Adversarial Training</em>. CVPR. <a href="https://arxiv.org/abs/1612.07828">Primary paper</a>.</p>
+<p><strong id="ref-3">[R3]</strong> Sun, B., and Saenko, K. (2016). <em>Deep CORAL: Correlation Alignment for Deep Domain Adaptation</em>. <a href="https://arxiv.org/abs/1607.01719">Primary paper</a>.</p>
+<p><strong id="ref-4">[R4]</strong> Dosovitskiy, A., et al. (2021). <em>An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale</em>. ICLR; preprint 2020. <a href="https://arxiv.org/abs/2010.11929">Primary paper</a>.</p>
+<p><strong id="ref-5">[R5]</strong> Ashman, M., Diaconu, C., Langezaal, E., Weller, A., and Turner, R. E. (2025). <em>Gridded Transformer Neural Processes for Spatio-Temporal Data</em>. ICML, PMLR 267, 1722–1761. <a href="https://proceedings.mlr.press/v267/ashman25a.html">Published paper</a>.</p>
+<p><strong id="ref-6">[R6]</strong> Peng, Z., Huang, W., Gu, S., Xie, L., Wang, Y., Jiao, J., and Ye, Q. (2021). <em>Conformer: Local Features Coupling Global Representations for Visual Recognition</em>. ICCV, 367–376. <a href="https://openaccess.thecvf.com/content/ICCV2021/html/Peng_Conformer_Local_Features_Coupling_Global_Representations_for_Visual_Recognition_ICCV_2021_paper.html">Published paper</a>.</p>
+<p><strong id="ref-7">[R7]</strong> Caron, M., Touvron, H., Misra, I., Jégou, H., Mairal, J., Bojanowski, P., and Joulin, A. (2021). <em>Emerging Properties in Self-Supervised Vision Transformers</em>. ICCV. <a href="https://arxiv.org/abs/2104.14294">Primary paper</a>.</p>
+<p><strong id="ref-8">[R8]</strong> Lempitsky, V., and Zisserman, A. (2010). <em>Learning to Count Objects in Images</em>. NeurIPS. <a href="https://www.robots.ox.ac.uk/~vgg/research/counting/NIPS2010.pdf">Author-hosted paper</a>.</p>
+<p><strong id="ref-9">[R9]</strong> Darcet, T., Oquab, M., Mairal, J., and Bojanowski, P. (2024). <em>Vision Transformers Need Registers</em>. ICLR; preprint 2023. <a href="https://arxiv.org/abs/2309.16588">Primary paper</a>.</p>
+<p><strong id="ref-10">[R10]</strong> Kar, A., Prakash, A., Liu, M.-Y., Cameracci, E., Yuan, J., Rusiniak, M., Acuna, D., Torralba, A., and Fidler, S. (2019). <em>Meta-Sim: Learning to Generate Synthetic Datasets</em>. ICCV. <a href="https://arxiv.org/abs/1904.11621">Primary paper</a>.</p>
+<p><strong id="ref-11">[R11]</strong> Ruiz, N., Schulter, S., and Chandraker, M. (2019). <em>Learning to Simulate</em>. ICLR; preprint 2018. <a href="https://arxiv.org/abs/1810.02513">Primary paper</a>.</p>
+<p><strong id="ref-12">[R12]</strong> Ye, G., et al. (2018). <em>Yet Another Text CAPTCHA Solver: A Generative Adversarial Network Based Approach</em>. ACM CCS. DOI: 10.1145/3243734.3243754. <a href="https://zwang4.github.io/publications/ccs18.pdf">Author-hosted paper</a>.</p>
+<p><strong id="ref-13">[R13]</strong> Bautista, D., and Atienza, R. (2022). <em>Scene Text Recognition with Permuted Autoregressive Sequence Models</em>. ECCV. <a href="https://arxiv.org/abs/2207.06966">Primary paper</a>.</p>
+<p><strong id="ref-14">[R14]</strong> Epshtein, B., Ofek, E., and Wexler, Y. (2010). <em>Detecting Text in Natural Scenes with Stroke Width Transform</em>. CVPR. <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/201020CVPR20TextDetection.pdf">Author-hosted paper</a>.</p>
+<p><strong id="ref-15">[R15]</strong> Dalal, N., and Triggs, B. (2005). <em>Histograms of Oriented Gradients for Human Detection</em>. CVPR. <a href="https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf">Author-hosted paper</a>.</p>
+<p><strong id="ref-16">[R16]</strong> Geurts, P., Ernst, D., and Wehenkel, L. (2006). <em>Extremely Randomized Trees</em>. Machine Learning, 63, 3–42. <a href="https://doi.org/10.1007/s10994-006-6226-1">Published paper</a>.</p>
+<h2 id="section-17">Appendix A. Reading the accompanying evidence</h2>
+<p>The evidence index links the chapter&#39;s stages to local protocols, results and critical reviews. The manifest records hashes and snapshot times; it is an audit trail, not an assertion that every archived sentence is current. The bibliography separates primary papers from project implementation evidence. Earlier planning documents saying “not trained” remain valid historical statements about their own stage, not descriptions of the final release.</p>
+<p>The supplied galleries are qualitative illustrations of development data. They are not randomised blinded assessments or sufficient evidence for accuracy. The numerical tables above should be read with their original run&#39;s protocol and denominator. In particular, do not average AP, mask IoU, parameter MAE, DINO distance and OCR accuracy into one artificial measure of progress.</p>
+<h3>A.1 Experiment progression and decision record</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Tested idea</th>
+<th>Recorded decision or limitation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Resource pilots</td>
+<td>Reuse general-purpose PHP and Python capabilities</td>
+<td>Replay and licensing checks first; not all assets eligible</td>
+</tr>
+<tr>
+<td>Initial labels</td>
+<td>Three effects on 30 overlapping bricks</td>
+<td>Reject colour shortcuts; add uncertain labels and visible contribution</td>
+</tr>
+<tr>
+<td>Candidate corpus</td>
+<td>Expand to 5,600 parents</td>
+<td>Integrity improved; original acceptance audit remained incomplete</td>
+</tr>
+<tr>
+<td>Classical V1</td>
+<td>LR and Extra Trees with ordinary/enhanced descriptors</td>
+<td>LR selected; curve/dot confident thresholds unresolved</td>
+</tr>
+<tr>
+<td>Frozen real inference</td>
+<td>Aggregate local predictions into a family story</td>
+<td>Severe saturation; predicted prevalence not accuracy</td>
+</tr>
+<tr>
+<td>CV mapping</td>
+<td>Palette, layout, density and block relationships</td>
+<td>Useful partial matches; Phase 1 gate failed</td>
+</tr>
+<tr>
+<td>Early refinement</td>
+<td>Search, recipe models and direct image networks</td>
+<td>Direct models rejected despite larger numerical gains</td>
+</tr>
+<tr>
+<td>Font iterations</td>
+<td>Synthetic CNN, views, contrast and geometry augmentation</td>
+<td>Some matched synthetic improvements; real topology remained difficult</td>
+</tr>
+<tr>
+<td>Background investigation</td>
+<td>Trace operations and isolate rectangle evidence</td>
+<td>Specific Courier regression repaired; recall not established</td>
+</tr>
+<tr>
+<td>Count and heatmaps</td>
+<td>Count classifier, CV, DINO and density CNN</td>
+<td>Synthetic success did not transfer reliably; count removed</td>
+</tr>
+<tr>
+<td>DINO recipe search</td>
+<td>Attention/CLS-based parameter candidates</td>
+<td>Small mixed gains; attention&#39;s added value unproven</td>
+</tr>
+<tr>
+<td>Direct Phase 3B</td>
+<td>Shared models, then independent family GANs</td>
+<td>Halos and distribution failures; experiment stopped</td>
+</tr>
+<tr>
+<td>Multi-view V2</td>
+<td>Coarse-to-fine grids and per-grid heads</td>
+<td>Mixed results; small crops lost curvature evidence</td>
+</tr>
+<tr>
+<td>Neighbour geometry</td>
+<td>Tilt and continuity messages</td>
+<td>Tilt failed a constant baseline; no gate pass</td>
+</tr>
+<tr>
+<td>Feature specialists</td>
+<td>Dedicated view selection and feature pop</td>
+<td>Curve near chance; dot selection success failed shift tests</td>
+</tr>
+<tr>
+<td>Two-stage strokes</td>
+<td>Detect mask, then classify its shape</td>
+<td>Predicted masks degraded otherwise stronger oracle performance</td>
+</tr>
+<tr>
+<td>Raw multicolour grid</td>
+<td>Remove pop; return to 10 × 3</td>
+<td>Very high false positives; not a rescue</td>
+</tr>
+<tr>
+<td>Multi-label CNN</td>
+<td>Learn 15 co-occurring feature outputs</td>
+<td>Seven synthetic feature gates; real mapping errors persisted</td>
+</tr>
+<tr>
+<td>Pure transformer</td>
+<td>Global attention from RGB patches</td>
+<td>Four gates in the tested setup; not better than CNN</td>
+</tr>
+<tr>
+<td>Joint gridded/hybrid</td>
+<td>Learn feature presence and nine controls</td>
+<td>Hybrid seven features; both six parameter gates</td>
+</tr>
+<tr>
+<td>CAPRI fusion</td>
+<td>Preserve V1 CV evidence with selected V2 outputs</td>
+<td>Packaged experimental system; not all heads trusted</td>
+</tr>
+<tr>
+<td>Meta-Sim-inspired adapter</td>
+<td>Learn bounded per-family recipe gains</td>
+<td>Both metrics improved in four of five; CryptBB mixed</td>
+</tr>
+<tr>
+<td>Similar-font mixture</td>
+<td>Sample one of top-three fonts per image</td>
+<td>Operationally checked; recognition benefit not yet established</td>
+</tr>
+<tr>
+<td>Corpus production</td>
+<td>100,000 labelled images per family</td>
+<td>Audit and recovery required; completion is not OCR validation</td>
+</tr>
+</tbody></table>
+<h3>A.2 Software and asset sources</h3>
+<p>The initial PHP source revisions and asset exclusions are preserved in the copied resource-acquisition record. Public upstream sources are <a href="https://github.com/Gregwar/Captcha">Gregwar/Captcha</a>, <a href="https://github.com/dapphp/securimage">Securimage</a>, <a href="https://github.com/mobicms/captcha">MobiCMS Captcha</a>, <a href="https://github.com/yasirmturk/simple-php-captcha">simple-php-captcha</a> and <a href="https://github.com/laminas/laminas-captcha">Laminas Captcha</a>. Laminas was designated as a withheld renderer; downloading it did not establish completed withheld-renderer testing. Portable PHP 8.5.11 with GD and FreeType was recorded for the initial pilots.</p>
+<p>The independently sourced font expansion used <a href="https://github.com/google/fonts">Google Fonts</a>, with revision and per-file licence/hash records. Frozen DINO code/weights came from the <a href="https://github.com/facebookresearch/dino">official DINO repository</a>. Implementation tools are documented by <a href="https://pytorch.org/docs/stable/index.html">PyTorch</a>, <a href="https://scikit-learn.org/stable/">scikit-learn</a>, <a href="https://docs.opencv.org/">OpenCV</a>, <a href="https://pillow.readthedocs.io/">Pillow</a>, <a href="https://numpy.org/doc/">NumPy</a>, <a href="https://docs.scipy.org/doc/scipy/">SciPy</a> and <a href="https://scikit-image.org/docs/stable/">scikit-image</a>. These general links identify tools; the saved environment and source snapshots, rather than current website defaults, define the versions used. Joblib 1.5.3 and SciPy 1.13.1 are also pinned in the CAPRI release requirements.</p>
+<p>One additional font-transfer-learning PDF was consulted historically, but its bibliographic metadata was not verified and no particular method was adopted. It is deliberately not presented as an implemented or fully cited contribution. This is preferable to padding the reference list with an unverified attribution.</p>
+<h2 id="section-18">Appendix B. Recorded visual evidence</h2>
+<p>These are existing experiment exports, not newly selected best outputs. The three final examples per family use the earlier fixed five-character protocol: numeric, alphabetic and alphanumeric; first three fit recipes in their saved order, seeds 63000–63002. Real references are untranscribed development examples, not paired reconstructions. The CAPRI/refined columns preserve the same chosen synthetic text and font within each pair. They illustrate the single-font Meta-Sim trial, not a completed evaluation of the later font-mixture corpus.</p>
+<h3>B.1 Original grid and feature-pop representations</h3>
+<p><img src="assets/v1_grid.png" alt="Original V1 grid demonstration"></p>
+<p>Figure B1. The recorded V1 grid view. Overlap preserves nearby pixels but does not establish object continuity or feature accuracy.</p>
+<p><img src="assets/feature_pop.png" alt="Feature-pop transformations"></p>
+<p>Figure B2. Original RGB, CLAHE, feature pop, Canny and morphological views. Character strokes are strongly enhanced alongside interference; this is why feature pop cannot be treated as a feature-only mask.</p>
+<h3>B.2 Rejected direct image refinement</h3>
+<p><img src="assets/rejected_family_gan.png" alt="Own-family GAN trial with visible halos"></p>
+<p>Figure B3. Own-family GAN trial. The protected text survives, but surrounding halos, contours and colour coverage change. Baseline errors also remain. This experiment was rejected; it is included to show a failure mechanism, not a successful refinement result.</p>
+<h3>B.3 CAPRI and bounded Meta-Sim-inspired recipe refinement</h3>
+<p><img src="assets/cryptbb_comparison.png" alt="cryptbb: real reference, CAPRI and recipe refinement"></p>
+<p>Figure B4. cryptbb: real references at left, CAPRI in the middle and bounded recipe refinement at right. Three fixed examples are illustrative, not sufficient for a family-level quality verdict.</p>
+<p><img src="assets/city_comparison.png" alt="city: real reference, CAPRI and recipe refinement"></p>
+<p>Figure B5. city: real references at left, CAPRI in the middle and bounded recipe refinement at right. Three fixed examples are illustrative, not sufficient for a family-level quality verdict.</p>
+<p><img src="assets/courier_comparison.png" alt="courier: real reference, CAPRI and recipe refinement"></p>
+<p>Figure B6. courier: real references at left, CAPRI in the middle and bounded recipe refinement at right. Three fixed examples are illustrative, not sufficient for a family-level quality verdict.</p>
+<p><img src="assets/darkbay_comparison.png" alt="darkbay: real reference, CAPRI and recipe refinement"></p>
+<p>Figure B7. darkbay: real references at left, CAPRI in the middle and bounded recipe refinement at right. Three fixed examples are illustrative, not sufficient for a family-level quality verdict.</p>
+<p><img src="assets/outlined_text_captcha_comparison.png" alt="outlined_text_captcha: real reference, CAPRI and recipe refinement"></p>
+<p>Figure B8. outlined text captcha: real references at left, CAPRI in the middle and bounded recipe refinement at right. Three fixed examples are illustrative, not sufficient for a family-level quality verdict.</p>
+</main></body></html>

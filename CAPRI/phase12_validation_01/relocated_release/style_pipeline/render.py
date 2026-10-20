@@ -1,0 +1,116 @@
+"""General-purpose procedural mapping. No family-specific branches or assets."""
+import math
+import cv2
+import numpy as np
+from PIL import Image,ImageDraw,ImageFont
+
+def render(style,text,font_path,seed,variant=0):
+    rng=np.random.default_rng(seed);w,h=style['size'];bg=style['background_palette'];fg=style['foreground_palette']
+    image=Image.new('RGB',(w,h),tuple(bg[0]))
+    if style.get('gradient_strength',0)>30:
+        t=np.linspace(0,1,w)[None,:,None]
+        ramp=np.array(style['gradient_left'])[None,None,:]*(1-t)+np.array(style['gradient_right'])[None,None,:]*t
+        image=Image.fromarray(np.repeat(ramp,h,axis=0).clip(0,255).astype('uint8'))
+    d=ImageDraw.Draw(image)
+    # Spatial colors condition a smoothed background, not pasted source pixels.
+    blockgrid=np.array([b['rgb_mean'] for b in style['blocks']]).reshape(3,10,3)
+    color_variation=float(blockgrid.std((0,1)).mean())
+    operations=[]
+    if color_variation>8 and style['saturation_mean']>.08 and len(bg)>=3:
+        for _ in range(int(np.clip(color_variation,6,35))):
+            x=int(rng.integers(w));y=int(rng.integers(h));bw=int(rng.integers(4,max(5,w//6)));bh=int(rng.integers(4,max(5,h//2)))
+            color=bg[int(rng.integers(len(bg)))];d.rectangle((x,y,x+bw,y+bh),fill=tuple(color));operations.append(dict(kind='block',box=[x,y,x+bw,y+bh],color=color))
+    density=style['background_edge_fraction'];linecount=int(np.clip(density*w*h/(max(w,h)*2)*style.get('line_count_gain',1),0,60))
+    learned=style.get('classifier_features')
+    if learned is not None and learned.get('straight_interference')!='present':linecount=0
+    if 'straight_line_cap' in style:linecount=min(linecount,max(0,int(style['straight_line_cap'])))
+    hist=np.array(style['line_angle_histogram']);angles=[]
+    if hist.sum()>0:
+        for _ in range(linecount):
+            measured=style.get('lines',[])
+            angle=(float(measured[int(rng.integers(len(measured)))]['angle']) if measured else (int(rng.choice(12,p=hist/hist.sum()))+.5)*15)+float(rng.uniform(-2,2));angles.append(angle)
+            rad=math.radians(angle);x=float(rng.uniform(0,w));y=float(rng.uniform(0,h));length=float(rng.uniform(w*.3,w*1.2))
+            color=np.array(bg[int(rng.integers(len(bg)))],float)
+            contrast=40 if style['dark_background'] else -40;color=np.clip(color+contrast,0,255).astype(int).tolist()
+            ends=[round(x-length*math.cos(rad)/2),round(y-length*math.sin(rad)/2),round(x+length*math.cos(rad)/2),round(y+length*math.sin(rad)/2)]
+            width=1 if variant%2==0 else max(1,round(h*.035));width=max(1,round(width*style.get('line_width_gain',1)));d.line(ends,fill=tuple(color),width=width)
+            operations.append(dict(kind='line',points=ends,color=color,width=width))
+    if learned is not None and learned.get('curved_interference')=='present':
+        # Classification supplies presence only. Geometry is an explicitly
+        # generic adapter, not an inferred curve-density or curvature label.
+        for _ in range(int(np.clip(round(2*style.get('curve_count_gain',1)),0,10))):
+            cy=float(rng.uniform(.2,.8)*h);amp=float(rng.uniform(.05,.15)*h)*style.get('curve_amplitude_gain',1);phase=float(rng.uniform(0,2*math.pi))
+            points=[(int(x),round(cy+amp*math.sin(2*math.pi*x/max(w-1,1)+phase))) for x in np.linspace(0,w-1,40)]
+            color=np.clip(np.array(bg[0])+ (40 if style['dark_background'] else -40),0,255).astype(int).tolist()
+            d.line(points,fill=tuple(color),width=1);operations.append(dict(kind='classifier_curve',points=points,color=color,width=1,geometry='generic'))
+    count=int(np.clip(max(style['small_component_density']*2,style.get('texture_fraction',0)*(.6 if variant%2 else 1.0))*w*h*style.get('dot_count_gain',1),0,w*h*.35))
+    if learned is not None and learned.get('dot_scatter')!='present':count=0
+    for _ in range(count):
+        x=int(rng.integers(w));y=int(rng.integers(h));color=bg[int(rng.integers(len(bg)))]
+        noise=rng.normal(0,35,3)
+        if style.get('achromatic_noise',False):noise[:]=noise.mean()
+        color=np.clip(np.array(color)+noise,0,255).astype(int).tolist();d.point((x,y),fill=tuple(color))
+        operations.append(dict(kind='point',xy=[x,y],color=color))
+    background=image.copy();textmask=Image.new('L',(w,h));records=[];layers=[]
+    proposals=style['glyph_proposals'];height=float(np.clip(style['text_height'],.25,.75))
+    span=float(np.clip(.76*style.get('spacing_gain',1),.4,.90));centers=np.linspace(.5-span/2,.5+span/2,len(text))
+    for i,char in enumerate(text):
+        g=proposals[round(i*(len(proposals)-1)/max(1,len(text)-1))] if proposals else None
+        cy=g['center'][1] if g else .5
+        font=ImageFont.truetype(font_path,max(8,round(h*height)))
+        box=font.getbbox(char);glyph=Image.new('L',(box[2]-box[0]+8,box[3]-box[1]+8));ImageDraw.Draw(glyph).text((4-box[0],4-box[1]),char,font=font,fill=255)
+        crop=glyph.getbbox();glyph=glyph.crop(crop)
+        targeth=max(6,round(h*height));width_gain=style.get('glyph_width_gain',1.)
+        targetw=max(2,min(round(glyph.width*targeth/max(glyph.height,1)*width_gain),round(w*(.75 if width_gain==1. else .9)/len(text))))
+        glyph=glyph.resize((targetw,targeth),Image.Resampling.BILINEAR)
+        effect=style.get('font_effect')
+        hollow=(style.get('hollow_score',0)>.55 and variant>=2) if effect is None else effect=='hollow'
+        if effect in ('bold','hollow'):
+            glyph=Image.fromarray(np.pad(np.asarray(glyph),2))
+        if effect=='bold':glyph=Image.fromarray(cv2.dilate(np.asarray(glyph),np.ones((3,3),np.uint8)))
+        if hollow:
+            array=np.asarray(glyph);eroded=cv2.erode(array,np.ones((3,3),np.uint8));glyph=Image.fromarray(array-eroded)
+        # Rotation stays conservative because measured glyph axes are ambiguous.
+        tilt=float(np.clip(style['text_tilt_proxy'] or 0,0,25));angle=float(rng.uniform(-tilt,tilt)) if variant>=2 else 0
+        glyph=glyph.rotate(angle,Image.Resampling.BILINEAR,expand=True)
+        left=1 if i==0 else int(math.ceil((centers[i-1]+centers[i])*w/2))
+        right=w-1 if i==len(text)-1 else int(math.floor((centers[i]+centers[i+1])*w/2))
+        if right-left<2 or h<4:raise ValueError('Canvas too small for requested text')
+        fit_scale=min(1.,(right-left)/glyph.width,(h-2)/glyph.height)
+        if fit_scale<1:
+            glyph=glyph.resize((max(1,int(glyph.width*fit_scale)),max(1,int(glyph.height*fit_scale))),Image.Resampling.BILINEAR)
+        x=round(centers[i]*w-glyph.width/2);y=int(np.clip(round(cy*h-glyph.height/2),1,max(1,h-glyph.height-1)))
+        x=int(np.clip(x,left,right-glyph.width))
+        if x<0 or y<0 or x+glyph.width>w or y+glyph.height>h:raise ValueError('Glyph would clip')
+        mask=Image.new('L',(w,h));mask.paste(glyph,(x,y));support=np.asarray(mask)>100
+        if not support.any():raise ValueError('Glyph mask has no significant pixels')
+        backdrop=np.asarray(background)[support].astype(float)
+        alpha=np.asarray(mask)[support].astype(float)/255
+        def contrast_score(color):
+            return float((np.max(np.abs(backdrop-np.array(color)),axis=1)*alpha>=24).mean())
+        choices=[c for c in fg if contrast_score(c)>=.75]
+        fallback=False
+        if not choices:
+            # Record a readability fallback instead of silently accepting an
+            # invisible glyph; synthetic labels still refer to the same text.
+            choices=[max(([0,0,0],[255,255,255]),key=contrast_score)];fallback=True
+        color=choices[int(rng.integers(len(choices)))]
+        image.paste(tuple(color),mask=mask);textmask=Image.fromarray(np.maximum(np.asarray(textmask),np.asarray(mask)))
+        layers.append((color,mask))
+        records.append(dict(character=char,box=[x,y,x+glyph.width,y+glyph.height],angle=angle,color=color,hollow=hollow,font_effect=effect,contrast_fallback=fallback,rotation_fit_scale=fit_scale))
+    delta=np.max(np.abs(np.asarray(image).astype(float)-np.asarray(background).astype(float)),axis=2)
+    visible=float((delta[np.asarray(textmask)>100]>=12).mean())
+    if not np.isfinite(visible) or visible<.55:raise ValueError('Low visible text contribution')
+    # Compare with an exact counterfactual omitting each glyph, so other glyphs
+    # cannot hide one invisible character in a union-mask score.
+    final=np.asarray(image).astype(float)
+    for i,(_,mask) in enumerate(layers):
+        counterfactual=background.copy()
+        for j,(color,other_mask) in enumerate(layers):
+            if i!=j:counterfactual.paste(tuple(color),mask=other_mask)
+        contribution=np.max(np.abs(final-np.asarray(counterfactual).astype(float)),axis=2)
+        fraction=float((contribution[np.asarray(mask)>100]>=12).mean())
+        records[i]['visible_fraction']=fraction
+        if fraction<.55:raise ValueError('Low individual glyph contribution')
+    return image,textmask,dict(text=text,font=font_path,seed=seed,variant=variant,operations=operations,glyphs=records,visible_fraction=visible,
+        mapping=['Pillow.ImageDraw.rectangle','Pillow.ImageDraw.line','Pillow.ImageDraw.point','Pillow.ImageFont.truetype','Pillow.Image.paste'])

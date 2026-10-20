@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-10-07T09:18:40.326235+00:00",
+  "passed": true,
+  "pilot": "pilot_04096",
+  "report_sha256": "3be1f08d1e36a6b9dd2f938d6c6ad4a710229016ade0522025ca5e75a0096ca0",
+  "image": "pilot_04096/review_final.png",
+  "review": "Inspected 16 seeded random examples plus 8 lowest-contrast and 8 smallest-glyph examples. Mixed backgrounds, colours, layouts, stroke styles and warps realized. Annotations remain separate from raw training RGB.",
+  "limits": "Some stress cases are ambiguous to read/count from pixels. Synthetic instance count is not a claim of perfect human readability. Evaluate uncertainty by visibility/size/contrast and overlap; do not claim guaranteed count recovery."
+}

@@ -1,0 +1,100 @@
+{
+  "synthetic_discovery": {
+    "attempts": 2500,
+    "correct": 1639,
+    "accuracy_percent": 65.56
+  },
+  "synthetic_calibration_baseline": {
+    "attempts": 2500,
+    "correct": 1588,
+    "accuracy_percent": 63.52
+  },
+  "synthetic_policies": [
+    {
+      "target": 0.9,
+      "available": true,
+      "threshold": 0.5500554611137143,
+      "attempts": 754,
+      "correct": 695,
+      "accuracy_percent": 92.17506631299734,
+      "shoot_rate_percent": 30.16
+    },
+    {
+      "target": 0.95,
+      "available": false,
+      "threshold": null,
+      "attempts": 0,
+      "correct": 0,
+      "accuracy_percent": null,
+      "shoot_rate_percent": 0.0
+    },
+    {
+      "target": 0.98,
+      "available": false,
+      "threshold": null,
+      "attempts": 0,
+      "correct": 0,
+      "accuracy_percent": null,
+      "shoot_rate_percent": 0.0
+    },
+    {
+      "target": 0.99,
+      "available": false,
+      "threshold": null,
+      "attempts": 0,
+      "correct": 0,
+      "accuracy_percent": null,
+      "shoot_rate_percent": 0.0
+    }
+  ],
+  "real_baseline": {
+    "attempts": 900,
+    "correct": 645,
+    "accuracy_percent": 71.66666666666667
+  },
+  "real_policies": [
+    {
+      "target": 0.9,
+      "available": true,
+      "threshold": 0.5500554611137143,
+      "attempts": 174,
+      "correct": 160,
+      "accuracy_percent": 91.95402298850574,
+      "shoot_rate_percent": 19.333333333333332
+    },
+    {
+      "target": 0.95,
+      "available": false,
+      "threshold": null,
+      "attempts": 0,
+      "correct": 0,
+      "accuracy_percent": null,
+      "shoot_rate_percent": 0.0
+    },
+    {
+      "target": 0.98,
+      "available": false,
+      "threshold": null,
+      "attempts": 0,
+      "correct": 0,
+      "accuracy_percent": null,
+      "shoot_rate_percent": 0.0
+    },
+    {
+      "target": 0.99,
+      "available": false,
+      "threshold": null,
+      "attempts": 0,
+      "correct": 0,
+      "accuracy_percent": null,
+      "shoot_rate_percent": 0.0
+    }
+  ],
+  "changed_predictions_vs_original_batch1": 28,
+  "token_limit_counts": {
+    "synthetic": 6,
+    "real": 0
+  },
+  "policy_sha256": "36ec9f64ef74cfbf3856ab909548ca45d14f41a3393652cde871e1ec201f1d87",
+  "limitation": "Synthetic-derived fixed rules; no real-guided threshold adjustment. Batch8 confidence run is separately recorded."
+}

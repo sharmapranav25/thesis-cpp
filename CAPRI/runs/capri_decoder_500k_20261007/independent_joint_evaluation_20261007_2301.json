@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-07T23:00:15.948045+00:00",
+  "frozen_sources_verified": 141,
+  "mismatches": [],
+  "progress": {
+    "updated_at": "2026-10-07T23:00:10.180438+00:00",
+    "pid": 8416,
+    "state": "training",
+    "phase": "baseline_localization",
+    "epoch": 1,
+    "epochs": 1,
+    "batches": 9951,
+    "total_batches": 57333,
+    "images": 78092,
+    "total_images": 450000,
+    "optimizer_updates": 9951,
+    "loss": 2.5359489917755127,
+    "mean_loss": 4.699068939136883,
+    "online_train_count_accuracy": 0.6125339343338626,
+    "lr": 9.399744245235496e-05,
+    "gradient_norm": 24.60757064819336,
+    "amp_scale": 256.0,
+    "images_per_second": 10.237929399401663,
+    "elapsed_seconds": 7627.7142529,
+    "weights": "raw",
+    "estimated_remaining_epoch_seconds": 36326.486098032234
+  }
+}

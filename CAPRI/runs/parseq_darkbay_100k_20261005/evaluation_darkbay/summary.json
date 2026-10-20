@@ -1,0 +1,41 @@
+{
+  "results": [
+    {
+      "seed": 48,
+      "correct": 492,
+      "total": 900,
+      "exact_match_percent": 54.666666666666664,
+      "character_error_rate_percent": 9.794482503240141,
+      "predicted_lengths": {
+        "6": 900
+      }
+    },
+    {
+      "seed": 123,
+      "correct": 439,
+      "total": 900,
+      "exact_match_percent": 48.77777777777778,
+      "character_error_rate_percent": 11.275689687094982,
+      "predicted_lengths": {
+        "6": 900
+      }
+    },
+    {
+      "seed": 456,
+      "correct": 474,
+      "total": 900,
+      "exact_match_percent": 52.666666666666664,
+      "character_error_rate_percent": 10.33142010738752,
+      "predicted_lengths": {
+        "6": 900
+      }
+    }
+  ],
+  "mean_exact_match_percent": 52.03703703703704,
+  "sample_std_percentage_points": 2.9945080045477255,
+  "evaluation_images": 900,
+  "excluded_controller_images": 100,
+  "synthetic_pixel_overlap": 0,
+  "training_initialization": "from_scratch",
+  "limitation": "Historical dataset evaluation; no hyperparameters or checkpoints were selected using these scores."
+}

@@ -1,0 +1,11 @@
+{
+  "initial_sampling_exactly_matches_ds2": true,
+  "train": 95000,
+  "validation": 5000,
+  "no_validation_leakage": true,
+  "bounded_mass": true,
+  "finite_fail_closed": true,
+  "smoothing_verified": true,
+  "sampler_resume_exact": true,
+  "optimized_per_epoch": 94976
+}

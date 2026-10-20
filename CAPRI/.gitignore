@@ -1,0 +1,32 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.runtime/
+# Selected checkpoint metadata is tracked; large weight files stay local.
+models/active/
+# Run outputs: keep only the human-readable results (README/RESULTS/report, configs,
+# top-level run JSON and per-evaluation summaries). Per-image records, logs,
+# checkpoints and data stay local. (`!/runs/` overrides the parent repo's runs/ rule.)
+!/runs/
+!/runs/*/*.json
+!/runs/*/*/summary.json
+/runs/**/*.txt
+.git_codex_unused/
+# Third-party PHP libraries and font licence folders (not the author's own work)
+feature_bank_work/resources/
+CAPRI_typography_v3/fonts/
+# Bulk JSON over 1 MB (per-image records, manifests)
+/runs/Darkbay_ds2_noFont-intel/curriculum_samples.json
+/runs/Darkbay_ds2_noFont-intel/entries.json
+/runs/Darkbay_ds2_noFont-intel/samples.json
+/runs/Darkbay_ds2_noFont-intel/teacher_123.json
+/runs/Darkbay_ds2_noFont-intel/teacher_456.json
+/runs/Darkbay_ds2_noFont-intel/teacher_48.json
+/runs/Darkbay_model3_adaptive_20261006/split.json
+/runs/capri_storage_migration_20261007/first_attempt_verified_manifest.json
+/runs/capri_storage_migration_20261007/verified_manifest.json
+/runs/glm_ocr_synthetic_shoot_policy/synthetic_predictions.json
+# Per-image prediction/decision lists (raw data; summaries are kept)
+/runs/**/*predictions*.json
+/runs/**/*decisions*.json

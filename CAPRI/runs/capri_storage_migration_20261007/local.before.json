@@ -1,0 +1,14 @@
+{
+  "project": "E:/pranav/Final sem/sourcefree_synth",
+  "renderer": "E:/pranav/Final sem/captcha-effects",
+  "python": "E:/pranav/Final sem/sourcefree_synth/experiments_xgb/.venv/Scripts/python.exe",
+  "default_run": "capri_darkbay_workflow",
+  "target_manifest": "configs/targets/darkbay.json",
+  "decoder_run": "runs/capri_decoder_500k_20261007",
+  "decoder_download_python": "C:/Users/pranav/Documents/ChatGPT/thesis/.runtime/glm_ocr/Scripts/python.exe",
+  "decoder_dinov3_source": "C:/Users/pranav/Documents/ChatGPT/thesis/controller_mvp_v9_vision/vendor/dinov3-main",
+  "decoder_dinov3_checkpoint": null,
+  "decoder_backbone": "dinov2_vits14_reg",
+  "decoder_dinov2_source": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\src\\capri_controller\\vendor\\dinov2-85a24602099d397264d5b30461ad7f3bfd726ca1",
+  "decoder_dinov2_checkpoint": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\pretrained\\dinov2\\dinov2_vits14_reg4_pretrain.pth"
+}

@@ -1,0 +1,20 @@
+from pathlib import Path
+import shutil
+project=Path('E:/pranav/Final sem/sourcefree_synth');base=Path(__file__).resolve().parent
+target=project/'runs/capri_phase3_city_02/watch_real_checkpoints_snapshot.py'
+assert not target.exists();shutil.copy2(base/'watch_phase3_real_checkpoints.py',target)
+html='''<!doctype html><meta charset="utf-8"><title>CAPRI Phase3 City</title>
+<style>body{font:16px system-ui;margin:32px;background:#111827;color:#e5e7eb;max-width:1400px}h1{font-size:26px}section{background:#1f2937;padding:20px;border-radius:10px;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:10px;text-align:left;border-bottom:1px solid #374151}progress{width:100%;height:20px}small{color:#9ca3af}pre{white-space:pre-wrap}.warn{color:#fcd34d}</style>
+<h1>CAPRI official Phase3 — City</h1><p>Synthetic-only reader → frozen fit-only scheme → targeted synthetic dataset</p>
+<p class="warn">Real values below are predictions, not accuracy. Checkpoints are selected using synthetic validation only.</p>
+<section><h2>Training</h2><div id="training">Loading…</div><progress id="p" value="0" max="1"></progress><small id="time"></small></section>
+<section><h2>Frozen checkpoint checks</h2><p id="state"></p><table><thead><tr><th>Reader</th><th>Epoch</th><th>Pool</th><th>Predicted lengths (count)</th><th>Digit / lower / upper presence</th><th>Mean confidence</th></tr></thead><tbody id="rows"></tbody></table></section>
+<details><summary>Raw training status</summary><pre id="raw"></pre></details>
+<script>const el=id=>document.getElementById(id);async function get(name){let r=await fetch(name+'?'+Date.now());if(!r.ok)throw Error(r.status);return r.json()}
+async function poll(){try{let s=await get('capri_phase3_city_status.json'),c=s.child||{};el('training').textContent=(s.active||s.state)+(c.epoch?' — epoch '+c.epoch+'/'+c.epochs+', step '+c.step+'/'+c.total_steps:'');el('p').value=(c.step||s.generated||s.audited||0)/(c.total_steps||s.target||1);el('time').textContent='Last status: '+new Date((s.updated_unix||s.time)*1000).toLocaleTimeString();el('raw').textContent=JSON.stringify(s,null,2)}catch(e){el('training').textContent=String(e)}
+try{let r=await get('capri_phase3_real_checkpoints.json');el('state').textContent=r.state+' — '+r.checkpoints_evaluated+' checkpoint(s) evaluated';el('rows').replaceChildren();for(let s of [...r.summaries].reverse()){for(let part of ['fit','validation']){let v=s[part],row=document.createElement('tr');let values=[s.reader,s.epoch,part+' ('+v.images+')',Object.entries(v.predicted_length_histogram).map(([n,c])=>n+': '+c).join(' · '),v.predicted_group_prevalence.map(x=>(100*x).toFixed(1)+'%').join(' / '),(100*v.mean_confidence).toFixed(1)+'%'];for(let value of values){let td=document.createElement('td');td.textContent=value;row.append(td)}el('rows').append(row)}}}catch(e){el('state').textContent='Waiting for checkpoint checks'}}poll();setInterval(poll,10000)</script>'''
+(project/'monitor/phase3_city.html').write_text(html,encoding='utf8')
+note='''\n\nUser requested real testing of each checkpoint during training. Added read-only watcher watch_real_checkpoints_snapshot.py under run02; each observed saved best checkpoint is copied with before/after SHA256 verification, frozen, calibrated on synthetic calibration data, then inferred separately on1599fit and400validation. Results interim_real_checkpoints/index.json and per-checkpoint predictions; live monitor/phase3_city.html now displays them. Earliest captured CRNN checkpoint is epoch6; earlier best files overwritten by the original trainer cannot be recovered. Future saved best checkpoints are preserved; epochs without a new best do not create a checkpoint. Real results never alter checkpoint selection, schedule or scheme until the final frozen comparison. No verified real ground truth; all histograms/presence/confidences are predictions only.\n'''
+for name in ['STYLE_HANDOFF.md','STYLE_DECISIONS.md','CAPRI_PHASE3_CITY_01.md']:
+    with (project/'docs'/name).open('a',encoding='utf8') as f:f.write(note)
+print('Checkpoint dashboard and records updated')

@@ -1,0 +1,8 @@
+{
+  "checked_at": "2026-10-07T21:05:37.939600+00:00",
+  "passed": true,
+  "active_training_source_files_unchanged": 141,
+  "specialist_contracts_passed": true,
+  "reference_reader_passed": true,
+  "no_second_gpu_job_launched": true
+}

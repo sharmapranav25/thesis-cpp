@@ -1,0 +1,27 @@
+{
+  "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\training_recovery\\baseline_localization\\epoch_0100\\checkpoint.pt": {
+    "bytes": 498126445,
+    "mtime_ns": 1791406480888304000,
+    "sha256": "068d76b75dc7d95843b6f4a77b2516bdffa43028b8a85751e34eb76bed3f9438"
+  },
+  "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\training_recovery\\baseline_localization\\epoch_10000\\checkpoint.pt": {
+    "bytes": 498126445,
+    "mtime_ns": 1791414049486269100,
+    "sha256": "4a41f97de66f7c53ef590c4e2ffca62ce0c0712e95c6ad69c9768648d6f97839"
+  },
+  "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\training_recovery\\baseline_localization\\epoch_15000\\checkpoint.pt": {
+    "bytes": 498106669,
+    "mtime_ns": 1791419578449506500,
+    "sha256": "063bc6079ec124257180f64ee1807fd0199885e5b4f08b15106ac550a743a850"
+  },
+  "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\training_recovery\\baseline_localization\\epoch_20000\\checkpoint.pt": {
+    "bytes": 498106669,
+    "mtime_ns": 1791425402279564600,
+    "sha256": "6bee2dbcee7a965f24998855f343f545f2dfd075b2d3d0233409fa5cfb49d7e5"
+  },
+  "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007\\training_recovery\\baseline_localization\\epoch_5000\\checkpoint.pt": {
+    "bytes": 498126445,
+    "mtime_ns": 1791410246451180400,
+    "sha256": "5fab137667c22ea8b8db49d3e273f9712abe398e0541baaaa25e71d0f53c2b7d"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-10-07T09:11:27.549194+00:00",
+  "passed": true,
+  "checks": {
+    "bold_id_permutation_and_nearest_colour": true,
+    "overlap_preserves_separate_geometry_and_alpha": true,
+    "two_character_two_rows_actually_rendered": true,
+    "deterministic_replay": true,
+    "all_effects_finite_masks_and_box_alignment": true,
+    "missing_glyph_rejected": true,
+    "font_family_split_disjoint": true
+  },
+  "n_effects": 38
+}

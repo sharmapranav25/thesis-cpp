@@ -1,0 +1,10 @@
+{
+  "stage": "complete",
+  "seeds": [
+    48,
+    123,
+    456
+  ],
+  "epochs": 20,
+  "training_started": true
+}

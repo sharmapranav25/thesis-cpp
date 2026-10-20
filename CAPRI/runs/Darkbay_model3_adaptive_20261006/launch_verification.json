@@ -1,0 +1,74 @@
+{
+  "protocol_sha256": "2959686ba0c7964360a5b539493af7f60742d642e06961eaad5b79ef19cbb801",
+  "source_freeze_sha256": "20bfec68c236ef5aaf9c90e4c5f09a8fb3bfcf1731b93e505ae660ae24ee4e76",
+  "all_sources_match": true,
+  "rule_checks": {
+    "initial_sampling_exactly_matches_ds2": true,
+    "train": 95000,
+    "validation": 5000,
+    "no_validation_leakage": true,
+    "bounded_mass": true,
+    "finite_fail_closed": true,
+    "smoothing_verified": true,
+    "sampler_resume_exact": true,
+    "optimized_per_epoch": 94976
+  },
+  "resume_check": {
+    "model_tensors_exact": true,
+    "scheduler_exact": true,
+    "adaptive_state_exact": true,
+    "global_steps": 6,
+    "interrupted_after_epoch": 1,
+    "completed_epoch": 2
+  },
+  "full_pool_check": {
+    "images": 95000,
+    "no_validation": true,
+    "model_unchanged": true,
+    "finite": true,
+    "seconds": 187.0856918,
+    "checkpoint_sha256": "021cc30f56877a0c0135a6eb23d2a7652c67208b126808dd138009aebd20f07b",
+    "group_risk": [
+      0.9999999993054653,
+      0.9999999996657509,
+      0.9999999999543517
+    ],
+    "proposal": [
+      0.3333333332884813,
+      0.3333333333365193,
+      0.3333333333749994
+    ],
+    "next_mass": [
+      0.3333333332884813,
+      0.3333333333365193,
+      0.3333333333749994
+    ],
+    "moved": 35927,
+    "max_mass_change": 4.485201099413416e-11
+  },
+  "policy_regression": {
+    "model2_policy_exactly_reproduced": true,
+    "discovery_and_calibration_ids_exact": true,
+    "thresholds_exact": true,
+    "real_decisions_exact": true,
+    "results_exact": true,
+    "uses_only_existing_baseline_predictions": true
+  },
+  "launch": {
+    "pid": 14012,
+    "command": "capri.py darkbay-ds3",
+    "output": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\Darkbay_model3_adaptive_20261006",
+    "started": "2026-10-06T09:32:14.0012189-07:00"
+  },
+  "status": {
+    "stage": "training",
+    "updated": "2026-10-06 09:33:04",
+    "seed": 48,
+    "epoch": 1,
+    "mass": [
+      1.0,
+      0.0,
+      0.0
+    ]
+  }
+}

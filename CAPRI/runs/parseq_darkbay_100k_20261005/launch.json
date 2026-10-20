@@ -1,0 +1,12 @@
+{
+  "pid": 16720,
+  "started_at": "2026-10-05T15:57:23.6095079-07:00",
+  "command": "capri.py train-parseq --from-scratch",
+  "initialization_note": "Pretrained checkpoint unavailable; scratch initialization disclosed before launch",
+  "seeds": [
+    48,
+    123,
+    456
+  ],
+  "epochs": 20
+}

@@ -1,0 +1,15 @@
+{
+  "selection": "final_epoch",
+  "epoch": 20,
+  "seeds": [
+    48,
+    123,
+    456
+  ],
+  "scope": "Model3 current designated checkpoint, ensemble and synthetic-calibrated shoot analysis",
+  "user_instruction": "Yeah for now the last epoch is checkpoint",
+  "recorded": "2026-10-06 13:28:58",
+  "original_synthetic_selection_preserved": true,
+  "training_unchanged": true,
+  "provenance": "User amendment after seed48 real epoch sweep; not a pre-test selection rule"
+}

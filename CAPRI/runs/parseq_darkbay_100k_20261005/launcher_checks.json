@@ -1,0 +1,6 @@
+{
+  "syntax_pass": true,
+  "missing_checkpoint_fails_before_training": true,
+  "full_dataset_prepared": 100000,
+  "optimizer_steps": 0
+}

@@ -1,0 +1,22 @@
+{
+  "model": "zai-org/GLM-OCR",
+  "revision": "2e85a62840ccac27daa451df36c736c4636b8628",
+  "synthetic_images": 5000,
+  "discovery": 2500,
+  "calibration": 2500,
+  "split_sha256": "2e8ec9ba7dde8b2b1d0411d399d7621346a40981a819d879a4bcb401df20593a",
+  "batch_size": 8,
+  "prompt": "Text Recognition:",
+  "generation": "greedy, max_new_tokens64, original RGB, official processor, BF16 SDPA",
+  "confidence": "Product of generated non-special-token probabilities from normalized generation scores, EOS excluded; tokenization differs from PARSeq characters",
+  "risk": "Joint token confidence times product of Laplace-smoothed emitted-character correctness learned on discovery split; heuristic ranking score",
+  "thresholds": "For targets90/95/98/99%, maximum coverage with >=100 calibration attempts and descriptive Wilson95 lower bound meeting target",
+  "label_boundary": "Synthetic labels only for discovery/calibration after synthetic inference; real labels only after policy and real attempt decisions are frozen",
+  "limitations": [
+    "Post-selection Wilson bounds are descriptive, not guarantees",
+    "Previously examined historical real set",
+    "Batch8 may numerically differ from prior batch1 baseline; report replay differences",
+    "Unknown pretrained-data overlap"
+  ],
+  "code_sha256": "ba5aa169a719da126ac48081c345dcd159d0f7afab501f1644714a56145f5d3f"
+}

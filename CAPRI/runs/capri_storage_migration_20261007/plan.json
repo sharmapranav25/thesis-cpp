@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-10-07T23:56:25.606071+00:00",
+  "source": "C:\\Users\\pranav\\Documents\\ChatGPT\\thesis\\runs\\capri_decoder_500k_20261007",
+  "destination": "E:\\pranav\\CAPRI\\runs\\capri_decoder_500k_20261007",
+  "minimum_checkpoint": 15000,
+  "initial_copy_succeeded": true,
+  "authorization": "User requested moving all CAPRI run data to E; waiting for next recovery checkpoint is the default pending preference.",
+  "implementation_sha256": {
+    "storage_migration.py": "be2f466c3d0520f23e9be2cad1d8ff91075b5048c811443390b34a67dca6075c",
+    "storage_cutover.ps1": "b80d09992e4be5bece4bbf3e3730bd91dfa8a2c464ae970756ded3a8959f4c8c",
+    "common.py": "6cf8189a9da344daa127e07cf957fff3629edf2fa86751e22b77e7c3fc7e35e8"
+  },
+  "path_checks": {
+    "passed": true,
+    "physical_to_logical_preserved": true,
+    "nested_paths": true,
+    "unconfigured_and_mismatched_targets_refused": true
+  }
+}

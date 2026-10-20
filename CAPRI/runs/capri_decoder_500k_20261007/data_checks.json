@@ -1,0 +1,24 @@
+{
+  "created_at": "2026-10-07T19:02:22.567063+00:00",
+  "passed": true,
+  "train_rows_indexed": 1000,
+  "examples_checked": 53,
+  "exact_shape_batches": 270,
+  "source_sha256": "edb7cf9235177f68c9ca40c1b12ac75540167b5e193175454b322e8711260b85",
+  "snapshot_hash": "ec13b8a85708e17defb6ab3286b57e52edbcc85dbf11f7cfd915cc6442f8039b",
+  "seconds": 1.3439999999973224,
+  "checks": [
+    "pixel-only input contract",
+    "train/inference preprocessing equality",
+    "count and box transforms",
+    "mask dimensions and conditional intensity validity",
+    "all examples once per epoch",
+    "font/content pairs retained in same shape batch",
+    "deterministic consumed-cursor resume",
+    "snapshot mismatch refusal",
+    "mixed-shape batch refusal",
+    "test-for-optimization refusal",
+    "spawn-safe ZIP state"
+  ],
+  "limitation": "Diagnostic reads from one completed TRAIN shard while generation runs. No final-test scoring or model/optimizer executed; production training still requires corpus completion and pretrained weights."
+}
